@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pink Mint Clean - Luxury Cleaning Service</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap');
+        
+        /* Custom Colors from Palette */
+        .blush-pink-bg { background-color: #D4B4C1; }
+        .mint-green-bg { background-color: #A2D9C8; }
+        .charcoal-grey { color: #2A333E; }
+        .gold-accent { color: #B8860B; }
+        .gold-bg-accent { background-color: #B8860B; }
+        .pure-white-bg { background-color: #FFFFFF; }
+
+        .playfair { font-family: 'Playfair Display', serif; }
+        .poppins { font-family: 'Poppins', sans-serif; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F8F8F8; /* A light background for the page */
+        }
+        .flyer-page {
+            max-width: 800px;
+            margin: 2rem auto;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+
+        .section-divider {
+            height: 1px;
+            background-color: #D3D3D3;
+            margin: 2rem 0;
+        }
+
+        .cta-button {
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+        .file-upload-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #D3D3D3;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+        .file-upload-container:hover {
+            border-color: #B8860B;
+        }
+        .file-upload-container input[type="file"] {
+            display: none;
+        }
+        .price-table th, .price-table td {
+            padding: 0.75rem 1.5rem;
+            text-align: left;
+        }
+        .price-table th {
+            font-weight: 600;
+            color: #2A333E;
+            background-color: #f8fafc;
+        }
+        .price-table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+    </style>
+</head>
+<body class="poppins">
+
+    <!-- Flyer Container -->
+    <div class="flyer-page pure-white-bg">
+
+        <!-- Top Header & Branding Section -->
+        <div class="blush-pink-bg p-8 sm:p-12 md:p-16 text-center">
+            <h1 class="playfair text-5xl sm:text-6xl font-bold charcoal-grey mb-2">Pink Mint Clean</h1>
+            <p class="text-xl sm:text-2xl font-light charcoal-grey tracking-widest uppercase mb-4">Luxury Cleaning • Steam Detailing • Mobile Service</p>
+            <p class="playfair text-2xl sm:text-3xl gold-accent font-bold mt-6">Fresh. Flawless. Fabulous.</p>
+        </div>
+
+        <!-- Services Section with Highlighted Tools -->
+        <div class="p-8 sm:p-12 md:p-16">
+            <h2 class="text-3xl sm:text-4xl font-bold text-center charcoal-grey mb-8">Our Signature Services</h2>
+            <p class="text-lg text-center charcoal-grey mb-8">Tell us what you need and we will create a tailored quote just for you.</p>
+
+            <!-- Standard Cleaning Block -->
+            <div class="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-8 mb-8">
+                <div class="p-4 flex-shrink-0">
+                    <!-- Elegant Mopping Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="gold-accent h-16 w-16 mx-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2v20"></path>
+                        <path d="M16 16h4a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-4"></path>
+                        <path d="M8 8H4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4"></path>
+                        <path d="M21 16l-4 4"></path>
+                        <path d="M3 16l4 4"></path>
+                    </svg>
+                    <p class="text-center text-sm font-semibold charcoal-grey mt-2">Pristine Floor Care</p>
+                </div>
+                <div class="w-full">
+                    <h3 class="flex items-center text-xl sm:text-2xl font-bold charcoal-grey mb-2">
+                        Standard Cleaning
+                    </h3>
+                    <ul class="list-disc list-inside text-base charcoal-grey space-y-1 ml-4">
+                        <li>Surface wipe-downs (kitchen, bath, living areas)</li>
+                        <li>Mop & shine floors</li>
+                        <li>Trash removal</li>
+                        <li>Light organizing</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="section-divider"></div>
+
+            <!-- Deep Cleaning Block -->
+            <div class="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-8 my-8">
+                <div class="p-4 flex-shrink-0">
+                    <div class="flex space-x-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="gold-accent h-16 w-16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M10 20h4a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2z"></path>
+                            <path d="M12 15V4a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v2"></path>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="gold-accent h-16 w-16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2v2a2 2 0 0 0-2 2H8a2 2 0 0 0-2-2V2H4a2 2 0 0 0-2 2v10a4 4 0 0 0 4 4h4a4 4 0 0 0 4-4V4a2 2 0 0 0-2-2h-2z"></path>
+                        </svg>
+                    </div>
+                    <p class="text-center text-sm font-semibold charcoal-grey mt-2">Steamer & Wet Vac</p>
+                </div>
+                <div class="w-full">
+                    <h3 class="flex items-center text-xl sm:text-2xl font-bold charcoal-grey mb-2">
+                        Deep Cleaning
+                    </h3>
+                    <ul class="list-disc list-inside text-base charcoal-grey space-y-1 ml-4">
+                        <li>Steam detailing (grout, upholstery, appliances)</li>
+                        <li>Wet/dry vacuum for pet hair & debris</li>
+                        <li>Trash bin sanitizing</li>
+                        <li>Closet refresh</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="section-divider"></div>
+            
+            <!-- NEW Kitchen Cleaning Block -->
+            <div class="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-8 my-8">
+                <div class="p-4 flex-shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="gold-accent h-16 w-16 mx-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21.2 15.3l-3.2-3.2c-.4-.4-1-.4-1.4 0l-1.6 1.6c-.4.4-.4 1 0 1.4l3.2 3.2c.4.4 1 .4 1.4 0l1.6-1.6c.4-.4.4-1 0-1.4zM16 11l-3.2-3.2c-.4-.4-1-.4-1.4 0l-1.6 1.6c-.4.4-.4 1 0 1.4l3.2 3.2c.4.4 1 .4 1.4 0l1.6-1.6c.4-.4.4-1 0-1.4zM12 7L8.8 3.8c-.4-.4-1-.4-1.4 0l-1.6 1.6c-.4.4-.4 1 0 1.4l3.2 3.2c.4.4 1 .4 1.4 0l1.6-1.6c.4-.4.4-1 0-1.4zM7 2a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zM17 17a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1a1 1 0 0 0-1-1zM12 12a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1a1 1 0 0 0-1-1z"></path>
+                    </svg>
+                    <p class="text-center text-sm font-semibold charcoal-grey mt-2">Fork & Knife</p>
+                </div>
+                <div class="w-full">
+                    <h3 class="flex items-center text-xl sm:text-2xl font-bold charcoal-grey mb-2">
+                        Kitchen Cleaning Services
+                    </h3>
+                    <ul class="list-disc list-inside text-base charcoal-grey space-y-1 ml-4">
+                        <li>Countertops, surfaces, sink & faucet disinfected and polished</li>
+                        <li>Stovetop, range hood, and microwave degreased and steam-cleaned</li>
+                        <li>Floors swept, mopped, and steam-treated</li>
+                        <li>Limit 1 sink load of dishes washed, dried, and put away</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="section-divider"></div>
+
+
+            <!-- Laundry Service Block -->
+            <div class="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-8 my-8">
+                <div class="p-4 flex-shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="gold-accent h-16 w-16 mx-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="2" ry="2"></rect>
+                        <path d="M16 8h-8"></path>
+                        <path d="M16 12h-8"></path>
+                        <path d="M16 16h-4"></path>
+                        <circle cx="6" cy="12" r="2"></circle>
+                    </svg>
+                    <p class="text-center text-sm font-semibold charcoal-grey mt-2">Wash & Fold</p>
+                </div>
+                <div class="w-full">
+                    <h3 class="flex items-center text-xl sm:text-2xl font-bold charcoal-grey mb-2">
+                        Steam & Soft Laundry Care
+                    </h3>
+                    <ul class="list-disc list-inside text-base charcoal-grey space-y-1 ml-4">
+                        <li>Wash, dry, and fold (client provides detergent)</li>
+                        <li>Towel & linen refresh</li>
+                        <li>Closet-ready folding or hanger prep</li>
+                        <li>Optional: steam press for select items</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="section-divider"></div>
+
+            <!-- New Flat Rates Section -->
+            <div class="my-8">
+                <h3 class="flex items-center text-xl sm:text-2xl font-bold charcoal-grey mb-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="gold-accent h-6 w-6 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"></path>
+                        <path d="M12 8l4 4-4 4-4-4z"></path>
+                    </svg>
+                    Special Services & Discounts
+                </h3>
+                <ul class="list-disc list-inside text-base charcoal-grey space-y-1 ml-4">
+                    <li>**Fixed Income / Disability Special**</li>
+                    <li>**Veteran Special**</li>
+                    <li>**Move-In/Move-Out Special**</li>
+                    <li>**Book a week ahead discount**</li>
+                </ul>
+            </div>
+            <div class="section-divider"></div>
+            
+            <!-- Add-On Perks -->
+            <div class="my-8">
+                <h3 class="flex items-center text-xl sm:text-2xl font-bold charcoal-grey mb-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="gold-accent h-6 w-6 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"></path>
+                        <path d="M12 8l4 4-4 4-4-4z"></path>
+                    </svg>
+                    Extra Touches
+                </h3>
+                <ul class="list-disc list-inside text-base charcoal-grey space-y-1 ml-4 grid grid-cols-1 md:grid-cols-2">
+                    <li>Luxe Touch: pillow fluffing, towel folding, scent spray</li>
+                    <li>Closet organizing</li>
+                    <li>Trash bin steam & disinfect</li>
+                    <li>Oven Deep Clean ($10)</li>
+                    <li>Fridge Interior Clean ($10)</li>
+                    <li>Dish Overflow (extra sink load) ($5)</li>
+                    <li>Pantry Wipe & Organize ($15)</li>
+                    <li>Coffee Station Refresh ($5)</li>
+                    <li>Before/after photo documentation</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="blush-pink-bg p-8 sm:p-12 md:p-16 text-center">
+            <h2 class="text-3xl sm:text-4xl font-bold charcoal-grey mb-4">✨ Cleaning Service Builder</h2>
+            <p class="text-lg charcoal-grey mb-6">Let us know what you need, and we'll create a tailored plan just for you.</p>
+
+            <div class="w-full max-w-xl mx-auto space-y-6 text-left">
+
+                <!-- Basic Service Needs -->
+                <h3 class="text-2xl font-bold charcoal-grey mt-8 mb-4">Service Details</h3>
+                <div>
+                    <label for="service-request" class="block text-lg font-medium charcoal-grey mb-2">Describe your cleaning needs:</label>
+                    <textarea id="service-request" rows="4" class="w-full p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-gold-accent transition-all duration-200" placeholder="e.g., 'I need a deep cleaning for a 3-bedroom apartment with a pet. Focus on the kitchen and bathrooms.'"></textarea>
+                </div>
+                <div>
+                    <label for="room-image" class="block text-lg font-medium charcoal-grey mb-2">Or upload a picture of the room:</label>
+                    <div class="file-upload-container">
+                        <input type="file" id="room-image" accept="image/*">
+                        <p class="charcoal-grey">Click to upload an image</p>
+                        <img id="image-preview" class="mt-4 max-h-40 rounded-lg shadow-md" style="display: none;" />
+                    </div>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <!-- NEW Kitchen Questionnaire -->
+                <h3 class="text-2xl font-bold charcoal-grey mt-8 mb-4">Kitchen Services 🍽️</h3>
+                <div>
+                    <label class="inline-flex items-center text-lg font-medium charcoal-grey mb-2">
+                        <input type="checkbox" id="kitchen-service-toggle" class="form-checkbox h-5 w-5 text-gold-accent rounded-sm">
+                        <span class="ml-2">Would you like kitchen cleaning included?</span>
+                    </label>
+                </div>
+                <div id="kitchen-questions" class="space-y-4 pl-4 border-l-2 border-gold-accent hidden">
+                    <div>
+                        <label for="kitchen-extra-attention" class="block text-lg font-medium charcoal-grey mb-2">Which kitchen areas need extra attention?</label>
+                        <div class="flex flex-col space-y-2">
+                            <label class="inline-flex items-center text-base charcoal-grey">
+                                <input type="checkbox" id="oven-deep-clean" class="form-checkbox h-5 w-5 text-gold-accent rounded-sm">
+                                <span class="ml-2">Oven Deep Clean ($10 add-on)</span>
+                            </label>
+                            <label class="inline-flex items-center text-base charcoal-grey">
+                                <input type="checkbox" id="fridge-interior-clean" class="form-checkbox h-5 w-5 text-gold-accent rounded-sm">
+                                <span class="ml-2">Fridge Interior Clean ($10 add-on)</span>
+                            </label>
+                            <label class="inline-flex items-center text-base charcoal-grey">
+                                <input type="checkbox" id="dish-overflow" class="form-checkbox h-5 w-5 text-gold-accent rounded-sm">
+                                <span class="ml-2">Dish Overflow (extra sink load) ($5 add-on)</span>
+                            </label>
+                            <label class="inline-flex items-center text-base charcoal-grey">
+                                <input type="checkbox" id="pantry-organize" class="form-checkbox h-5 w-5 text-gold-accent rounded-sm">
+                                <span class="ml-2">Pantry Wipe & Organize ($15 add-on)</span>
+                            </label>
+                            <label class="inline-flex items-center text-base charcoal-grey">
+                                <input type="checkbox" id="coffee-station" class="form-checkbox h-5 w-5 text-gold-accent rounded-sm">
+                                <span class="ml-2">Coffee Station Refresh ($5 add-on)</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="kitchen-scent-preference" class="block text-lg font-medium charcoal-grey mb-2">Preferred cleaning products or scents for kitchen use?</label>
+                        <input type="text" id="kitchen-scent-preference" class="w-full p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-gold-accent transition-all duration-200" placeholder="e.g., 'Use lemon-scented cleaner' or 'No bleach please'"/>
+                    </div>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <!-- Laundry Questionnaire -->
+                <h3 class="text-2xl font-bold charcoal-grey mt-8 mb-4">Laundry Questionnaire 🧺</h3>
+                <div>
+                    <label class="inline-flex items-center text-lg font-medium charcoal-grey mb-2">
+                        <input type="checkbox" id="laundry-service-toggle" class="form-checkbox h-5 w-5 text-gold-accent rounded-sm">
+                        <span class="ml-2">I am interested in adding laundry services.</span>
+                    </label>
+                </div>
+                <div id="laundry-questions" class="space-y-4 pl-4 border-l-2 border-gold-accent hidden">
+                    <div>
+                        <label for="laundry-loads" class="block text-lg font-medium charcoal-grey mb-2">Approximate number of laundry loads:</label>
+                        <input type="number" id="laundry-loads" min="1" class="w-full p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-gold-accent transition-all duration-200" value="1"/>
+                    </div>
+                    <div>
+                        <label for="laundry-type" class="block text-lg font-medium charcoal-grey mb-2">What type of items need to be laundered?</label>
+                        <textarea id="laundry-type" rows="2" class="w-full p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-gold-accent transition-all duration-200" placeholder="e.g., 'Mostly clothes, some bedding and a few towels.'"></textarea>
+                    </div>
+                    <div>
+                        <label for="laundry-care" class="block text-lg font-medium charcoal-grey mb-2">Any special care instructions (delicates, air-dry only, etc.)?</label>
+                        <textarea id="laundry-care" rows="2" class="w-full p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-gold-accent transition-all duration-200" placeholder="e.g., 'Please air-dry all sweaters and lace items.'"></textarea>
+                    </div>
+                    <div>
+                        <label for="laundry-products" class="block text-lg font-medium charcoal-grey mb-2">What laundry products would you like us to use? (You provide)</label>
+                        <input type="text" id="laundry-products" class="w-full p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-gold-accent transition-all duration-200" placeholder="e.g., 'Tide Free & Gentle, Downy fabric softener'"/>
+                    </div>
+                    <div>
+                        <label for="laundry-finish" class="block text-lg font-medium charcoal-grey mb-2">How would you like the laundry finished?</label>
+                        <select id="laundry-finish" class="w-full p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-gold-accent transition-all duration-200">
+                            <option value="folded-and-put-away">Folded and put away in closets</option>
+                            <option value="folded-and-stacked">Folded and stacked neatly</option>
+                            <option value="hung-on-hangers">Hung on hangers (client provides)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <!-- Cleaning Preferences -->
+                <h3 class="text-2xl font-bold charcoal-grey mb-4">Cleaning Preferences 🧼</h3>
+                <div>
+                    <label for="scent-preference" class="block text-lg font-medium charcoal-grey mb-2">Preferred cleaning scents (e.g., citrus, unscented):</label>
+                    <input type="text" id="scent-preference" class="w-full p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-gold-accent transition-all duration-200" placeholder="e.g., 'Lavender-free, fresh citrus scents'"/>
+                </div>
+                <div>
+                    <label for="avoid-areas" class="block text-lg font-medium charcoal-grey mb-2">Areas to avoid or treat with extra care:</label>
+                    <textarea id="avoid-areas" rows="2" class="w-full p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-gold-accent transition-all duration-200" placeholder="e.g., 'Heirloom dresser in the living room, pet food bowls'"></textarea>
+                </div>
+                <div>
+                    <label for="pet-info" class="block text-lg font-medium charcoal-grey mb-2">Do you have pets? If so, what kind and how many?</label>
+                    <input type="text" id="pet-info" class="w-full p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-gold-accent transition-all duration-200" placeholder="e.g., 'One cat and two dogs'"/>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <!-- Space Details -->
+                <h3 class="text-2xl font-bold charcoal-grey mb-4">Space Details 🛋️</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="num-bedrooms" class="block text-lg font-medium charcoal-grey mb-2">Number of bedrooms:</label>
+                        <input type="number" id="num-bedrooms" min="0" class="w-full p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-gold-accent transition-all duration-200" value="1"/>
+                    </div>
+                    <div>
+                        <label for="num-bathrooms" class="block text-lg font-medium charcoal-grey mb-2">Number of bathrooms:</label>
+                        <input type="number" id="num-bathrooms" min="0" class="w-full p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-gold-accent transition-all duration-200" value="1"/>
+                    </div>
+                </div>
+                <div>
+                    <label for="space-features" class="block text-lg font-medium charcoal-grey mb-2">Any stairs, carpet, or large furniture?</label>
+                    <textarea id="space-features" rows="2" class="w-full p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-gold-accent transition-all duration-200" placeholder="e.g., 'One flight of stairs, carpet in the master bedroom'"></textarea>
+                </div>
+                <div class="flex items-center text-base charcoal-grey">
+                    <input type="checkbox" id="recurring-service" class="form-checkbox h-5 w-5 text-gold-accent rounded-sm">
+                    <span class="ml-2">Interested in recurring service?</span>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <!-- Luxe Add-Ons & Vibe -->
+                <h3 class="text-2xl font-bold charcoal-grey mb-4">Extra Touches 🎀</h3>
+                <h4 class="block text-lg font-medium charcoal-grey mb-2">Luxe Touch add-ons:</h4>
+                <div class="flex flex-col space-y-2">
+                    <label class="inline-flex items-center text-base charcoal-grey">
+                        <input type="checkbox" id="luxe-touch" class="form-checkbox h-5 w-5 text-gold-accent rounded-sm">
+                        <span class="ml-2">Luxe Touch (pillow fluffing, towel folding, scent spray)</span>
+                    </label>
+                    <label class="inline-flex items-center text-base charcoal-grey">
+                        <input type="checkbox" id="closet-organizing" class="form-checkbox h-5 w-5 text-gold-accent rounded-sm">
+                        <span class="ml-2">Closet organizing</span>
+                    </label>
+                    <label class="inline-flex items-center text-base charcoal-grey">
+                        <input type="checkbox" id="photo-documentation" class="form-checkbox h-5 w-5 text-gold-accent rounded-sm">
+                        <span class="ml-2">Before/after photos</span>
+                    </label>
+                </div>
+                <h4 class="block text-lg font-medium charcoal-grey mb-2 mt-4">What vibe do you want your space to radiate?</h4>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <label class="flex items-center space-x-2 text-base charcoal-grey">
+                        <input type="radio" name="vibe" value="Fresh & Airy" class="form-radio h-4 w-4 text-gold-accent">
+                        <span>Fresh & Airy</span>
+                    </label>
+                    <label class="flex items-center space-x-2 text-base charcoal-grey">
+                        <input type="radio" name="vibe" value="Cozy & Inviting" class="form-radio h-4 w-4 text-gold-accent">
+                        <span>Cozy & Inviting</span>
+                    </label>
+                    <label class="flex items-center space-x-2 text-base charcoal-grey">
+                        <input type="radio" name="vibe" value="Sleek & Minimal" class="form-radio h-4 w-4 text-gold-accent">
+                        <span>Sleek & Minimal</span>
+                    </label>
+                    <label class="flex items-center space-x-2 text-base charcoal-grey">
+                        <input type="radio" name="vibe" value="Glamorous & Luxe" class="form-radio h-4 w-4 text-gold-accent">
+                        <span>Glamorous & Luxe</span>
+                    </label>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <!-- Allergy & Discount Info -->
+                <h3 class="text-2xl font-bold charcoal-grey mb-4">Discounts & Specials</h3>
+                <h4 class="block text-lg font-medium charcoal-grey mb-2">Select any discounts that apply:</h4>
+                <div class="flex flex-col space-y-2">
+                    <label class="inline-flex items-center text-base charcoal-grey">
+                        <input type="checkbox" id="senior-discount" class="form-checkbox h-5 w-5 text-gold-accent rounded-sm">
+                        <span class="ml-2">Senior Citizen Discount</span>
+                    </label>
+                    <label class="inline-flex items-center text-base charcoal-grey">
+                        <input type="checkbox" id="military-discount" class="form-checkbox h-5 w-5 text-gold-accent rounded-sm">
+                        <span class="ml-2">Military/Air Force Base Discount</span>
+                    </label>
+                    <label class="inline-flex items-center text-base charcoal-grey">
+                        <input type="checkbox" id="fixed-income-discount" class="form-checkbox h-5 w-5 text-gold-accent rounded-sm">
+                        <span class="ml-2">Fixed Income / Disability Flat Rate</span>
+                    </label>
+                    <label class="inline-flex items-center text-base charcoal-grey">
+                        <input type="checkbox" id="veteran-discount" class="form-checkbox h-5 w-5 text-gold-accent rounded-sm">
+                        <span class="ml-2">Veteran Flat Rate</span>
+                    </label>
+                    <label class="inline-flex items-center text-base charcoal-grey">
+                        <input type="checkbox" id="move-in-out-service" class="form-checkbox h-5 w-5 text-gold-accent rounded-sm">
+                        <span class="ml-2">Move-In / Move-Out Flat Rate</span>
+                    </label>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <h3 class="text-2xl font-bold charcoal-grey mb-4">Allergy Info 🚫</h3>
+                <div>
+                    <label for="allergy-info" class="block text-lg font-medium charcoal-grey mb-2">Any allergies to cleaning products?</label>
+                    <textarea id="allergy-info" rows="2" class="w-full p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-gold-accent transition-all duration-200" placeholder="e.g., 'I am allergic to lavender.'"></textarea>
+                </div>
+                
+                <h3 class="text-2xl font-bold charcoal-grey mb-4">Special Offer 🎉</h3>
+                <div class="flex flex-col space-y-2">
+                    <label class="inline-flex items-center text-base charcoal-grey">
+                        <input type="checkbox" id="ahead-booking-special" class="form-checkbox h-5 w-5 text-gold-accent rounded-sm">
+                        <span class="ml-2">Book a week ahead and receive a special discount!</span>
+                    </label>
+                </div>
+
+
+                <button id="generate-quote-btn" class="mt-6 w-full px-8 py-4 cta-button gold-bg-accent text-white font-bold rounded-full shadow-lg hover:shadow-xl">
+                    ✨ Get Your Personalized Quote
+                </button>
+            </div>
+
+            <div id="results-container" class="mt-8 text-left bg-white p-6 rounded-xl shadow-lg hidden">
+                <div class="flex items-center mb-2">
+                    <h3 class="text-2xl font-bold charcoal-grey">Your Personalized Recommendation:</h3>
+                    <button id="play-quote-btn" class="ml-auto p-2 rounded-full gold-bg-accent text-white hover:opacity-80 transition-opacity">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                    </button>
+                </div>
+                <div id="quote-results" class="text-lg charcoal-grey leading-relaxed mb-6">
+                    <!-- LLM text recommendation will be inserted here -->
+                </div>
+                <div id="price-table-container" class="hidden">
+                    <h4 class="text-xl font-bold charcoal-grey mb-4 mt-6">Quote Breakdown:</h4>
+                    <div class="overflow-x-auto rounded-lg shadow-md">
+                        <table id="price-table" class="min-w-full price-table">
+                            <thead>
+                                <tr class="bg-gray-100">
+                                    <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider">Item</th>
+                                    <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider">Description</th>
+                                    <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider">Price</th>
+                                    <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Table rows will be dynamically inserted here -->
+                            </tbody>
+                            <tfoot>
+                                <tr class="bg-white border-t border-gray-200">
+                                    <td colspan="2" class="py-3 px-4 text-lg font-bold text-gray-900">Total Estimate:</td>
+                                    <td id="total-price" class="py-3 px-4 text-lg font-bold text-gray-900 text-right"></td>
+                                    <td></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="loading-indicator" class="mt-8 hidden">
+                <div class="animate-spin rounded-full h-12 w-12 border-4 border-t-4 border-gold-accent border-r-transparent mx-auto"></div>
+                <p class="mt-4 text-lg charcoal-grey">Generating your personalized quote...</p>
+            </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="mint-green-bg p-8 sm:p-12 md:p-16 text-center">
+            <h3 class="text-2xl font-bold charcoal-grey mb-2">📍 Service Area</h3>
+            <p class="text-xl charcoal-grey mb-2">Columbus, MS + nearby neighborhoods</p>
+            <p class="text-xl font-light charcoal-grey">Mobile service—we come to you!</p>
+
+            <div class="section-divider mt-8 mb-8 mx-auto w-1/2"></div>
+            
+            <h3 class="text-2xl font-bold charcoal-grey mb-2">💰 Payments Accepted</h3>
+            <p class="text-xl charcoal-grey mb-2">Cash App, Apple Pay, Cash</p>
+
+            <div class="section-divider mt-8 mb-8 mx-auto w-1/2"></div>
+
+            <h3 class="text-2xl font-bold charcoal-grey mb-2">📲 Book Your Glow-Up</h3>
+            <p class="text-3xl sm:text-4xl font-bold charcoal-grey">(662) 481-9789</p>
+        </div>
+    </div>
+
+    <script>
+        // Helper function to convert base64 to ArrayBuffer
+        function base64ToArrayBuffer(base64) {
+            const binaryString = atob(base64);
+            const len = binaryString.length;
+            const bytes = new Uint8Array(len);
+            for (let i = 0; i < len; i++) {
+                bytes[i] = binaryString.charCodeAt(i);
+            }
+            return bytes.buffer;
+        }
+
+        // Helper function to create WAV header and blob
+        function pcmToWav(pcmData, sampleRate) {
+            const pcm16 = new Int16Array(pcmData);
+            const dataLength = pcm16.length * 2;
+            const buffer = new ArrayBuffer(44 + dataLength);
+            const view = new DataView(buffer);
+
+            // RIFF identifier
+            writeString(view, 0, 'RIFF');
+            // file length
+            view.setUint32(4, 36 + dataLength, true);
+            // RIFF type
+            writeString(view, 8, 'WAVE');
+            // format chunk identifier
+            writeString(view, 12, 'fmt ');
+            // format chunk length
+            view.setUint32(16, 16, true);
+            // sample format (1 = PCM)
+            view.setUint16(20, 1, true);
+            // channel count
+            view.setUint16(22, 1, true);
+            // sample rate
+            view.setUint32(24, sampleRate, true);
+            // byte rate
+            view.setUint32(28, sampleRate * 2, true);
+            // block align
+            view.setUint16(32, 2, true);
+            // bits per sample
+            view.setUint16(34, 16, true);
+            // data chunk identifier
+            writeString(view, 36, 'data');
+            // data chunk length
+            view.setUint32(40, dataLength, true);
+
+            // write the PCM data
+            let offset = 44;
+            for (let i = 0; i < pcm16.length; i++) {
+                view.setInt16(offset, pcm16[i], true);
+                offset += 2;
+            }
+
+            return new Blob([view], { type: 'audio/wav' });
+        }
+
+        function writeString(view, offset, string) {
+            for (let i = 0; i < string.length; i++) {
+                view.setUint8(offset + i, string.charCodeAt(i));
+            }
+        }
+
+        // --- Event listeners and functions ---
+        const laundryServiceToggle = document.getElementById('laundry-service-toggle');
+        const laundryQuestions = document.getElementById('laundry-questions');
+
+        const kitchenServiceToggle = document.getElementById('kitchen-service-toggle');
+        const kitchenQuestions = document.getElementById('kitchen-questions');
+
+        laundryServiceToggle.addEventListener('change', () => {
+            if (laundryServiceToggle.checked) {
+                laundryQuestions.classList.remove('hidden');
+            } else {
+                laundryQuestions.classList.add('hidden');
+            }
+        });
+
+        kitchenServiceToggle.addEventListener('change', () => {
+            if (kitchenServiceToggle.checked) {
+                kitchenQuestions.classList.remove('hidden');
+            } else {
+                kitchenQuestions.classList.add('hidden');
+            }
+        });
+
+        const serviceRequestTextarea = document.getElementById('service-request');
+        const roomImageInput = document.getElementById('room-image');
+        const allergyInfoTextarea = document.getElementById('allergy-info');
+        const scentPreferenceInput = document.getElementById('scent-preference');
+        const avoidAreasTextarea = document.getElementById('avoid-areas');
+        const petInfoInput = document.getElementById('pet-info');
+        const numBedroomsInput = document.getElementById('num-bedrooms');
+        const numBathroomsInput = document.getElementById('num-bathrooms');
+        const spaceFeaturesTextarea = document.getElementById('space-features');
+        const recurringServiceCheckbox = document.getElementById('recurring-service');
+        const luxeTouchCheckbox = document.getElementById('luxe-touch');
+        const closetOrganizingCheckbox = document.getElementById('closet-organizing');
+        const photoDocumentationCheckbox = document.getElementById('photo-documentation');
+        const seniorDiscountCheckbox = document.getElementById('senior-discount');
+        const militaryDiscountCheckbox = document.getElementById('military-discount');
+        const fixedIncomeDiscountCheckbox = document.getElementById('fixed-income-discount');
+        const veteranDiscountCheckbox = document.getElementById('veteran-discount');
+        const moveInOutServiceCheckbox = document.getElementById('move-in-out-service');
+        const aheadBookingSpecialCheckbox = document.getElementById('ahead-booking-special');
+        const laundryLoadsInput = document.getElementById('laundry-loads');
+        const laundryTypeInput = document.getElementById('laundry-type');
+        const laundryCareTextarea = document.getElementById('laundry-care');
+        const laundryProductsInput = document.getElementById('laundry-products');
+        const laundryFinishSelect = document.getElementById('laundry-finish');
+        const kitchenScentPreferenceInput = document.getElementById('kitchen-scent-preference');
+        const ovenDeepCleanCheckbox = document.getElementById('oven-deep-clean');
+        const fridgeInteriorCleanCheckbox = document.getElementById('fridge-interior-clean');
+        const dishOverflowCheckbox = document.getElementById('dish-overflow');
+        const pantryOrganizeCheckbox = document.getElementById('pantry-organize');
+        const coffeeStationCheckbox = document.getElementById('coffee-station');
+
+        const imagePreview = document.getElementById('image-preview');
+        const generateQuoteBtn = document.getElementById('generate-quote-btn');
+        const resultsContainer = document.getElementById('results-container');
+        const quoteResults = document.getElementById('quote-results');
+        const priceTableContainer = document.getElementById('price-table-container');
+        const priceTableBody = document.querySelector('#price-table tbody');
+        const totalPriceCell = document.getElementById('total-price');
+        const loadingIndicator = document.getElementById('loading-indicator');
+        const playQuoteBtn = document.getElementById('play-quote-btn');
+
+        // Handles displaying the image preview
+        roomImageInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                imagePreview.style.display = 'none';
+            }
+        });
+
+        // Main event listener for the Generate Quote button
+        generateQuoteBtn.addEventListener('click', async () => {
+            const serviceRequest = serviceRequestTextarea.value;
+            const allergyInfo = allergyInfoTextarea.value;
+            const scentPreference = scentPreferenceInput.value;
+            const avoidAreas = avoidAreasTextarea.value;
+            const petInfo = petInfoInput.value;
+            const numBedrooms = numBedroomsInput.value;
+            const numBathrooms = numBathroomsInput.value;
+            const spaceFeatures = spaceFeaturesTextarea.value;
+            const recurringService = recurringServiceCheckbox.checked;
+            const luxeTouch = luxeTouchCheckbox.checked;
+            const closetOrganizing = closetOrganizingCheckbox.checked;
+            const photoDocumentation = photoDocumentationCheckbox.checked;
+            const isSenior = seniorDiscountCheckbox.checked;
+            const isMilitary = militaryDiscountCheckbox.checked;
+            const isFixedIncome = fixedIncomeDiscountCheckbox.checked;
+            const isVeteran = veteranDiscountCheckbox.checked;
+            const isMoveInOut = moveInOutServiceCheckbox.checked;
+            const isAheadBooking = aheadBookingSpecialCheckbox.checked;
+            const imageFile = roomImageInput.files[0];
+            const vibeElement = document.querySelector('input[name="vibe"]:checked');
+            const vibe = vibeElement ? vibeElement.value : 'not specified';
+            const wantsLaundry = laundryServiceToggle.checked;
+            const laundryLoads = wantsLaundry ? laundryLoadsInput.value : 0;
+            const laundryType = wantsLaundry ? laundryTypeInput.value : 'N/A';
+            const laundryCare = wantsLaundry ? laundryCareTextarea.value : 'N/A';
+            const laundryProducts = wantsLaundry ? laundryProductsInput.value : 'N/A';
+            const laundryFinish = wantsLaundry ? laundryFinishSelect.value : 'N/A';
+            const wantsKitchen = kitchenServiceToggle.checked;
+            const kitchenScentPreference = wantsKitchen ? kitchenScentPreferenceInput.value : 'N/A';
+            const wantsOvenDeepClean = wantsKitchen && ovenDeepCleanCheckbox.checked;
+            const wantsFridgeInteriorClean = wantsKitchen && fridgeInteriorCleanCheckbox.checked;
+            const wantsDishOverflow = wantsKitchen && dishOverflowCheckbox.checked;
+            const wantsPantryOrganize = wantsKitchen && pantryOrganizeCheckbox.checked;
+            const wantsCoffeeStation = wantsKitchen && coffeeStationCheckbox.checked;
+
+            if (!serviceRequest.trim() && !imageFile && !isMoveInOut) {
+                showCustomAlert("Please describe your cleaning needs or upload an image to get a recommendation.");
+                return;
+            }
+            
+            if (isMoveInOut && (isFixedIncome || isVeteran || isSenior || isMilitary || recurringService)) {
+                showCustomAlert("Please select either the Move-In/Move-Out service or other hourly services, but not both. Move-In/Move-Out is a special flat rate.");
+                return;
+            }
+
+            const discountInfo = [];
+            if (isSenior) discountInfo.push('Senior Citizen');
+            if (isMilitary) discountInfo.push('Military/Air Force Base');
+            if (isFixedIncome) discountInfo.push('Fixed Income / Disability');
+            if (isVeteran) discountInfo.push('Veteran');
+
+            let prompt = `You are an expert cleaning service representative for "Pink Mint Clean." A potential client is building a service plan. Your task is to provide a friendly, professional, and personalized recommendation and a clear price breakdown in JSON format.`;
+
+            // Add details from text or image
+            if (serviceRequest.trim()) {
+                prompt += ` They have provided the following cleaning request: "${serviceRequest}".`;
+            }
+            if (imageFile) {
+                prompt += ` They have also uploaded a photo of a room for you to analyze.`;
+            }
+
+            // Add personalization details
+            if (allergyInfo.trim()) {
+                prompt += ` They have a serious allergy to the following: ${allergyInfo}. Reassure them that only safe products will be used.`;
+            }
+            if (scentPreference.trim()) {
+                prompt += ` They prefer cleaning scents like: ${scentPreference}.`;
+            }
+            if (avoidAreas.trim()) {
+                prompt += ` They have asked you to avoid or treat with extra care the following areas: ${avoidAreas}.`;
+            }
+            if (petInfo.trim()) {
+                prompt += ` They have pets: ${petInfo}.`;
+            }
+            prompt += ` The space has ${numBedrooms} bedrooms and ${numBathrooms} bathrooms.`;
+            if (spaceFeatures.trim()) {
+                prompt += ` Other space features include: ${spaceFeatures}.`;
+            }
+            if (recurringService) {
+                prompt += ` The client is interested in recurring service.`;
+            }
+
+            // Add kitchen questionnaire data to the prompt
+            if (wantsKitchen) {
+                prompt += ` The client wants to include kitchen cleaning. Their preferred products/scents for the kitchen are: ${kitchenScentPreference}. They have also requested the following kitchen add-ons: `;
+                const kitchenAddons = [];
+                if (wantsOvenDeepClean) kitchenAddons.push('Oven Deep Clean ($10)');
+                if (wantsFridgeInteriorClean) kitchenAddons.push('Fridge Interior Clean ($10)');
+                if (wantsDishOverflow) kitchenAddons.push('Dish Overflow ($5)');
+                if (wantsPantryOrganize) kitchenAddons.push('Pantry Wipe & Organize ($15)');
+                if (wantsCoffeeStation) kitchenAddons.push('Coffee Station Refresh ($5)');
+                
+                if (kitchenAddons.length > 0) {
+                    prompt += kitchenAddons.join(', ') + '.';
+                } else {
+                    prompt += 'None specified.';
+                }
+            }
+
+
+            // Add laundry questionnaire data to the prompt
+            if (wantsLaundry) {
+                prompt += ` The client is interested in adding laundry services. They need to do approximately ${laundryLoads} loads. The items include: ${laundryType}. Special care instructions are: ${laundryCare}. The client will provide the following products: ${laundryProducts}. They would like the laundry to be ${laundryFinish.replace(/-/g, ' ')}.`;
+            }
+
+            const addOns = [];
+            if (luxeTouch) addOns.push('Luxe Touch');
+            if (closetOrganizing) addOns.push('Closet organizing');
+            if (photoDocumentation) addOns.push('Before/after photos');
+            if (addOns.length > 0) {
+                prompt += ` They are interested in the following add-ons: ${addOns.join(', ')}.`;
+            }
+
+            prompt += ` The desired vibe for the space is "${vibe}". Tailor your recommendation to match this vibe.`;
+
+            // Add flat rate and discount info
+            if (isMoveInOut) {
+                prompt += ` The client is requesting a Move-In/Move-Out service. The flat rate is $200.`;
+            } else if (isFixedIncome) {
+                prompt += ` The client qualifies for a Fixed Income / Disability Flat Rate. The flat rate is $45 for a 2-hour cleaning.`;
+            } else if (isVeteran) {
+                prompt += ` The client qualifies for a Veteran Flat Rate. The flat rate is $50 for a 2-hour cleaning.`;
+            }
+            
+            // Add other discounts
+            if (isAheadBooking) {
+                prompt += ` The client is booking a week ahead and qualifies for a special discount.`;
+            }
+            if (isSenior || isMilitary) {
+                prompt += ` The client qualifies for a ${discountInfo.join(', ')} discount.`;
+            }
+            
+            prompt += ` Based on this information, recommend the most suitable cleaning package (Standard, Deep, or a flat rate special) and relevant add-ons. Then, generate a JSON object with a friendly opening message, an array of line items including the recommended service, add-ons, and any discounts or flat rates, and a total price. Each line item should have 'item', 'description', and 'price'. The 'price' should be a number. Use a total price that reflects the services chosen.
+            
+            Example JSON format:
+            {
+              "message": "Hi there! Based on your request for a deep cleaning...",
+              "quote": [
+                { "item": "Deep Cleaning", "description": "3 hours of detailed cleaning for a 3-bedroom, 2-bathroom space.", "price": 75 },
+                { "item": "Luxe Touch", "description": "Pillow fluffing, towel folding, and a scent spray.", "price": 10 },
+                { "item": "Special Discount", "description": "Booked a week ahead.", "price": -5 }
+              ],
+              "total": 80
+            }`;
+
+
+            if (imageFile) {
+                const reader = new FileReader();
+                reader.onload = async (e) => {
+                    const base64Image = e.target.result.split(',')[1];
+                    await callGeminiAPI(prompt, base64Image);
+                };
+                reader.readAsDataURL(imageFile);
+            } else {
+                await callGeminiAPI(prompt, null);
+            }
+        });
+
+        function showCustomAlert(message) {
+            const customAlert = document.createElement('div');
+            customAlert.textContent = message;
+            customAlert.style.cssText = "position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); padding:20px; background-color:#D4B4C1; border:2px solid #B8860B; border-radius:10px; z-index:1000; font-family: 'Poppins', sans-serif;";
+            document.body.appendChild(customAlert);
+            setTimeout(() => customAlert.remove(), 5000);
+        }
+        
+        function renderQuoteTable(data) {
+            priceTableBody.innerHTML = '';
+            let total = 0;
+
+            data.quote.forEach(item => {
+                const row = document.createElement('tr');
+                row.className = 'border-t border-gray-200';
+                row.innerHTML = `
+                    <td class="py-3 px-4 whitespace-nowrap text-sm font-medium text-gray-900">${item.item}</td>
+                    <td class="py-3 px-4 text-sm text-gray-500">${item.description}</td>
+                    <td class="py-3 px-4 whitespace-nowrap text-sm text-gray-500 text-right">$${item.price.toFixed(2)}</td>
+                    <td class="py-3 px-4 whitespace-nowrap text-sm text-gray-500 text-center">
+                        <button class="text-gold-accent hover:text-gold-accent-dark font-medium" onclick="showAdjustQuoteMessage()">
+                            Adjust
+                        </button>
+                    </td>
+                `;
+                priceTableBody.appendChild(row);
+            });
+            
+            totalPriceCell.textContent = `$${data.total.toFixed(2)}`;
+            priceTableContainer.classList.remove('hidden');
+        }
+
+        function showAdjustQuoteMessage() {
+             showCustomAlert("Please contact us directly to adjust your quote!");
+        }
+
+        // Main function to call the Gemini API for text and image analysis
+        async function callGeminiAPI(prompt, base64Image = null) {
+            resultsContainer.classList.add('hidden');
+            loadingIndicator.classList.remove('hidden');
+            priceTableContainer.classList.add('hidden');
+
+            const apiKey = "";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+            const parts = [{ text: prompt }];
+            if (base64Image) {
+                parts.push({
+                    inlineData: {
+                        mimeType: "image/jpeg",
+                        data: base64Image
+                    }
+                });
+            }
+
+            const payload = {
+                contents: [{ role: "user", parts: parts }],
+                generationConfig: {
+                    responseMimeType: "application/json",
+                    responseSchema: {
+                        type: "OBJECT",
+                        properties: {
+                            "message": { "type": "STRING" },
+                            "quote": {
+                                "type": "ARRAY",
+                                "items": {
+                                    "type": "OBJECT",
+                                    "properties": {
+                                        "item": { "type": "STRING" },
+                                        "description": { "type": "STRING" },
+                                        "price": { "type": "NUMBER" }
+                                    },
+                                    "propertyOrdering": ["item", "description", "price"]
+                                }
+                            },
+                            "total": { "type": "NUMBER" }
+                        },
+                        "propertyOrdering": ["message", "quote", "total"]
+                    }
+                }
+            };
+            
+            let retryCount = 0;
+            const maxRetries = 5;
+            const initialDelay = 1000;
+
+            const executeFetch = async (delay) => {
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        if (response.status === 429 && retryCount < maxRetries) {
+                            // Exponential backoff
+                            const newDelay = delay * 2;
+                            retryCount++;
+                            await new Promise(resolve => setTimeout(resolve, newDelay));
+                            return executeFetch(newDelay);
+                        }
+                        throw new Error(`API call failed with status: ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const jsonText = result.candidates[0].content.parts[0].text;
+                        const data = JSON.parse(jsonText);
+
+                        // Render the text recommendation and the price table
+                        quoteResults.innerHTML = data.message.replace(/\n/g, '<br>');
+                        renderQuoteTable(data);
+                    } else {
+                        throw new Error("No candidates found in API response.");
+                    }
+                } catch (error) {
+                    console.error('Error calling Gemini API:', error);
+                    quoteResults.textContent = "There was an error generating your recommendation. Please try again later.";
+                    priceTableContainer.classList.add('hidden');
+                } finally {
+                    loadingIndicator.classList.add('hidden');
+                    resultsContainer.classList.remove('hidden');
+                }
+            }
+            await executeFetch(initialDelay);
+        }
+
+        // Handles the Text-to-Speech playback
+        playQuoteBtn.addEventListener('click', async () => {
+            const textToSpeak = quoteResults.textContent.trim();
+            if (!textToSpeak) {
+                showCustomAlert("There's no quote to play!");
+                return;
+            }
+
+            const payload = {
+                contents: [{
+                    parts: [{ text: textToSpeak }]
+                }],
+                generationConfig: {
+                    responseModalities: ["AUDIO"],
+                    speechConfig: {
+                        voiceConfig: {
+                            prebuiltVoiceConfig: { voiceName: "Puck" }
+                        }
+                    }
+                },
+                model: "gemini-2.5-flash-preview-tts"
+            };
+
+            const apiKey = "";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${apiKey}`;
+
+            const originalContent = playQuoteBtn.innerHTML;
+            playQuoteBtn.disabled = true;
+            playQuoteBtn.innerHTML = `
+                <svg class="animate-spin h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+            `;
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const result = await response.json();
+                const part = result?.candidates?.[0]?.content?.parts?.[0];
+                const audioData = part?.inlineData?.data;
+                const mimeType = part?.inlineData?.mimeType;
+
+                if (audioData && mimeType && mimeType.startsWith("audio/")) {
+                    const sampleRateMatch = mimeType.match(/rate=(\d+)/);
+                    const sampleRate = sampleRateMatch ? parseInt(sampleRateMatch[1], 10) : 16000;
+                    const pcmData = base64ToArrayBuffer(audioData);
+                    const wavBlob = pcmToWav(pcmData, sampleRate);
+                    const audioUrl = URL.createObjectURL(wavBlob);
+                    const audio = new Audio(audioUrl);
+                    audio.play().catch(e => console.error("Audio playback failed:", e));
+                    audio.addEventListener('ended', () => URL.revokeObjectURL(audioUrl));
+                } else {
+                    console.error("TTS API response error:", result);
+                    showCustomAlert("Sorry, I couldn't generate the audio. Please try again.");
+                }
+            } catch (error) {
+                console.error("Error with TTS API:", error);
+                showCustomAlert("There was an error generating the audio. Please try again.");
+            } finally {
+                playQuoteBtn.innerHTML = originalContent;
+                playQuoteBtn.disabled = false;
+            }
+        });
+
+        // Handle file input click on the container
+        document.querySelector('.file-upload-container').addEventListener('click', () => {
+            roomImageInput.click();
+        });
+    </script>
+</body>
+</html>
