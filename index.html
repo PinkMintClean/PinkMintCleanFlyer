@@ -3,19 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pink Mint Clean - Premium Cleaning Services</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Pink Mint Clean - Build Your Perfect Cleaning Package</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'pink-mint': '#f8d7da',
-                        'mint-green': '#d4edda',
-                        'soft-pink': '#fce4ec',
-                        'light-mint': '#e8f5e8',
-                        'charcoal': '#2d3748'
+                        'pink-mint': '#F8BBD9',
+                        'mint-green': '#B8E6B8',
+                        'charcoal': '#2D3748'
                     },
                     fontFamily: {
                         'serif': ['Playfair Display', 'serif'],
@@ -27,557 +25,1004 @@
     </script>
 </head>
 <body class="bg-gray-50 font-sans text-charcoal">
-    <!-- Header -->
-    <header class="bg-white shadow-sm py-6">
-        <div class="container mx-auto px-6">
-            <div class="text-center">
-                <h1 class="font-serif text-4xl font-bold text-charcoal mb-2">Pink Mint Clean</h1>
-                <p class="text-gray-600 text-lg">Premium Cleaning Services</p>
+    <!-- Hero Section -->
+    <header class="bg-gradient-to-br from-pink-mint to-mint-green py-16 px-4">
+        <div class="max-w-6xl mx-auto text-center">
+            <h1 class="font-serif text-5xl md:text-6xl font-bold text-white mb-4">Pink Mint Clean</h1>
+            <p class="text-xl md:text-2xl text-white/90 mb-8">Build Your Perfect Cleaning Package</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="scrollToServices()" class="bg-white text-charcoal px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                    Build My Service
+                </button>
+                <button class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-charcoal transition-colors">
+                    View Gallery
+                </button>
             </div>
         </div>
     </header>
 
-    <div class="container mx-auto px-6 py-12 max-w-6xl">
-        <div class="grid lg:grid-cols-3 gap-8">
-            <!-- Left Column - Service Builder -->
-            <div class="lg:col-span-2 space-y-8">
-                <!-- Service Type Selector -->
-                <section class="bg-white rounded-lg shadow-md p-6">
-                    <h2 class="font-serif text-2xl font-bold mb-6 text-charcoal">Choose Your Service</h2>
-                    
-                    <!-- Standard Cleaning -->
-                    <div class="border border-gray-200 rounded-lg mb-4">
-                        <button onclick="toggleService('standard')" class="w-full p-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors">
-                            <div>
-                                <h3 class="font-semibold text-lg">Standard Cleaning</h3>
-                                <p class="text-gray-600">$80-120 per visit</p>
-                            </div>
-                            <svg id="standard-icon" class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </button>
-                        <div id="standard-content" class="hidden p-4 border-t border-gray-200 bg-gray-50">
-                            <div class="grid md:grid-cols-2 gap-4">
-                                <div>
-                                    <h4 class="font-semibold mb-2">Pricing by Room Size:</h4>
-                                    <div class="space-y-2">
-                                        <label class="flex items-center">
-                                            <input type="radio" name="baseService" value="80" onchange="updateBaseService('Standard Cleaning - Small (1-2 rooms)', 80)" class="mr-2">
-                                            Small (1-2 rooms) - $80
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="radio" name="baseService" value="100" onchange="updateBaseService('Standard Cleaning - Medium (3-4 rooms)', 100)" class="mr-2">
-                                            Medium (3-4 rooms) - $100
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="radio" name="baseService" value="120" onchange="updateBaseService('Standard Cleaning - Large (5+ rooms)', 120)" class="mr-2">
-                                            Large (5+ rooms) - $120
-                                        </label>
-                                    </div>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold mb-2">Includes:</h4>
-                                    <ul class="text-sm text-gray-600 space-y-1">
-                                        <li>• Dusting surfaces</li>
-                                        <li>• Vacuuming carpets</li>
-                                        <li>• Mopping floors</li>
-                                        <li>• Bathroom cleaning</li>
-                                        <li>• Kitchen counters & sink</li>
-                                        <li>• Trash removal</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+    <div class="max-w-6xl mx-auto px-4 py-12">
+        <!-- Service Type Selector -->
+        <section id="services" class="mb-12">
+            <h2 class="font-serif text-3xl font-bold text-center mb-8">Choose Your Service Type</h2>
+            
+            <!-- Standard Cleaning -->
+            <div class="bg-white rounded-lg shadow-md mb-4">
+                <button onclick="toggleAccordion('standard')" class="w-full p-6 text-left flex justify-between items-center hover:bg-gray-50 transition-colors">
+                    <div>
+                        <h3 class="font-semibold text-xl">Standard Cleaning</h3>
+                        <p class="text-gray-600">Regular maintenance cleaning for your home</p>
                     </div>
-
-                    <!-- Deep Cleaning -->
-                    <div class="border border-gray-200 rounded-lg mb-4">
-                        <button onclick="toggleService('deep')" class="w-full p-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors">
-                            <div>
-                                <h3 class="font-semibold text-lg">Deep Cleaning</h3>
-                                <p class="text-gray-600">$150-250 per visit</p>
-                            </div>
-                            <svg id="deep-icon" class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </button>
-                        <div id="deep-content" class="hidden p-4 border-t border-gray-200 bg-gray-50">
-                            <div class="grid md:grid-cols-2 gap-4">
-                                <div>
-                                    <h4 class="font-semibold mb-2">Pricing by Home Size:</h4>
-                                    <div class="space-y-2">
-                                        <label class="flex items-center">
-                                            <input type="radio" name="baseService" value="150" onchange="updateBaseService('Deep Cleaning - Small Home', 150)" class="mr-2">
-                                            Small Home - $150
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="radio" name="baseService" value="200" onchange="updateBaseService('Deep Cleaning - Medium Home', 200)" class="mr-2">
-                                            Medium Home - $200
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="radio" name="baseService" value="250" onchange="updateBaseService('Deep Cleaning - Large Home', 250)" class="mr-2">
-                                            Large Home - $250
-                                        </label>
-                                    </div>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold mb-2">Comprehensive Cleaning:</h4>
-                                    <ul class="text-sm text-gray-600 space-y-1">
-                                        <li>• All standard cleaning tasks</li>
-                                        <li>• Inside appliances</li>
-                                        <li>• Baseboards & window sills</li>
-                                        <li>• Light fixtures</li>
-                                        <li>• Cabinet fronts</li>
-                                        <li>• Detailed bathroom scrubbing</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Move-in/Move-out -->
-                    <div class="border border-gray-200 rounded-lg">
-                        <button onclick="toggleService('moveout')" class="w-full p-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors">
-                            <div>
-                                <h3 class="font-semibold text-lg">Move-in/Move-out Cleaning</h3>
-                                <p class="text-gray-600">$200-350 per visit</p>
-                            </div>
-                            <svg id="moveout-icon" class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </button>
-                        <div id="moveout-content" class="hidden p-4 border-t border-gray-200 bg-gray-50">
-                            <div class="grid md:grid-cols-2 gap-4">
-                                <div>
-                                    <h4 class="font-semibold mb-2">Pricing by Property Size:</h4>
-                                    <div class="space-y-2">
-                                        <label class="flex items-center">
-                                            <input type="radio" name="baseService" value="200" onchange="updateBaseService('Move-in/out - Apartment', 200)" class="mr-2">
-                                            Apartment - $200
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="radio" name="baseService" value="275" onchange="updateBaseService('Move-in/out - House', 275)" class="mr-2">
-                                            House - $275
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="radio" name="baseService" value="350" onchange="updateBaseService('Move-in/out - Large Property', 350)" class="mr-2">
-                                            Large Property - $350
-                                        </label>
-                                    </div>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold mb-2">Complete Reset:</h4>
-                                    <ul class="text-sm text-gray-600 space-y-1">
-                                        <li>• All deep cleaning tasks</li>
-                                        <li>• Inside all cabinets</li>
-                                        <li>• Inside all appliances</li>
-                                        <li>• All surfaces sanitized</li>
-                                        <li>• Windows (interior)</li>
-                                        <li>• Move-in ready finish</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Add-on Tasks -->
-                <section class="bg-white rounded-lg shadow-md p-6">
-                    <h2 class="font-serif text-2xl font-bold mb-6 text-charcoal">Add Extra Tasks to Your Service</h2>
-                    
-                    <!-- Kitchen Add-ons -->
-                    <div class="border border-gray-200 rounded-lg mb-4">
-                        <button onclick="toggleAddons('kitchen')" class="w-full p-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors">
-                            <h3 class="font-semibold text-lg">Kitchen</h3>
-                            <svg id="kitchen-icon" class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </button>
-                        <div id="kitchen-content" class="hidden p-4 border-t border-gray-200 bg-gray-50">
-                            <div class="grid md:grid-cols-2 gap-4">
-                                <label class="flex items-center">
-                                    <input type="checkbox" onchange="updateAddons('Oven Deep Clean', 25, 30, this)" class="mr-2">
-                                    Oven Deep Clean +$25 - 30 min
-                                </label>
-                                <label class="flex items-center">
-                                    <input type="checkbox" onchange="updateAddons('Refrigerator Inside', 20, 25, this)" class="mr-2">
-                                    Refrigerator Inside +$20 - 25 min
-                                </label>
-                                <label class="flex items-center">
-                                    <input type="checkbox" onchange="updateAddons('Cabinet Interior', 30, 35, this)" class="mr-2">
-                                    Cabinet Interior +$30 - 35 min
-                                </label>
-                                <label class="flex items-center">
-                                    <input type="checkbox" onchange="updateAddons('Microwave Deep Clean', 15, 15, this)" class="mr-2">
-                                    Microwave Deep Clean +$15 - 15 min
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Bathroom Add-ons -->
-                    <div class="border border-gray-200 rounded-lg mb-4">
-                        <button onclick="toggleAddons('bathroom')" class="w-full p-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors">
-                            <h3 class="font-semibold text-lg">Bathrooms</h3>
-                            <svg id="bathroom-icon" class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </button>
-                        <div id="bathroom-content" class="hidden p-4 border-t border-gray-200 bg-gray-50">
-                            <div class="grid md:grid-cols-2 gap-4">
-                                <label class="flex items-center">
-                                    <input type="checkbox" onchange="updateAddons('Shower Deep Scrub', 25, 30, this)" class="mr-2">
-                                    Shower Deep Scrub +$25 - 30 min
-                                </label>
-                                <label class="flex items-center">
-                                    <input type="checkbox" onchange="updateAddons('Grout Cleaning', 35, 45, this)" class="mr-2">
-                                    Grout Cleaning +$35 - 45 min
-                                </label>
-                                <label class="flex items-center">
-                                    <input type="checkbox" onchange="updateAddons('Medicine Cabinet', 10, 10, this)" class="mr-2">
-                                    Medicine Cabinet +$10 - 10 min
-                                </label>
-                                <label class="flex items-center">
-                                    <input type="checkbox" onchange="updateAddons('Exhaust Fan', 15, 20, this)" class="mr-2">
-                                    Exhaust Fan +$15 - 20 min
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Bedroom Add-ons -->
-                    <div class="border border-gray-200 rounded-lg mb-4">
-                        <button onclick="toggleAddons('bedroom')" class="w-full p-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors">
-                            <h3 class="font-semibold text-lg">Bedrooms</h3>
-                            <svg id="bedroom-icon" class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </button>
-                        <div id="bedroom-content" class="hidden p-4 border-t border-gray-200 bg-gray-50">
-                            <div class="grid md:grid-cols-2 gap-4">
-                                <label class="flex items-center">
-                                    <input type="checkbox" onchange="updateAddons('Inside Closet', 20, 25, this)" class="mr-2">
-                                    Inside Closet +$20 - 25 min
-                                </label>
-                                <label class="flex items-center">
-                                    <input type="checkbox" onchange="updateAddons('Under Bed', 10, 15, this)" class="mr-2">
-                                    Under Bed +$10 - 15 min
-                                </label>
-                                <label class="flex items-center">
-                                    <input type="checkbox" onchange="updateAddons('Dresser Interior', 15, 20, this)" class="mr-2">
-                                    Dresser Interior +$15 - 20 min
-                                </label>
-                                <label class="flex items-center">
-                                    <input type="checkbox" onchange="updateAddons('Window Cleaning', 25, 30, this)" class="mr-2">
-                                    Window Cleaning +$25 - 30 min
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Laundry Add-ons -->
-                    <div class="border border-gray-200 rounded-lg mb-4">
-                        <button onclick="toggleAddons('laundry')" class="w-full p-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors">
-                            <h3 class="font-semibold text-lg">Laundry Service</h3>
-                            <svg id="laundry-icon" class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </button>
-                        <div id="laundry-content" class="hidden p-4 border-t border-gray-200 bg-gray-50">
-                            <div class="grid md:grid-cols-2 gap-4">
-                                <label class="flex items-center">
-                                    <input type="checkbox" onchange="updateAddons('Wash & Fold (1 load)', 15, 60, this)" class="mr-2">
-                                    Wash & Fold (1 load) +$15 - 60 min
-                                </label>
-                                <label class="flex items-center">
-                                    <input type="checkbox" onchange="updateAddons('Wash & Fold (2 loads)', 25, 90, this)" class="mr-2">
-                                    Wash & Fold (2 loads) +$25 - 90 min
-                                </label>
-                                <label class="flex items-center">
-                                    <input type="checkbox" onchange="updateAddons('Ironing Service', 30, 45, this)" class="mr-2">
-                                    Ironing Service +$30 - 45 min
-                                </label>
-                                <label class="flex items-center">
-                                    <input type="checkbox" onchange="updateAddons('Linen Change', 20, 20, this)" class="mr-2">
-                                    Linen Change +$20 - 20 min
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- General Add-ons -->
-                    <div class="border border-gray-200 rounded-lg">
-                        <button onclick="toggleAddons('general')" class="w-full p-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors">
-                            <h3 class="font-semibold text-lg">General Add-Ons</h3>
-                            <svg id="general-icon" class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </button>
-                        <div id="general-content" class="hidden p-4 border-t border-gray-200 bg-gray-50">
-                            <div class="grid md:grid-cols-2 gap-4">
-                                <label class="flex items-center">
-                                    <input type="checkbox" onchange="updateAddons('Garage Sweep', 25, 30, this)" class="mr-2">
-                                    Garage Sweep +$25 - 30 min
-                                </label>
-                                <label class="flex items-center">
-                                    <input type="checkbox" onchange="updateAddons('Patio/Deck Clean', 30, 35, this)" class="mr-2">
-                                    Patio/Deck Clean +$30 - 35 min
-                                </label>
-                                <label class="flex items-center">
-                                    <input type="checkbox" onchange="updateAddons('Basement Tidy', 35, 40, this)" class="mr-2">
-                                    Basement Tidy +$35 - 40 min
-                                </label>
-                                <label class="flex items-center">
-                                    <input type="checkbox" onchange="updateAddons('Pet Hair Removal', 20, 25, this)" class="mr-2">
-                                    Pet Hair Removal +$20 - 25 min
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Personal Preferences -->
-                <section class="bg-white rounded-lg shadow-md p-6">
-                    <h2 class="font-serif text-2xl font-bold mb-6 text-charcoal">Your Personal Preferences</h2>
-                    
-                    <div class="space-y-6">
-                        <!-- Health & Safety -->
+                    <span id="standard-icon" class="text-2xl">+</span>
+                </button>
+                <div id="standard-content" class="hidden p-6 pt-0 border-t">
+                    <div class="grid md:grid-cols-2 gap-6">
                         <div>
-                            <h3 class="font-semibold text-lg mb-3">Health & Safety</h3>
-                            <div class="space-y-2">
-                                <label class="flex items-center">
-                                    <input type="checkbox" class="mr-2">
-                                    I have allergies
-                                </label>
-                                <label class="flex items-center">
-                                    <input type="checkbox" class="mr-2">
-                                    I have asthma
-                                </label>
-                            </div>
+                            <h4 class="font-semibold mb-3">What's Included:</h4>
+                            <ul class="space-y-2 text-sm">
+                                <li class="flex items-center"><span class="text-mint-green mr-2">✓</span>Dusting all surfaces</li>
+                                <li class="flex items-center"><span class="text-mint-green mr-2">✓</span>Vacuuming carpets & rugs</li>
+                                <li class="flex items-center"><span class="text-mint-green mr-2">✓</span>Mopping hard floors</li>
+                                <li class="flex items-center"><span class="text-mint-green mr-2">✓</span>Kitchen cleaning</li>
+                                <li class="flex items-center"><span class="text-mint-green mr-2">✓</span>Bathroom cleaning</li>
+                                <li class="flex items-center"><span class="text-mint-green mr-2">✓</span>Trash removal</li>
+                            </ul>
                         </div>
-
-                        <!-- Product Preferences -->
                         <div>
-                            <h3 class="font-semibold text-lg mb-3">Product Preferences</h3>
-                            <div class="space-y-3">
-                                <label class="flex items-center">
-                                    <input type="checkbox" class="mr-2">
-                                    I prefer eco-friendly/natural products
-                                </label>
-                                <label class="flex items-center">
-                                    <input type="checkbox" class="mr-2">
-                                    I prefer unscented products
-                                </label>
-                                <div class="grid md:grid-cols-2 gap-4 mt-3">
-                                    <div>
-                                        <label class="block text-sm font-medium mb-1">Custom Product Request:</label>
-                                        <input type="text" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Specific products you'd like us to use">
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-medium mb-1">Preferred Scents:</label>
-                                        <input type="text" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Lavender, citrus, etc.">
-                                    </div>
+                            <h4 class="font-semibold mb-3">Pricing:</h4>
+                            <div class="text-center p-4 bg-gray-50 rounded">
+                                <p class="text-2xl font-bold text-pink-mint">Starting at $90</p>
+                                <p class="text-sm text-gray-600 mt-2">Perfect for regular maintenance cleaning</p>
+                                <button onclick="selectService('standard', 90)" class="mt-3 bg-pink-mint text-white px-4 py-2 rounded hover:bg-pink-600 transition-colors">
+                                    Select Standard Cleaning
+                                </button>
+                            </div>
+                            <div class="mt-4 space-y-2 text-sm">
+                                <div class="flex justify-between p-2 bg-white rounded border">
+                                    <span>Studio/1BR</span>
+                                    <span class="text-pink-mint font-semibold">$90-120</span>
                                 </div>
+                                <div class="flex justify-between p-2 bg-white rounded border">
+                                    <span>2BR/2BA</span>
+                                    <span class="text-pink-mint font-semibold">$140-180</span>
+                                </div>
+                                <div class="flex justify-between p-2 bg-white rounded border">
+                                    <span>3BR/2BA+</span>
+                                    <span class="text-pink-mint font-semibold">$190-250</span>
+                                </div>
+                                <p class="text-gray-600 mt-2 text-xs">*Final price based on home condition and specific needs</p>
                             </div>
                         </div>
-
-                        <!-- Exclusions -->
-                        <div>
-                            <h3 class="font-semibold text-lg mb-3">Exclusions</h3>
-                            <label class="block text-sm font-medium mb-1">Products to Avoid:</label>
-                            <textarea class="w-full p-3 border border-gray-300 rounded-md" rows="3" placeholder="Please list any products, ingredients, or scents you'd like us to avoid..."></textarea>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <!-- Right Column - Quote Calculator -->
-            <div class="lg:col-span-1">
-                <div class="bg-white rounded-lg shadow-md p-6 sticky top-6">
-                    <h2 class="font-serif text-2xl font-bold mb-6 text-charcoal">Your Custom Quote</h2>
-                    
-                    <div class="space-y-4 mb-6">
-                        <div class="flex justify-between items-center">
-                            <span class="font-medium">Base Service:</span>
-                            <span id="base-service-name" class="text-sm text-gray-600">Select a service</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span></span>
-                            <span id="base-service-price" class="font-semibold">$0</span>
-                        </div>
-                        
-                        <div class="border-t pt-4">
-                            <div class="flex justify-between items-center mb-2">
-                                <span class="font-medium">Additional Tasks:</span>
-                                <span id="addons-price" class="font-semibold">$0</span>
-                            </div>
-                            <div id="addons-list" class="text-sm text-gray-600 space-y-1">
-                                <!-- Dynamic addon list will appear here -->
-                            </div>
-                        </div>
-                        
-                        <div class="border-t pt-4">
-                            <div class="flex justify-between items-center text-lg font-bold">
-                                <span>Total:</span>
-                                <span id="total-price" class="text-pink-600">$0</span>
-                            </div>
-                            <div class="text-sm text-gray-600 mt-1">
-                                Estimated time: <span id="total-time">0 minutes</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="space-y-3">
-                        <button class="w-full bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 px-4 rounded-lg transition-colors">
-                            Book This Service
-                        </button>
-                        <button onclick="printChecklist()" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center">
-                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
-                            </svg>
-                            Print Checklist
-                        </button>
-                        <button onclick="saveQuote()" class="w-full bg-green-100 hover:bg-green-200 text-green-700 font-semibold py-3 px-4 rounded-lg transition-colors">
-                            Save Quote
-                        </button>
                     </div>
                 </div>
             </div>
-        </div>
+
+            <!-- Deep Cleaning -->
+            <div class="bg-white rounded-lg shadow-md mb-4">
+                <button onclick="toggleAccordion('deep')" class="w-full p-6 text-left flex justify-between items-center hover:bg-gray-50 transition-colors">
+                    <div>
+                        <h3 class="font-semibold text-xl">Deep Cleaning</h3>
+                        <p class="text-gray-600">Comprehensive cleaning for a fresh start</p>
+                    </div>
+                    <span id="deep-icon" class="text-2xl">+</span>
+                </button>
+                <div id="deep-content" class="hidden p-6 pt-0 border-t">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-semibold mb-3">What's Included:</h4>
+                            <ul class="space-y-2 text-sm">
+                                <li class="flex items-center"><span class="text-mint-green mr-2">✓</span>Everything in Standard Cleaning</li>
+                                <li class="flex items-center"><span class="text-mint-green mr-2">✓</span>Inside appliances cleaning (oven, microwave, fridge)</li>
+                                <li class="flex items-center"><span class="text-mint-green mr-2">✓</span>Baseboards, window sills & door frames</li>
+                                <li class="flex items-center"><span class="text-mint-green mr-2">✓</span>Light fixtures, ceiling fans & lampshades</li>
+                                <li class="flex items-center"><span class="text-mint-green mr-2">✓</span>Cabinet fronts, handles & hardware</li>
+                                <li class="flex items-center"><span class="text-mint-green mr-2">✓</span>Detailed bathroom scrubbing & disinfection</li>
+                                <li class="flex items-center"><span class="text-mint-green mr-2">✓</span>Steam cleaning for tile, grout & hard surfaces</li>
+                                <li class="flex items-center"><span class="text-mint-green mr-2">✓</span>Deep carpet & upholstery steam treatment</li>
+                                <li class="flex items-center"><span class="text-mint-green mr-2">✓</span>Sanitization of high-touch surfaces</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-3">Pricing:</h4>
+                            <div class="text-center p-4 bg-gray-50 rounded">
+                                <p class="text-2xl font-bold text-pink-mint">Starting at $200</p>
+                                <p class="text-sm text-gray-600 mt-2">Includes professional steam cleaning</p>
+                                <button onclick="selectService('deep', 200)" class="mt-3 bg-pink-mint text-white px-4 py-2 rounded hover:bg-pink-600 transition-colors">
+                                    Select Deep Cleaning
+                                </button>
+                            </div>
+                            <div class="mt-4 space-y-2 text-sm">
+                                <div class="flex justify-between p-2 bg-white rounded border">
+                                    <span>Studio/1BR</span>
+                                    <span class="text-pink-mint font-semibold">$200-280</span>
+                                </div>
+                                <div class="flex justify-between p-2 bg-white rounded border">
+                                    <span>2BR/2BA</span>
+                                    <span class="text-pink-mint font-semibold">$320-420</span>
+                                </div>
+                                <div class="flex justify-between p-2 bg-white rounded border">
+                                    <span>3BR/2BA+</span>
+                                    <span class="text-pink-mint font-semibold">$450-600</span>
+                                </div>
+                                <p class="text-gray-600 mt-2 text-xs">*Includes steam cleaning equipment & eco-friendly products</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Move-in/Move-out -->
+            <div class="bg-white rounded-lg shadow-md mb-4">
+                <button onclick="toggleAccordion('moveout')" class="w-full p-6 text-left flex justify-between items-center hover:bg-gray-50 transition-colors">
+                    <div>
+                        <h3 class="font-semibold text-xl">Move-in/Move-out Cleaning</h3>
+                        <p class="text-gray-600">Complete cleaning for vacant properties</p>
+                    </div>
+                    <span id="moveout-icon" class="text-2xl">+</span>
+                </button>
+                <div id="moveout-content" class="hidden p-6 pt-0 border-t">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-semibold mb-3">What's Included:</h4>
+                            <ul class="space-y-2 text-sm">
+                                <li class="flex items-center"><span class="text-mint-green mr-2">✓</span>Everything in Deep Cleaning + Steam Service</li>
+                                <li class="flex items-center"><span class="text-mint-green mr-2">✓</span>Inside all cabinets, drawers & shelving</li>
+                                <li class="flex items-center"><span class="text-mint-green mr-2">✓</span>Complete appliance interior/exterior cleaning</li>
+                                <li class="flex items-center"><span class="text-mint-green mr-2">✓</span>Window cleaning (interior & sills)</li>
+                                <li class="flex items-center"><span class="text-mint-green mr-2">✓</span>Closet cleaning & organization</li>
+                                <li class="flex items-center"><span class="text-mint-green mr-2">✓</span>Switch plates, outlet covers & fixtures</li>
+                                <li class="flex items-center"><span class="text-mint-green mr-2">✓</span>Professional steam cleaning of all floors</li>
+                                <li class="flex items-center"><span class="text-mint-green mr-2">✓</span>Steam sanitization of bathrooms & kitchen</li>
+                                <li class="flex items-center"><span class="text-mint-green mr-2">✓</span>Wall washing & spot cleaning</li>
+                                <li class="flex items-center"><span class="text-mint-green mr-2">✓</span>Final walkthrough & touch-ups</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-3">Pricing:</h4>
+                            <div class="text-center p-4 bg-gray-50 rounded">
+                                <p class="text-2xl font-bold text-pink-mint">Starting at $300</p>
+                                <p class="text-sm text-gray-600 mt-2">Complete move-out service with steam cleaning</p>
+                                <button onclick="selectService('moveout', 300)" class="mt-3 bg-pink-mint text-white px-4 py-2 rounded hover:bg-pink-600 transition-colors">
+                                    Select Move-out Cleaning
+                                </button>
+                            </div>
+                            <div class="mt-4 space-y-2 text-sm">
+                                <div class="flex justify-between p-2 bg-white rounded border">
+                                    <span>Studio/1BR</span>
+                                    <span class="text-pink-mint font-semibold">$300-400</span>
+                                </div>
+                                <div class="flex justify-between p-2 bg-white rounded border">
+                                    <span>2BR/2BA</span>
+                                    <span class="text-pink-mint font-semibold">$450-600</span>
+                                </div>
+                                <div class="flex justify-between p-2 bg-white rounded border">
+                                    <span>3BR/2BA+</span>
+                                    <span class="text-pink-mint font-semibold">$650-850</span>
+                                </div>
+                                <p class="text-gray-600 mt-2 text-xs">*Deposit return guarantee - we ensure your space passes inspection</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Add-on Tasks -->
+        <section class="mb-12">
+            <h2 class="font-serif text-3xl font-bold text-center mb-8">Add Extra Tasks to Your Service</h2>
+            
+            <!-- Kitchen Add-ons -->
+            <div class="bg-white rounded-lg shadow-md mb-4">
+                <button onclick="toggleCategory('kitchen')" class="w-full p-6 text-left flex justify-between items-center hover:bg-gray-50 transition-colors">
+                    <h3 class="font-semibold text-xl">Kitchen Add-ons</h3>
+                    <span id="kitchen-toggle" class="text-2xl">+</span>
+                </button>
+                <div id="kitchen-addons" class="hidden p-6 pt-0 border-t">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <label class="flex items-center space-x-3 p-3 hover:bg-gray-50 rounded">
+                            <input type="checkbox" onchange="updateQuote()" data-price="25" data-time="30" class="addon-checkbox">
+                            <span class="flex-1">Oven Deep Clean <span class="text-pink-mint font-semibold">+$25</span> <span class="text-gray-500 text-sm">- 30 min</span></span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 hover:bg-gray-50 rounded">
+                            <input type="checkbox" onchange="updateQuote()" data-price="20" data-time="25" class="addon-checkbox">
+                            <span class="flex-1">Refrigerator Interior Clean <span class="text-pink-mint font-semibold">+$20</span> <span class="text-gray-500 text-sm">- 25 min</span></span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 hover:bg-gray-50 rounded">
+                            <input type="checkbox" onchange="updateQuote()" data-price="15" data-time="20" class="addon-checkbox">
+                            <span class="flex-1">Microwave Deep Clean <span class="text-pink-mint font-semibold">+$15</span> <span class="text-gray-500 text-sm">- 20 min</span></span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 hover:bg-gray-50 rounded">
+                            <input type="checkbox" onchange="updateQuote()" data-price="30" data-time="45" class="addon-checkbox">
+                            <span class="flex-1">Cabinet Interior Cleaning <span class="text-pink-mint font-semibold">+$30</span> <span class="text-gray-500 text-sm">- 45 min</span></span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 hover:bg-gray-50 rounded">
+                            <input type="checkbox" onchange="updateQuote()" data-price="20" data-time="30" class="addon-checkbox">
+                            <span class="flex-1">Dish Overflow/Extra Sink Load <span class="text-pink-mint font-semibold">+$20</span> <span class="text-gray-500 text-sm">- 30 min</span></span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 hover:bg-gray-50 rounded">
+                            <input type="checkbox" onchange="updateQuote()" data-price="25" data-time="35" class="addon-checkbox">
+                            <span class="flex-1">Pantry Wipe & Organize <span class="text-pink-mint font-semibold">+$25</span> <span class="text-gray-500 text-sm">- 35 min</span></span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 hover:bg-gray-50 rounded">
+                            <input type="checkbox" onchange="updateQuote()" data-price="15" data-time="20" class="addon-checkbox">
+                            <span class="flex-1">Coffee Station Refresh <span class="text-pink-mint font-semibold">+$15</span> <span class="text-gray-500 text-sm">- 20 min</span></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bathroom Add-ons -->
+            <div class="bg-white rounded-lg shadow-md mb-4">
+                <button onclick="toggleCategory('bathroom')" class="w-full p-6 text-left flex justify-between items-center hover:bg-gray-50 transition-colors">
+                    <h3 class="font-semibold text-xl">Bathroom Add-ons</h3>
+                    <span id="bathroom-toggle" class="text-2xl">+</span>
+                </button>
+                <div id="bathroom-addons" class="hidden p-6 pt-0 border-t">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <label class="flex items-center space-x-3 p-3 hover:bg-gray-50 rounded">
+                            <input type="checkbox" onchange="updateQuote()" data-price="20" data-time="30" class="addon-checkbox">
+                            <span class="flex-1">Shower Deep Scrub <span class="text-pink-mint font-semibold">+$20</span> <span class="text-gray-500 text-sm">- 30 min</span></span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 hover:bg-gray-50 rounded">
+                            <input type="checkbox" onchange="updateQuote()" data-price="15" data-time="20" class="addon-checkbox">
+                            <span class="flex-1">Medicine Cabinet <span class="text-pink-mint font-semibold">+$15</span> <span class="text-gray-500 text-sm">- 20 min</span></span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 hover:bg-gray-50 rounded">
+                            <input type="checkbox" onchange="updateQuote()" data-price="25" data-time="35" class="addon-checkbox">
+                            <span class="flex-1">Tile & Grout Deep Clean <span class="text-pink-mint font-semibold">+$25</span> <span class="text-gray-500 text-sm">- 35 min</span></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bedroom Add-ons -->
+            <div class="bg-white rounded-lg shadow-md mb-4">
+                <button onclick="toggleCategory('bedroom')" class="w-full p-6 text-left flex justify-between items-center hover:bg-gray-50 transition-colors">
+                    <h3 class="font-semibold text-xl">Bedroom Add-ons</h3>
+                    <span id="bedroom-toggle" class="text-2xl">+</span>
+                </button>
+                <div id="bedroom-addons" class="hidden p-6 pt-0 border-t">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <label class="flex items-center space-x-3 p-3 hover:bg-gray-50 rounded">
+                            <input type="checkbox" onchange="updateQuote()" data-price="15" data-time="25" class="addon-checkbox">
+                            <span class="flex-1">Bed Making & Linen <span class="text-pink-mint font-semibold">+$15</span> <span class="text-gray-500 text-sm">- 25 min</span></span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 hover:bg-gray-50 rounded">
+                            <input type="checkbox" onchange="updateQuote()" data-price="20" data-time="30" class="addon-checkbox">
+                            <span class="flex-1">Closet Organization <span class="text-pink-mint font-semibold">+$20</span> <span class="text-gray-500 text-sm">- 30 min</span></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Laundry Service -->
+            <div class="bg-white rounded-lg shadow-md mb-4">
+                <button onclick="toggleCategory('laundry')" class="w-full p-6 text-left flex justify-between items-center hover:bg-gray-50 transition-colors">
+                    <h3 class="font-semibold text-xl">Laundry Service</h3>
+                    <span id="laundry-toggle" class="text-2xl">+</span>
+                </button>
+                <div id="laundry-addons" class="hidden p-6 pt-0 border-t">
+                    <div class="grid md:grid-cols-2 gap-4 mb-6">
+                        <label class="flex items-center space-x-3 p-3 hover:bg-gray-50 rounded">
+                            <input type="checkbox" onchange="updateQuote()" data-price="25" data-time="60" class="addon-checkbox">
+                            <span class="flex-1">Wash & Fold Service <span class="text-pink-mint font-semibold">+$25/load</span> <span class="text-gray-500 text-sm">- 60 min</span></span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 hover:bg-gray-50 rounded">
+                            <input type="checkbox" onchange="updateQuote()" data-price="15" data-time="30" class="addon-checkbox">
+                            <span class="flex-1">Steam Press Service <span class="text-pink-mint font-semibold">+$15/load</span> <span class="text-gray-500 text-sm">- 30 min</span></span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 hover:bg-gray-50 rounded">
+                            <input type="checkbox" onchange="updateQuote()" data-price="20" data-time="45" class="addon-checkbox">
+                            <span class="flex-1">Towel & Linen Refresh <span class="text-pink-mint font-semibold">+$20</span> <span class="text-gray-500 text-sm">- 45 min</span></span>
+                        </label>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h4 class="font-semibold mb-4">Laundry Details & Preferences</h4>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Approximate number of loads:</label>
+                                <select class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-pink-mint">
+                                    <option>1-2 loads</option>
+                                    <option>3-4 loads</option>
+                                    <option>5-6 loads</option>
+                                    <option>7+ loads</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Types of items to launder:</label>
+                                <textarea class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-pink-mint" rows="2" placeholder="e.g., everyday clothes, bedding, towels, delicates"></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Special care instructions:</label>
+                                <select class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-pink-mint">
+                                    <option>Standard care</option>
+                                    <option>Delicate cycle only</option>
+                                    <option>Air dry only</option>
+                                    <option>Cold water only</option>
+                                    <option>Hand wash items included</option>
+                                    <option>No fabric softener</option>
+                                    <option>Separate colors carefully</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Preferred laundry products:</label>
+                                <select class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-pink-mint">
+                                    <option>Use our eco-friendly products</option>
+                                    <option>Use your provided products</option>
+                                    <option>Hypoallergenic products only</option>
+                                    <option>Unscented products only</option>
+                                    <option>Specific brand (specify below)</option>
+                                </select>
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="block text-sm font-medium mb-2">How would you like laundry finished:</label>
+                                <select class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-pink-mint">
+                                    <option>Folded and put away in closets/drawers</option>
+                                    <option>Folded and stacked neatly</option>
+                                    <option>Hung up on hangers (client provides)</option>
+                                    <option>Mix: fold basics, hang delicates</option>
+                                </select>
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="block text-sm font-medium mb-2">Additional laundry notes:</label>
+                                <textarea class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-pink-mint" rows="2" placeholder="Any specific instructions, product preferences, or special requests"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- General Add-ons -->
+            <div class="bg-white rounded-lg shadow-md mb-4">
+                <button onclick="toggleCategory('general')" class="w-full p-6 text-left flex justify-between items-center hover:bg-gray-50 transition-colors">
+                    <h3 class="font-semibold text-xl">General Add-ons</h3>
+                    <span id="general-toggle" class="text-2xl">+</span>
+                </button>
+                <div id="general-addons" class="hidden p-6 pt-0 border-t">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <label class="flex items-center space-x-3 p-3 hover:bg-gray-50 rounded">
+                            <input type="checkbox" onchange="updateQuote()" data-price="30" data-time="45" class="addon-checkbox">
+                            <span class="flex-1">Window Cleaning (Interior) <span class="text-pink-mint font-semibold">+$30</span> <span class="text-gray-500 text-sm">- 45 min</span></span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 hover:bg-gray-50 rounded">
+                            <input type="checkbox" onchange="updateQuote()" data-price="20" data-time="30" class="addon-checkbox">
+                            <span class="flex-1">Garage Sweep <span class="text-pink-mint font-semibold">+$20</span> <span class="text-gray-500 text-sm">- 30 min</span></span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 hover:bg-gray-50 rounded">
+                            <input type="checkbox" onchange="updateQuote()" data-price="15" data-time="20" class="addon-checkbox">
+                            <span class="flex-1">Patio/Balcony Sweep <span class="text-pink-mint font-semibold">+$15</span> <span class="text-gray-500 text-sm">- 20 min</span></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Luxury Touches -->
+            <div class="bg-white rounded-lg shadow-md mb-4">
+                <button onclick="toggleCategory('luxury')" class="w-full p-6 text-left flex justify-between items-center hover:bg-gray-50 transition-colors">
+                    <h3 class="font-semibold text-xl">Luxury Touches</h3>
+                    <span id="luxury-toggle" class="text-2xl">+</span>
+                </button>
+                <div id="luxury-addons" class="hidden p-6 pt-0 border-t">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <label class="flex items-center space-x-3 p-3 hover:bg-gray-50 rounded">
+                            <input type="checkbox" onchange="updateQuote()" data-price="10" data-time="15" class="addon-checkbox">
+                            <span class="flex-1">Pillow Fluffing <span class="text-pink-mint font-semibold">+$10</span> <span class="text-gray-500 text-sm">- 15 min</span></span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 hover:bg-gray-50 rounded">
+                            <input type="checkbox" onchange="updateQuote()" data-price="15" data-time="20" class="addon-checkbox">
+                            <span class="flex-1">Decorative Towel Folding <span class="text-pink-mint font-semibold">+$15</span> <span class="text-gray-500 text-sm">- 20 min</span></span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 hover:bg-gray-50 rounded">
+                            <input type="checkbox" onchange="updateQuote()" data-price="12" data-time="10" class="addon-checkbox">
+                            <span class="flex-1">Fresh Scent Spray <span class="text-pink-mint font-semibold">+$12</span> <span class="text-gray-500 text-sm">- 10 min</span></span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 hover:bg-gray-50 rounded">
+                            <input type="checkbox" onchange="updateQuote()" data-price="25" data-time="30" class="addon-checkbox">
+                            <span class="flex-1">Closet Organizing <span class="text-pink-mint font-semibold">+$25</span> <span class="text-gray-500 text-sm">- 30 min</span></span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 hover:bg-gray-50 rounded">
+                            <input type="checkbox" onchange="updateQuote()" data-price="20" data-time="15" class="addon-checkbox">
+                            <span class="flex-1">Before & After Photos <span class="text-pink-mint font-semibold">+$20</span> <span class="text-gray-500 text-sm">- 15 min</span></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Discounts and Specials -->
+        <section class="mb-12">
+            <h2 class="font-serif text-3xl font-bold text-center mb-8">Special Offers</h2>
+            <div class="bg-white rounded-lg shadow-md p-8">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <label class="flex items-center space-x-3 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
+                        <input type="checkbox" onchange="updateDiscounts()" data-discount="10" class="discount-checkbox w-4 h-4 text-pink-mint">
+                        <div class="flex-1">
+                            <span class="font-semibold">Book 1 Week Ahead</span>
+                            <p class="text-sm text-gray-600">Save 10% when you schedule 7+ days in advance</p>
+                            <span class="text-mint-green font-semibold">-10%</span>
+                        </div>
+                    </label>
+                    <label class="flex items-center space-x-3 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
+                        <input type="checkbox" onchange="updateDiscounts()" data-discount="15" class="discount-checkbox w-4 h-4 text-pink-mint">
+                        <div class="flex-1">
+                            <span class="font-semibold">First-Time Customer</span>
+                            <p class="text-sm text-gray-600">Welcome discount for new clients</p>
+                            <span class="text-mint-green font-semibold">-15%</span>
+                        </div>
+                    </label>
+                    <label class="flex items-center space-x-3 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
+                        <input type="checkbox" onchange="updateDiscounts()" data-discount="5" class="discount-checkbox w-4 h-4 text-pink-mint">
+                        <div class="flex-1">
+                            <span class="font-semibold">Senior Citizen</span>
+                            <p class="text-sm text-gray-600">Special rate for seniors 65+</p>
+                            <span class="text-mint-green font-semibold">-5%</span>
+                        </div>
+                    </label>
+                    <label class="flex items-center space-x-3 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
+                        <input type="checkbox" onchange="updateDiscounts()" data-discount="0" class="discount-checkbox w-4 h-4 text-pink-mint">
+                        <div class="flex-1">
+                            <span class="font-semibold">Veteran/Military</span>
+                            <p class="text-sm text-gray-600">Thank you for your service - flat rate pricing</p>
+                            <span class="text-mint-green font-semibold">Flat Rate</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </section>
+
+        <!-- Personal Preferences -->
+        <section class="mb-12">
+            <h2 class="font-serif text-3xl font-bold text-center mb-8">Your Personal Preferences</h2>
+            <div class="bg-white rounded-lg shadow-md p-8">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="font-semibold text-xl mb-4">Health & Safety</h3>
+                        <div class="space-y-3">
+                            <label class="flex items-center space-x-3">
+                                <input type="checkbox" class="w-4 h-4 text-pink-mint">
+                                <span>I have allergies</span>
+                            </label>
+                            <label class="flex items-center space-x-3">
+                                <input type="checkbox" class="w-4 h-4 text-pink-mint">
+                                <span>I have asthma</span>
+                            </label>
+                        </div>
+
+                        <h3 class="font-semibold text-xl mb-4 mt-6">Product Preferences</h3>
+                        <div class="space-y-3">
+                            <label class="flex items-center space-x-3">
+                                <input type="checkbox" class="w-4 h-4 text-pink-mint">
+                                <span>I prefer eco-friendly/natural products</span>
+                            </label>
+                            <label class="flex items-center space-x-3">
+                                <input type="checkbox" class="w-4 h-4 text-pink-mint">
+                                <span>I prefer unscented products</span>
+                            </label>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <label class="block text-sm font-medium mb-2">Preferred cleaning scents:</label>
+                            <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
+                                <option>Fresh & Clean (unscented)</option>
+                                <option>Lavender</option>
+                                <option>Lemon Fresh</option>
+                                <option>Eucalyptus</option>
+                                <option>Vanilla</option>
+                                <option>Ocean Breeze</option>
+                                <option>Pine Fresh</option>
+                                <option>Custom (specify below)</option>
+                            </select>
+                        </div>
+
+                        <div class="mt-4">
+                            <label class="block text-sm font-medium mb-2">Custom product or scent requests:</label>
+                            <input type="text" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" placeholder="e.g., specific brand, custom scent">
+                        </div>
+
+                        <h3 class="font-semibold text-xl mb-4 mt-6">Pet Information</h3>
+                        <div class="space-y-3">
+                            <label class="flex items-center space-x-3">
+                                <input type="checkbox" class="w-4 h-4 text-pink-mint">
+                                <span>I have pets</span>
+                            </label>
+                            <div class="ml-7">
+                                <label class="block text-sm font-medium mb-2">Pet details (type and number):</label>
+                                <input type="text" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-pink-mint" placeholder="e.g., 2 cats, 1 dog">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="font-semibold text-xl mb-4">Special Areas & Exclusions</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Areas to avoid or treat with extra care:</label>
+                                <textarea class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" rows="3" placeholder="e.g., antique furniture, delicate items, home office equipment, children's rooms"></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Products to avoid:</label>
+                                <textarea class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" rows="3" placeholder="List any products or ingredients to avoid"></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Special notes or requests:</label>
+                                <textarea class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" rows="4" placeholder="Any special instructions, areas to focus on, or items to be careful around"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Additional Cleaning Information -->
+        <section class="mb-12">
+            <h2 class="font-serif text-3xl font-bold text-center mb-8">Tell Us More About Your Cleaning Needs</h2>
+            <div class="bg-white rounded-lg shadow-md p-8">
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-medium mb-2">What areas of your home need the most attention?</label>
+                        <textarea class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" rows="3" placeholder="e.g., kitchen gets heavy use, bathrooms need deep cleaning, living room has high traffic"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">How often do you currently clean your home?</label>
+                        <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
+                            <option>Daily light cleaning</option>
+                            <option>Weekly cleaning</option>
+                            <option>Bi-weekly cleaning</option>
+                            <option>Monthly cleaning</option>
+                            <option>Rarely/as needed</option>
+                            <option>This is my first professional cleaning</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">What's your main goal for this cleaning service?</label>
+                        <textarea class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" rows="3" placeholder="e.g., preparing for guests, deep spring cleaning, regular maintenance, moving preparation"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Any specific challenges or problem areas we should know about?</label>
+                        <textarea class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" rows="3" placeholder="e.g., hard water stains, pet odors, high-traffic areas, stubborn stains"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Additional comments or special requests:</label>
+                        <textarea class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" rows="4" placeholder="Anything else you'd like us to know about your home or cleaning preferences"></textarea>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Customer Information -->
+        <section class="mb-12">
+            <h2 class="font-serif text-3xl font-bold text-center mb-8">Your Contact & Home Information</h2>
+            <div class="bg-white rounded-lg shadow-md p-8">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="font-semibold text-xl mb-4">Contact Information</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Full Name *</label>
+                                <input type="text" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" placeholder="Your full name">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Phone Number *</label>
+                                <input type="tel" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" placeholder="(555) 123-4567">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Email Address *</label>
+                                <input type="email" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" placeholder="your.email@example.com">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Preferred Contact Method</label>
+                                <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
+                                    <option>Phone call</option>
+                                    <option>Text message</option>
+                                    <option>Email</option>
+                                    <option>Any method is fine</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="font-semibold text-xl mb-4">Service Address</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Street Address *</label>
+                                <input type="text" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" placeholder="123 Main Street">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Apartment/Unit (if applicable)</label>
+                                <input type="text" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" placeholder="Apt 2B, Unit 5, etc.">
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">City *</label>
+                                    <input type="text" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" placeholder="Your city">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">ZIP Code *</label>
+                                    <input type="text" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" placeholder="12345">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Access Instructions</label>
+                                <textarea class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" rows="3" placeholder="Gate codes, key location, parking instructions, etc."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8">
+                    <h3 class="font-semibold text-xl mb-4">Home Description</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Home Type</label>
+                            <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
+                                <option>Single-family house</option>
+                                <option>Apartment</option>
+                                <option>Condo</option>
+                                <option>Townhouse</option>
+                                <option>Studio</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Square Footage (approximate)</label>
+                            <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
+                                <option>Under 800 sq ft</option>
+                                <option>800-1,200 sq ft</option>
+                                <option>1,200-1,800 sq ft</option>
+                                <option>1,800-2,500 sq ft</option>
+                                <option>2,500-3,500 sq ft</option>
+                                <option>Over 3,500 sq ft</option>
+                                <option>Not sure</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Number of Bedrooms</label>
+                            <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
+                                <option>Studio</option>
+                                <option>1 bedroom</option>
+                                <option>2 bedrooms</option>
+                                <option>3 bedrooms</option>
+                                <option>4 bedrooms</option>
+                                <option>5+ bedrooms</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Number of Bathrooms</label>
+                            <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
+                                <option>1 bathroom</option>
+                                <option>1.5 bathrooms</option>
+                                <option>2 bathrooms</option>
+                                <option>2.5 bathrooms</option>
+                                <option>3 bathrooms</option>
+                                <option>3.5+ bathrooms</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Flooring Types</label>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                <label class="flex items-center space-x-2">
+                                    <input type="checkbox" class="w-4 h-4 text-pink-mint">
+                                    <span class="text-sm">Hardwood</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="checkbox" class="w-4 h-4 text-pink-mint">
+                                    <span class="text-sm">Carpet</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="checkbox" class="w-4 h-4 text-pink-mint">
+                                    <span class="text-sm">Tile</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="checkbox" class="w-4 h-4 text-pink-mint">
+                                    <span class="text-sm">Laminate</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="checkbox" class="w-4 h-4 text-pink-mint">
+                                    <span class="text-sm">Vinyl</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="checkbox" class="w-4 h-4 text-pink-mint">
+                                    <span class="text-sm">Stone</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="checkbox" class="w-4 h-4 text-pink-mint">
+                                    <span class="text-sm">Concrete</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="checkbox" class="w-4 h-4 text-pink-mint">
+                                    <span class="text-sm">Other</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Current condition of your home</label>
+                            <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
+                                <option>Well-maintained, just needs regular cleaning</option>
+                                <option>Moderately messy, needs good cleaning</option>
+                                <option>Very messy, needs deep cleaning</option>
+                                <option>Haven't cleaned in a while, needs major attention</option>
+                                <option>Post-construction/renovation cleanup needed</option>
+                                <option>Move-out condition (vacant)</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Additional home details</label>
+                            <textarea class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" rows="4" placeholder="Describe any unique features, layout details, or specific areas that need attention. Include information about stairs, multiple levels, outdoor spaces, or anything else that would help us prepare for your service."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8">
+                    <h3 class="font-semibold text-xl mb-4">Scheduling Preferences</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Preferred Service Date</label>
+                            <input type="date" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Preferred Time</label>
+                            <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
+                                <option>Morning (8am-12pm)</option>
+                                <option>Afternoon (12pm-4pm)</option>
+                                <option>Evening (4pm-7pm)</option>
+                                <option>Flexible - any time</option>
+                            </select>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium mb-2">Will you be home during the service?</label>
+                            <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
+                                <option>Yes, I'll be home</option>
+                                <option>No, but I'll provide access</option>
+                                <option>Partially - I may come and go</option>
+                                <option>Not sure yet</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Your Custom Quote -->
+        <section class="mb-12">
+            <div class="bg-white rounded-lg shadow-lg p-8 sticky top-4">
+                <h2 class="font-serif text-3xl font-bold text-center mb-6">Your Custom Quote</h2>
+                <div class="space-y-4 mb-6">
+                    <div class="flex justify-between items-center">
+                        <span class="text-lg">Base Service:</span>
+                        <span id="base-price" class="text-lg font-semibold">$0</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-lg">Additional Tasks:</span>
+                        <span id="addon-price" class="text-lg font-semibold">$0</span>
+                    </div>
+                    <div id="discount-line" class="flex justify-between items-center text-mint-green hidden">
+                        <span class="text-lg">Discount:</span>
+                        <span id="discount-amount" class="text-lg font-semibold">-$0</span>
+                    </div>
+                    <hr class="border-gray-300">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xl font-bold">Total:</span>
+                        <span id="total-price" class="text-2xl font-bold text-pink-mint">$0</span>
+                    </div>
+                    <div class="flex justify-between items-center text-gray-600">
+                        <span>Estimated Time:</span>
+                        <span id="estimated-time">0 minutes</span>
+                    </div>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button class="flex-1 bg-pink-mint text-white py-3 px-6 rounded-lg font-semibold hover:bg-pink-600 transition-colors">
+                        Book This Service
+                    </button>
+                    <button onclick="printQuote()" class="flex-1 bg-gray-500 text-white py-3 px-6 rounded-lg font-semibold hover:bg-gray-600 transition-colors">
+                        Print Checklist
+                    </button>
+                    <button onclick="saveQuote()" class="flex-1 bg-mint-green text-charcoal py-3 px-6 rounded-lg font-semibold hover:bg-green-400 transition-colors">
+                        Save Quote
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Premium Results Gallery -->
+        <section class="mb-16">
+            <h2 class="font-serif text-3xl font-bold text-center mb-8">Our Premium Results</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-pink-mint to-mint-green flex items-center justify-center">
+                        <span class="text-6xl">🛋️</span>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-2">Living Spaces</h3>
+                        <p class="text-gray-600 text-sm">Comfortable, spotless living areas that welcome you home</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-mint-green to-pink-mint flex items-center justify-center">
+                        <span class="text-6xl">🍳</span>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-2">Gourmet Kitchens</h3>
+                        <p class="text-gray-600 text-sm">Pristine cooking spaces ready for your culinary adventures</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-pink-mint to-mint-green flex items-center justify-center">
+                        <span class="text-6xl">🛁</span>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-2">Spa-Like Bathrooms</h3>
+                        <p class="text-gray-600 text-sm">Luxurious, sanitized bathrooms for ultimate relaxation</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
+    <!-- Footer -->
+    <footer class="bg-charcoal text-white py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="font-serif text-2xl font-bold mb-4 text-pink-mint">Pink Mint Clean</h3>
+                    <p class="text-gray-300 mb-4">Premium cleaning services tailored to your needs. Experience the difference of professional care.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Our Services</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>Standard Cleaning</li>
+                        <li>Deep Cleaning</li>
+                        <li>Move-in/Move-out</li>
+                        <li>Custom Add-ons</li>
+                        <li>Eco-Friendly Options</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Contact Info</h4>
+                    <div class="space-y-2 text-gray-300">
+                        <p>📞 (555) 123-PINK</p>
+                        <p>✉️ hello@pinkmintclean.com</p>
+                        <p>📍 123 Clean Street<br>Sparkle City, SC 12345</p>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Follow Us</h4>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="#" class="text-pink-mint hover:text-pink-300 transition-colors">Facebook</a>
+                        <a href="#" class="text-pink-mint hover:text-pink-300 transition-colors">Instagram</a>
+                        <a href="#" class="text-pink-mint hover:text-pink-300 transition-colors">Twitter</a>
+                    </div>
+                    <p class="text-gray-300 text-sm">Licensed & Insured<br>Satisfaction Guaranteed</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-600 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Pink Mint Clean. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
     <script>
-        let baseServicePrice = 0;
-        let baseServiceName = '';
-        let baseServiceTime = 60; // Default base time
-        let addonsTotal = 0;
-        let addonsTime = 0;
-        let selectedAddons = [];
+        let basePrice = 0;
+        let baseTime = 120; // Base time in minutes
 
-        function toggleService(serviceType) {
-            const content = document.getElementById(serviceType + '-content');
-            const icon = document.getElementById(serviceType + '-icon');
+        function scrollToServices() {
+            document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function toggleAccordion(service) {
+            const content = document.getElementById(service + '-content');
+            const icon = document.getElementById(service + '-icon');
             
             if (content.classList.contains('hidden')) {
                 content.classList.remove('hidden');
-                icon.style.transform = 'rotate(180deg)';
+                icon.textContent = '−';
             } else {
                 content.classList.add('hidden');
-                icon.style.transform = 'rotate(0deg)';
+                icon.textContent = '+';
             }
         }
 
-        function toggleAddons(category) {
-            const content = document.getElementById(category + '-content');
-            const icon = document.getElementById(category + '-icon');
+        function toggleCategory(category) {
+            const content = document.getElementById(category + '-addons');
+            const icon = document.getElementById(category + '-toggle');
             
             if (content.classList.contains('hidden')) {
                 content.classList.remove('hidden');
-                icon.style.transform = 'rotate(180deg)';
+                icon.textContent = '−';
             } else {
                 content.classList.add('hidden');
-                icon.style.transform = 'rotate(0deg)';
+                icon.textContent = '+';
             }
         }
 
-        function updateBaseService(serviceName, price) {
-            baseServiceName = serviceName;
-            baseServicePrice = price;
-            
+        function selectService(type, price) {
+            basePrice = price;
             // Set base time based on service type
-            if (serviceName.includes('Standard')) {
-                baseServiceTime = 90;
-            } else if (serviceName.includes('Deep')) {
-                baseServiceTime = 180;
-            } else if (serviceName.includes('Move')) {
-                baseServiceTime = 240;
-            }
+            if (type === 'standard') baseTime = 120;
+            else if (type === 'deep') baseTime = 240;
+            else if (type === 'moveout') baseTime = 300;
             
-            updateQuoteDisplay();
+            updateQuote();
         }
 
-        function updateAddons(addonName, price, time, checkbox) {
-            if (checkbox.checked) {
-                selectedAddons.push({name: addonName, price: price, time: time});
-                addonsTotal += price;
-                addonsTime += time;
+        function updateQuote() {
+            const checkboxes = document.querySelectorAll('.addon-checkbox:checked');
+            let addonPrice = 0;
+            let addonTime = 0;
+
+            checkboxes.forEach(checkbox => {
+                addonPrice += parseInt(checkbox.dataset.price);
+                addonTime += parseInt(checkbox.dataset.time);
+            });
+
+            const subtotal = basePrice + addonPrice;
+            const discountAmount = calculateDiscount(subtotal);
+            const finalTotal = subtotal - discountAmount;
+
+            document.getElementById('base-price').textContent = '$' + basePrice;
+            document.getElementById('addon-price').textContent = '$' + addonPrice;
+            
+            // Show/hide discount line
+            const discountLine = document.getElementById('discount-line');
+            if (discountAmount > 0) {
+                discountLine.classList.remove('hidden');
+                document.getElementById('discount-amount').textContent = '-$' + discountAmount;
             } else {
-                selectedAddons = selectedAddons.filter(addon => addon.name !== addonName);
-                addonsTotal -= price;
-                addonsTime -= time;
+                discountLine.classList.add('hidden');
             }
-            updateQuoteDisplay();
+            
+            document.getElementById('total-price').textContent = '$' + finalTotal;
+            
+            const totalMinutes = baseTime + addonTime;
+            const hours = Math.floor(totalMinutes / 60);
+            const minutes = totalMinutes % 60;
+            let timeText = '';
+            if (hours > 0) timeText += hours + 'h ';
+            if (minutes > 0) timeText += minutes + 'm';
+            document.getElementById('estimated-time').textContent = timeText || '0 minutes';
         }
 
-        function updateQuoteDisplay() {
-            document.getElementById('base-service-name').textContent = baseServiceName || 'Select a service';
-            document.getElementById('base-service-price').textContent = '$' + baseServicePrice;
-            document.getElementById('addons-price').textContent = '$' + addonsTotal;
-            document.getElementById('total-price').textContent = '$' + (baseServicePrice + addonsTotal);
-            document.getElementById('total-time').textContent = (baseServiceTime + addonsTime) + ' minutes';
-            
-            // Update addons list
-            const addonsList = document.getElementById('addons-list');
-            if (selectedAddons.length === 0) {
-                addonsList.innerHTML = '<span class="text-gray-400">No additional tasks selected</span>';
-            } else {
-                addonsList.innerHTML = selectedAddons.map(addon => 
-                    `<div>• ${addon.name} (+$${addon.price})</div>`
-                ).join('');
-            }
+        function calculateDiscount(subtotal) {
+            const discountCheckboxes = document.querySelectorAll('.discount-checkbox:checked');
+            let maxDiscount = 0;
+
+            discountCheckboxes.forEach(checkbox => {
+                const discountPercent = parseInt(checkbox.dataset.discount);
+                const discountAmount = Math.round(subtotal * (discountPercent / 100));
+                maxDiscount = Math.max(maxDiscount, discountAmount);
+            });
+
+            return maxDiscount;
         }
 
-        function printChecklist() {
-            if (baseServicePrice === 0) {
-                alert('Please select a base service first!');
-                return;
-            }
-            
-            const printContent = `
-                <h1>Pink Mint Clean - Service Checklist</h1>
-                <h2>Base Service: ${baseServiceName} - $${baseServicePrice}</h2>
-                <h3>Additional Tasks:</h3>
-                <ul>
-                    ${selectedAddons.map(addon => `<li>${addon.name} - $${addon.price}</li>`).join('')}
-                </ul>
-                <h3>Total: $${baseServicePrice + addonsTotal}</h3>
-                <h3>Estimated Time: ${baseServiceTime + addonsTime} minutes</h3>
-            `;
-            
-            const printWindow = window.open('', '_blank');
-            printWindow.document.write(`
-                <html>
-                    <head><title>Service Checklist</title></head>
-                    <body style="font-family: Arial, sans-serif; padding: 20px;">
-                        ${printContent}
-                    </body>
-                </html>
-            `);
-            printWindow.document.close();
-            printWindow.print();
+        function updateDiscounts() {
+            updateQuote();
+        }
+
+        function printQuote() {
+            window.print();
         }
 
         function saveQuote() {
-            if (baseServicePrice === 0) {
-                alert('Please select a base service first!');
-                return;
-            }
-            
             const quote = {
-                baseService: baseServiceName,
-                basePrice: baseServicePrice,
-                addons: selectedAddons,
-                total: baseServicePrice + addonsTotal,
-                estimatedTime: baseServiceTime + addonsTime,
-                date: new Date().toLocaleDateString()
+                basePrice: basePrice,
+                addonPrice: parseInt(document.getElementById('addon-price').textContent.replace('$', '')),
+                total: parseInt(document.getElementById('total-price').textContent.replace('$', '')),
+                estimatedTime: document.getElementById('estimated-time').textContent
             };
             
             localStorage.setItem('pinkMintQuote', JSON.stringify(quote));
-            alert('Quote saved successfully! You can retrieve it later from your browser.');
+            alert('Quote saved successfully! You can retrieve it later.');
         }
 
-        // Initialize display
-        updateQuoteDisplay();
+        // Initialize the quote display
+        updateQuote();
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96cb6fe433736707',t:'MTc1NDc4NjM3Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96cbeabfa316f052',t:'MTc1NDc5MTQwOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
