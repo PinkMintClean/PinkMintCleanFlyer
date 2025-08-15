@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Pink Mint Clean - Interactive Essentials Checklist ✨</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Rose Gold Glam -->
+    <!-- Application Structure Plan: A single-page application with a fixed header showing progress and filter controls. A sticky sidebar navigation allows users to jump between checklist categories. The main content area displays checklist items as interactive cards. This structure was chosen for its intuitive navigation and clear separation of controls from content, making it easy for a user to track their shopping progress and filter the list based on their immediate needs (e.g., viewing only 'Must-Haves'). -->
+    <!-- Visualization & Content Choices: The primary 'visualization' is a dynamic progress bar to show checklist completion, providing immediate feedback and a sense of accomplishment. The checklist itself is presented as styled cards instead of a plain table for a more modern, visually appealing layout that fits the brand aesthetic. Interactive elements include checkboxes to track items and filter buttons (by budget tier) to dynamically update the view. This approach turns a static list into a useful, engaging tool. Chart.js was not needed as a progress bar was more appropriate for this type of data. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #FFF7F9; /* Soft Pink Background */
+        }
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        .main-title {
+            color: #D946EF; /* Fuchsia */
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        .progress-bar-bg {
+            background-color: #FCE7F3; /* Lighter Pink */
+        }
+        .progress-bar-fill {
+            background-color: #EC4899; /* Pink */
+            transition: width 0.5s ease-in-out;
+        }
+        .nav-link {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        .nav-link.active, .nav-link:hover {
+            background-color: #FCE7F3;
+            border-left-color: #EC4899;
+            color: #D946EF;
+        }
+        .filter-btn {
+            transition: all 0.3s ease;
+            border: 1px solid #F9A8D4; /* Light Pink Border */
+            color: #BE185D; /* Darker Pink */
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background-color: #EC4899;
+            color: white;
+            border-color: #EC4899;
+        }
+        .item-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border: 1px solid #FCE7F3;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .item-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(236, 72, 153, 0.15);
+        }
+        .item-card.checked {
+            background-color: #FFF7F9;
+            opacity: 0.7;
+        }
+        .item-card.checked label {
+            text-decoration: line-through;
+            color: #9CA3AF;
+        }
+        input[type="checkbox"] {
+            appearance: none;
+            width: 1.5rem;
+            height: 1.5rem;
+            border: 2px solid #F9A8D4;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            position: relative;
+            transition: background-color 0.2s ease;
+        }
+        input[type="checkbox"]:checked {
+            background-color: #EC4899;
+            border-color: #EC4899;
+        }
+        input[type="checkbox"]:checked::after {
+            content: '✔';
+            position: absolute;
+            color: white;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body class="text-gray-700">
+
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold main-title">✨ Pink Mint Clean ✨</h1>
+            <p class="text-lg text-gray-500 mt-2">The Glamorous Deep Clean Essentials Checklist</p>
+        </header>
+
+        <div id="controls" class="sticky top-0 z-10 bg-white/80 backdrop-blur-sm p-4 rounded-xl shadow-md mb-8">
+            <div class="mb-4">
+                <div class="flex justify-between items-center mb-2">
+                    <h3 class="text-lg font-semibold text-gray-600">Shopping Progress</h3>
+                    <span id="progress-text" class="font-bold text-pink-500">0%</span>
+                </div>
+                <div class="w-full progress-bar-bg rounded-full h-4">
+                    <div id="progress-bar" class="progress-bar-fill h-4 rounded-full" style="width: 0%"></div>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold text-gray-600 mb-2">Filter by Budget Tier</h3>
+                <div id="filter-container" class="flex flex-wrap gap-2">
+                    <button class="filter-btn active px-4 py-2 rounded-full text-sm font-semibold" data-tier="all">💎 All Items</button>
+                    <button class="filter-btn px-4 py-2 rounded-full text-sm font-semibold" data-tier="1">Tier 1: Must-Haves</button>
+                    <button class="filter-btn px-4 py-2 rounded-full text-sm font-semibold" data-tier="2">Tier 2: Specialty</button>
+                    <button class="filter-btn px-4 py-2 rounded-full text-sm font-semibold" data-tier="3">Tier 3: Luxe</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-8">
+            <nav id="category-nav" class="md:w-1/4 md:sticky md:top-40 self-start">
+                <h2 class="text-2xl font-bold mb-4 text-gray-800">Categories</h2>
+                <ul class="space-y-2">
+                </ul>
+            </nav>
+
+            <main id="checklist-container" class="flex-1">
+            </main>
+        </div>
+    </div>
+
+    <script>
+        const checklistData = [
+            {
+                category: "🧤 Protective & Prep Glam Gear",
+                items: [
+                    { name: "Pink Nitrile Gloves (box)", purpose: "Protect your hands & keep them manicure-ready", tier: 1 },
+                    { name: "Silky Shoe Covers", purpose: "Maintain pristine floors and professionalism", tier: 2 },
+                    { name: "Chic Apron or Uniform", purpose: "Elevate your look with functional style", tier: 2 },
+                    { name: "Crystal-Embellished Face Mask", purpose: "For use with stronger products or dusty areas", tier: 3 },
+                    { name: "Pink Cleaning Caddy", purpose: "A stylish way to transport your must-haves", tier: 2 },
+                ],
+            },
+            {
+                category: "🧹 General Surface & Scent Boosters",
+                items: [
+                    { name: "Rose-Scented All-Purpose Cleaner", purpose: "Counters, walls, light switches", tier: 1 },
+                    { name: "Disinfectant Mist or Wipes", purpose: "High-touch areas (doorknobs, remotes)", tier: 1 },
+                    { name: "Extra-Strength Degreaser", purpose: "Conquer greasy stove tops & range hoods", tier: 2 },
+                    { name: "Lavender Floor Wash", purpose: "A fragrant finish for all floor mopping", tier: 1 },
+                    { name: "Bleach", purpose: "Sanitizing bathrooms & tough mold spots", tier: 1 },
+                    { name: "The Pink Stuff (or similar paste)", purpose: "Magic eraser for stubborn scuffs and stains", tier: 3 },
+                ],
+            },
+            {
+                category: "🪞 Gleaming Glass & Mirror Care",
+                items: [
+                    { name: "Rosewater Glass Cleaner", purpose: "Flawless, streak-free sparkle", tier: 1 },
+                    { name: "Plush Microfiber Towels", purpose: "The secret to a perfect, lint-free shine", tier: 1 },
+                    { name: "Glass Cooktop Scraper", purpose: "Gently lift baked-on messes", tier: 3 },
+                ],
+            },
+            {
+                category: "🪵 Wood & Specialty Surface Shines",
+                items: [
+                    { name: "Rich Wood Floor Cleaner", purpose: "Preserve the beauty of hardwood floors", tier: 2 },
+                    { name: "Luxe Furniture Polish", purpose: "Nourish wood furniture and cabinets", tier: 2 },
+                    { name: "Stainless Steel Polishing Spray", purpose: "Leave appliances fingerprint-free", tier: 2 },
+                    { name: "Stone & Granite Cleaner", purpose: "Safely clean countertops and vanities", tier: 2 },
+                    { name: "Ceramic & Tile Brightener", purpose: "Restore backsplashes & bathroom tile", tier: 2 },
+                    { name: "Marble & Delicate Stone Polish", purpose: "A gentle touch for delicate surfaces", tier: 3 },
+                ],
+            },
+            {
+                category: "🍽️ Kitchen-Specific Glam",
+                items: [
+                    { name: "Sparkle-Shine Oven Cleaner", purpose: "For a deep, show-stopping oven clean", tier: 2 },
+                    { name: "Chic Dish Soap", purpose: "To keep the sink area sparkling", tier: 1 },
+                    { name: "Odor-Absorbing Garbage Bags", purpose: "A clean way to handle trash removal", tier: 1 },
+                    { name: "Heart-Shaped Sponges & Scrub Pads", purpose: "Add love to your sink and tough spots", tier: 3 },
+                ],
+            },
+            {
+                category: "🚽 Bathroom-Specific Spa",
+                items: [
+                    { name: "Diamond-Glow Toilet Bowl Cleaner", purpose: "For a meticulously clean toilet", tier: 1 },
+                    { name: "Grout Detailing Brush", purpose: "Get into every corner for a detailed clean", tier: 2 },
+                    { name: "Mildew & Mold Remover", purpose: "Banish unsightly mildew from showers", tier: 2 },
+                    { name: "Luxurious Air Freshener", purpose: "The final touch for a spa-like scent", tier: 3 },
+                    { name: "Toilet Wand with Disposable Heads", purpose: "A hygienic and efficient way to clean", tier: 2 },
+                ],
+            },
+            {
+                category: "🧼 Laundry & Organizing Extras",
+                items: [
+                    { name: "High-End Laundry Detergent", purpose: "If laundry service is included", tier: 3 },
+                    { name: "Scent-Enhancing Fabric Refresher", purpose: "A final mist for linens and upholstery", tier: 2 },
+                    { name: "Decorative Drawer Organizers", purpose: "For optional organizing services", tier: 3 },
+                    { name: "Fancy Label Stickers", purpose: "For a perfectly organized and polished look", tier: 3 },
+                ],
+            },
+            {
+                category: "🧰 Tools & Equipment for the Pros",
+                items: [
+                    { name: "Extra-Large Pink Spray Bottles", purpose: "For custom mixes or eco-friendly solutions", tier: 2 },
+                    { name: "Telescoping Feather Duster", purpose: "Reach high ceilings & vents with grace", tier: 2 },
+                    { name: "Scrub Brushes (variety pack)", purpose: "For every surface and tough spot", tier: 1 },
+                    { name: "Microfiber Mop & Bucket", purpose: "The duo for a flawless floor finish", tier: 1 },
+                    { name: "Lightweight Vacuum (with attachments)", purpose: "Tackle carpets, upholstery, and crevices", tier: 1 },
+                    { name: "Sleek Broom & Dustpan", purpose: "For a quick and effortless sweep", tier: 1 },
+                    { name: "Razor Scraper", purpose: "For carefully removing tough, stuck-on grime", tier: 3 },
+                ],
+            }
+        ];
+
+        const checklistContainer = document.getElementById('checklist-container');
+        const categoryNav = document.querySelector('#category-nav ul');
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+        const filterContainer = document.getElementById('filter-container');
+
+        let checkedItems = new Set(JSON.parse(localStorage.getItem('checkedItems')) || []);
+        let activeTier = 'all';
+        let totalItems = 0;
+
+        function renderChecklist() {
+            checklistContainer.innerHTML = '';
+            categoryNav.innerHTML = '';
+            totalItems = 0;
+
+            checklistData.forEach(cat => {
+                const categoryId = cat.category.replace(/\s+/g, '-').toLowerCase();
+                
+                const filteredItems = cat.items.filter(item => activeTier === 'all' || item.tier == activeTier);
+
+                if (filteredItems.length === 0) return;
+
+                totalItems += filteredItems.length;
+
+                const navLink = document.createElement('li');
+                navLink.innerHTML = `<a href="#${categoryId}" class="nav-link block font-semibold p-3 rounded-lg">${cat.category}</a>`;
+                categoryNav.appendChild(navLink);
+
+                const categorySection = document.createElement('section');
+                categorySection.id = categoryId;
+                categorySection.className = 'mb-12 scroll-mt-28';
+                
+                const categoryTitle = document.createElement('h2');
+                categoryTitle.className = 'text-3xl font-bold mb-6 text-gray-800 border-b-2 border-pink-200 pb-2';
+                categoryTitle.textContent = cat.category;
+                categorySection.appendChild(categoryTitle);
+
+                const itemsGrid = document.createElement('div');
+                itemsGrid.className = 'grid grid-cols-1 lg:grid-cols-2 gap-4';
+
+                filteredItems.forEach(item => {
+                    const itemId = `${categoryId}-${item.name.replace(/\s+/g, '-')}`;
+                    const isChecked = checkedItems.has(itemId);
+
+                    const itemCard = document.createElement('div');
+                    itemCard.className = `item-card p-4 flex items-start gap-4 ${isChecked ? 'checked' : ''}`;
+                    
+                    const checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.id = itemId;
+                    checkbox.checked = isChecked;
+                    checkbox.dataset.id = itemId;
+                    
+                    const labelContainer = document.createElement('div');
+                    const label = document.createElement('label');
+                    label.htmlFor = itemId;
+                    label.className = 'font-semibold text-gray-800 cursor-pointer';
+                    label.textContent = item.name;
+                    
+                    const purpose = document.createElement('p');
+                    purpose.className = 'text-sm text-gray-500';
+                    purpose.textContent = item.purpose;
+
+                    labelContainer.appendChild(label);
+                    labelContainer.appendChild(purpose);
+                    itemCard.appendChild(checkbox);
+                    itemCard.appendChild(labelContainer);
+                    itemsGrid.appendChild(itemCard);
+                });
+
+                categorySection.appendChild(itemsGrid);
+                checklistContainer.appendChild(categorySection);
+            });
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const currentChecked = Array.from(checklistContainer.querySelectorAll('input[type="checkbox"]')).filter(cb => cb.checked).length;
+            const percentage = totalItems > 0 ? Math.round((currentChecked / totalItems) * 100) : 0;
+            
+            progressBar.style.width = `${percentage}%`;
+            progressText.textContent = `${percentage}% Complete`;
+        }
+
+        checklistContainer.addEventListener('change', (e) => {
+            if (e.target.type === 'checkbox') {
+                const itemId = e.target.dataset.id;
+                const card = e.target.closest('.item-card');
+                if (e.target.checked) {
+                    checkedItems.add(itemId);
+                    card.classList.add('checked');
+                } else {
+                    checkedItems.delete(itemId);
+                    card.classList.remove('checked');
+                }
+                localStorage.setItem('checkedItems', JSON.stringify([...checkedItems]));
+                updateProgress();
+            }
+        });
+
+        filterContainer.addEventListener('click', (e) => {
+            if (e.target.tagName === 'BUTTON') {
+                activeTier = e.target.dataset.tier;
+                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                e.target.classList.add('active');
+                renderChecklist();
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', renderChecklist);
+    </script>
+</body>
+</html>
