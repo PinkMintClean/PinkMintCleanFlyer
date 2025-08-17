@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pink Mint Clean, LLC - Onboarding Experience</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f7f7f7;
+            padding: 2rem;
+        }
+        .document-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            padding: 3rem;
+        }
+        .header {
+            border-bottom: 2px solid #EC4899;
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .main-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #D946EF;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+        .subtitle {
+            font-size: 1.25rem;
+            color: #555;
+            margin-top: 0.5rem;
+            font-weight: 500;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #EC4899;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 0.5rem;
+        }
+        .paragraph {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            color: #444;
+        }
+        .onboarding-box {
+            background-color: #fce7f3;
+            border: 2px solid #EC4899;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+        .onboarding-step {
+            font-weight: 700;
+            font-size: 1.125rem;
+            color: #D946EF;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .onboarding-step::before {
+            content: attr(data-icon);
+            display: inline-block;
+            margin-right: 0.5rem;
+        }
+        .pink-hr {
+            border-color: #EC4899;
+            width: 50%;
+            margin: 1.5rem auto;
+        }
+        @media print {
+            body {
+                background-color: #ffffff;
+                padding: 0;
+            }
+            .document-container {
+                box-shadow: none;
+                border-radius: 0;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="document-container">
+        <header class="header">
+            <h1 class="main-title">💖 The Pink Mint Clean Experience</h1>
+            <p class="subtitle">Your Journey to a Transformed Space</p>
+        </header>
+
+        <section class="mb-8">
+            <p class="paragraph text-lg text-center">
+                At Pink Mint Clean, we believe onboarding should feel like the beginning of something beautiful — not a chore. Our consultation process is designed to be smooth, personalized, and empowering, so you know exactly what to expect and feel confident every step of the way.
+            </p>
+            <hr class="pink-hr">
+            
+            <p class="onboarding-step" data-icon="🪞">Step 1: The Discovery</p>
+            <p class="paragraph">
+                Once you book your consultation, you’ll receive a branded intake form — this helps us understand your space, your preferences, and what matters most to you. It’s quick, easy, and sets the tone for a tailored experience.
+            </p>
+
+            <p class="onboarding-step" data-icon="🏠">Step 2: The Walkthrough</p>
+            <p class="paragraph">
+                We’ll meet in person or virtually to tour your property. This isn’t just a quote — it’s a cinematic walkthrough where we explore your space together, discuss your goals, and identify areas that deserve extra love (like laundry zones, kitchen details, or organizing needs).
+            </p>
+
+            <p class="onboarding-step" data-icon="🎁">Step 3: The Custom Package</p>
+            <p class="paragraph">
+                After the walkthrough, we’ll design a personalized service menu just for you. You’ll see clear options, pricing, and add-ons — all styled to fit your lifestyle and space. No cookie-cutter cleaning here. This is luxury, your way.
+            </p>
+
+            <p class="onboarding-step" data-icon="📅">Step 4: The Booking</p>
+            <p class="paragraph">
+                Once you’ve reviewed your custom package, we’ll help you select your service date, frequency, and time window. We’ll confirm access instructions and make sure everything is aligned with your routine. Need recurring service? We’ve got you covered. Prefer one-time glam? That’s fine too.
+            </p>
+
+            <p class="onboarding-step" data-icon="📜">Step 5: The Welcome</p>
+            <p class="paragraph">
+                You’ll receive a branded onboarding packet with your Terms & Conditions, service overview, and contact info. We’ll walk you through our policies (like cancellations and payments) so everything’s crystal clear. No surprises. Just transparency, professionalism, and care.
+            </p>
+
+            <h3 class="font-semibold text-lg text-center mt-6 text-pink-500">✨ Why Clients Love It</h3>
+            <p class="paragraph text-center">
+                This process isn’t just about cleaning — it’s about upgrading your space, your peace of mind, and your lifestyle. Clients love how easy, elegant, and empowering it feels. And once you’re onboard, you’ll know you’ve chosen a brand that sees you, hears you, and delivers with excellence.
+            </p>
+        </section>
+    </div>
+
+</body>
+</html>
