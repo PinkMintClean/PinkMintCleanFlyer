@@ -357,7 +357,7 @@
                             </div>
                             <div>
                                 <label class="block text-sm font-medium mb-2">Types of items to launder:</label>
-                                <textarea class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-pink-mint" rows="2" placeholder="e.g., everyday clothes, bedding, towels, delicates"></textarea>
+                                <textarea id="launderitemInput" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" rows="3" placeholder="e.g., everyday clothes, bedding, towels, delicates"></textarea>
                             </div>
                             <div>
                                 <label class="block text-sm font-medium mb-2">Special care instructions:</label>
@@ -392,7 +392,8 @@
                             </div>
                             <div class="md:col-span-2">
                                 <label class="block text-sm font-medium mb-2">Additional laundry notes:</label>
-                                <textarea class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-pink-mint" rows="2" placeholder="Any specific instructions, product preferences, or special requests"></textarea>
+                                <textarea id="AdditinalLaunderInput" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" rows="3" placeholder="Any specific instructions, product preferences, or special requests"></textarea>
+
                             </div>
                         </div>
                     </div>
@@ -566,15 +567,20 @@
                         <div class="space-y-4">
                             <div>
                                 <label class="block text-sm font-medium mb-2">Areas to avoid or treat with extra care:</label>
-                                <textarea class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" rows="3" placeholder="e.g., antique furniture, delicate items, home office equipment, children's rooms"></textarea>
+                                <textarea id="areasNeedingAttentionInput" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" rows="3" placeholder="e.g., antique furniture, delicate items, home fixes equipment, children's rooms"></textarea>
+
                             </div>
+
+                            
                             <div>
                                 <label class="block text-sm font-medium mb-2">Products to avoid:</label>
-                                <textarea class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" rows="3" placeholder="List any products or ingredients to avoid"></textarea>
+                                <textarea id="productstoavoidInput" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" rows="3" placeholder="List any products or ingredients to avoid"></textarea>
                             </div>
+
+                            
                             <div>
                                 <label class="block text-sm font-medium mb-2">Special notes or requests:</label>
-                                <textarea class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" rows="4" placeholder="Any special instructions, areas to focus on, or items to be careful around"></textarea>
+                                <textarea id="specialnotesrequestInput" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" rows="3" placeholder="Any special instructions, areas to focus on, or items to be careful around"></textarea>
                             </div>
                         </div>
                     </div>
@@ -659,8 +665,6 @@
 </div>
 
 
-                        </div>
-                    </div>
 
                     <div>
                         <h3 class="font-semibold text-xl mb-4">Service Address</h3>
@@ -668,8 +672,6 @@
                           <div>
     <label class="block text-sm font-medium mb-2">Street Address *</label>
     <input type="text" id="streetAddress" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" placeholder="123 Main Street">
-
->
 </div>
 
                             <div>
@@ -686,7 +688,7 @@
 
                                 <div>
     <label class="block text-sm font-medium mb-2">ZIP Code *</label>
-    <<input type="text" id="zipCode" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" placeholder="12345">>
+    <<input type="text" id="zipCode" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" placeholder="12345">
 </div>
 
                             </div>
