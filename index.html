@@ -1223,6 +1223,38 @@
         // bookServiceButton.classList.remove('loading-spinner');
     }
 }
+        // ... (your existing JavaScript code) ...
+
+        function getSelectedBaseService() {
+            if (basePrice === 90) {
+                return 'Standard Cleaning';
+            } else if (basePrice === 200) {
+                return 'Deep Cleaning';
+            } else if (basePrice === 300) {
+                return 'Move-in/Move-out Cleaning';
+            } else {
+                return 'No Base Service Selected'; // Or an empty string, depending on how you want to handle it
+            }
+        }
+
+        function getSelectedAddons() {
+            const checkboxes = document.querySelectorAll('.addon-checkbox:checked');
+            const addons = [];
+            checkboxes.forEach(checkbox => {
+                const label = checkbox.parentElement.textContent.trim();
+                const serviceName = label.split('+$')[0].trim();
+                const price = checkbox.dataset.price;
+                addons.push({
+                    name: serviceName,
+                    price: parseInt(price)
+                });
+            });
+            return addons;
+        }
+
+        // ... (the rest of your JavaScript code) ...
+
+
         
         function getSelectedAddons() {
             const checkboxes = document.querySelectorAll('.addon-checkbox:checked');
