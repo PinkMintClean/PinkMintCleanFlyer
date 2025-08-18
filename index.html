@@ -518,15 +518,24 @@ s0.parentNode.insertBefore(s1,s0);
                     <div>
                         <h3 class="font-semibold text-xl mb-4">Health & Safety</h3>
                         <div class="space-y-3">
+                            
                             <label class="flex items-center space-x-3">
-                                <input type="checkbox" class="w-4 h-4 text-pink-mint">
-                                <span>I have allergies</span>
-                            </label>
+    <input type="checkbox" class="w-4 h-4 text-pink-mint">
+    <span>I have allergies</span>
+</label>
+
                             <label class="flex items-center space-x-3">
-                                <input type="checkbox" class="w-4 h-4 text-pink-mint">
-                                <span>I have asthma</span>
-                            </label>
+    <input type="checkbox" class="w-4 h-4 text-pink-mint">
+    <span>I have asthma</span>
+</label>
                         </div>
+
+                        
+<label class="flex items-center space-x-3">
+    <input type="checkbox" class="w-4 h-4 text-pink-mint">
+    <span>I have allergies</span>
+</label>
+
 
                         <h3 class="font-semibold text-xl mb-4 mt-6">Product Preferences</h3>
                         <div class="space-y-3">
@@ -638,54 +647,63 @@ s0.parentNode.insertBefore(s1,s0);
                         <h3 class="font-semibold text-xl mb-4">Contact Information</h3>
                         <div class="space-y-4">
                             <div>
-                                <label class="block text-sm font-medium mb-2">Full Name *</label>
-                                <input type="text" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" placeholder="Your full name">
-                            </div>
+        <label class="block text-sm font-medium mb-2">Full Name *</label>
+        <input type="text" id="customerName" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" placeholder="Your full name">
+   </div>
+
                             <div>
-                                <label class="block text-sm font-medium mb-2">Phone Number *</label>
-                                <input type="tel" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" placeholder="(555) 123-4567">
-                            </div>
+        <label class="block text-sm font-medium mb-2">Phone Number *</label>
+        <input type="tel" id="customerPhone" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" placeholder="(555) 123-4567">
+  </div>
+
                             <div>
-                                <label class="block text-sm font-medium mb-2">Email Address *</label>
-                                <input type="email" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" placeholder="your.email@example.com">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium mb-2">Preferred Contact Method</label>
-                                <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
-                                    <option>Phone call</option>
-                                    <option>Text message</option>
-                                    <option>Email</option>
-                                    <option>Any method is fine</option>
-                                </select>
-                            </div>
+        <label class="block text-sm font-medium mb-2">Email Address *</label>
+        <input type="email" id="customerEmail" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" placeholder="your.email@example.com">
+  </div>
+
+                                <div>
+    <label class="block text-sm font-medium mb-2">Preferred Contact Method</label>
+    <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
+        <option>Phone call</option>
+        <option>Text message</option>
+        <option>Email</option>
+        <option>Any method is fine</option>
+    </select>
+</div>
+
                         </div>
                     </div>
 
                     <div>
                         <h3 class="font-semibold text-xl mb-4">Service Address</h3>
                         <div class="space-y-4">
+                          <div>
+    <label class="block text-sm font-medium mb-2">Street Address *</label>
+    <input type="text" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" placeholder="123 Main Street">
+</div>
+
                             <div>
-                                <label class="block text-sm font-medium mb-2">Street Address *</label>
-                                <input type="text" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" placeholder="123 Main Street">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium mb-2">Apartment/Unit (if applicable)</label>
-                                <input type="text" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" placeholder="Apt 2B, Unit 5, etc.">
-                            </div>
+    <label class="block text-sm font-medium mb-2">Apartment/Unit (if applicable)</label>
+    <input type="text" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" placeholder="Apt 2B, Unit 5, etc.">
+</div>
+
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
-                                    <label class="block text-sm font-medium mb-2">City *</label>
-                                    <input type="text" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" placeholder="Your city">
-                                </div>
+    <label class="block text-sm font-medium mb-2">City *</label>
+    <input type="text" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" placeholder="Your city">
+</div>
+
                                 <div>
-                                    <label class="block text-sm font-medium mb-2">ZIP Code *</label>
-                                    <input type="text" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" placeholder="12345">
-                                </div>
+    <label class="block text-sm font-medium mb-2">ZIP Code *</label>
+    <input type="text" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" placeholder="12345">
+</div>
+
                             </div>
                             <div>
-                                <label class="block text-sm font-medium mb-2">Access Instructions</label>
-                                <textarea class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" rows="3" placeholder="Gate codes, key location, parking instructions, etc."></textarea>
-                            </div>
+    <label class="block text-sm font-medium mb-2">Access Instructions</label>
+    <textarea class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" rows="3" placeholder="Gate codes, key location, parking instructions, etc."></textarea>
+</div>
+
                         </div>
                     </div>
                 </div>
@@ -695,7 +713,10 @@ s0.parentNode.insertBefore(s1,s0);
                     <div class="grid md:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-sm font-medium mb-2">Home Type</label>
-                            <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
+                            <<select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
+    <!-- options -->
+</select>
+>
                                 <option>Single-family house</option>
                                 <option>Apartment</option>
                                 <option>Condo</option>
@@ -706,7 +727,9 @@ s0.parentNode.insertBefore(s1,s0);
                         </div>
                         <div>
                             <label class="block text-sm font-medium mb-2">Square Footage (approximate)</label>
-                            <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
+                            <<select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
+    <!-- options -->
+</select>
                                 <option>Under 800 sq ft</option>
                                 <option>800-1,200 sq ft</option>
                                 <option>1,200-1,800 sq ft</option>
@@ -719,6 +742,8 @@ s0.parentNode.insertBefore(s1,s0);
                         <div>
                             <label class="block text-sm font-medium mb-2">Number of Bedrooms</label>
                             <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
+    <!-- options -->
+</select>
                                 <option>Studio</option>
                                 <option>1 bedroom</option>
                                 <option>2 bedrooms</option>
@@ -729,7 +754,9 @@ s0.parentNode.insertBefore(s1,s0);
                         </div>
                         <div>
                             <label class="block text-sm font-medium mb-2">Number of Bathrooms</label>
-                            <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
+                            <<select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
+                              <!-- options -->
+                                 </select>
                                 <option>1 bathroom</option>
                                 <option>1.5 bathrooms</option>
                                 <option>2 bathrooms</option>
@@ -742,46 +769,46 @@ s0.parentNode.insertBefore(s1,s0);
                     
                     <div class="mt-6 space-y-4">
                         <div>
-                            <label class="block text-sm font-medium mb-2">Flooring Types</label>
-                            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                                <label class="flex items-center space-x-2">
-                                    <input type="checkbox" class="w-4 h-4 text-pink-mint">
-                                    <span class="text-sm">Hardwood</span>
-                                </label>
-                                <label class="flex items-center space-x-2">
-                                    <input type="checkbox" class="w-4 h-4 text-pink-mint">
-                                    <span class="text-sm">Carpet</span>
-                                </label>
-                                <label class="flex items-center space-x-2">
-                                    <input type="checkbox" class="w-4 h-4 text-pink-mint">
-                                    <span class="text-sm">Tile</span>
-                                </label>
-                                <label class="flex items-center space-x-2">
-                                    <input type="checkbox" class="w-4 h-4 text-pink-mint">
-                                    <span class="text-sm">Laminate</span>
-                                </label>
-                                <label class="flex items-center space-x-2">
-                                    <input type="checkbox" class="w-4 h-4 text-pink-mint">
-                                    <span class="text-sm">Vinyl</span>
-                                </label>
-                                <label class="flex items-center space-x-2">
-                                    <input type="checkbox" class="w-4 h-4 text-pink-mint">
-                                    <span class="text-sm">Stone</span>
-                                </label>
-                                <label class="flex items-center space-x-2">
-                                    <input type="checkbox" class="w-4 h-4 text-pink-mint">
-                                    <span class="text-sm">Concrete</span>
-                                </label>
-                                <label class="flex items-center space-x-2">
-                                    <input type="checkbox" class="w-4 h-4 text-pink-mint">
-                                    <span class="text-sm">Other</span>
-                                </label>
+                            <label class="flex items-center space-x-2">
+    <input type="checkbox" class="w-4 h-4 text-pink-mint">
+    <span class="text-sm">Hardwood</span>
+</label>
+                            <label class="flex items-center space-x-2">
+    <input type="checkbox" class="w-4 h-4 text-pink-mint">
+    <span class="text-sm">Carpet</span>
+</label>
+                            <label class="flex items-center space-x-2">
+    <input type="checkbox" class="w-4 h-4 text-pink-mint">
+    <span class="text-sm">Tile</span>
+</label>
+                            <label class="flex items-center space-x-2">
+    <input type="checkbox" class="w-4 h-4 text-pink-mint">
+    <span class="text-sm">Laminate</span>
+</label>
+                            <label class="flex items-center space-x-2">
+    <input type="checkbox" class="w-4 h-4 text-pink-mint">
+    <span class="text-sm">vinyl</span>
+</label>
+                            <label class="flex items-center space-x-2">
+    <input type="checkbox" class="w-4 h-4 text-pink-mint">
+    <span class="text-sm">Stone</span>
+</label>
+                            <label class="flex items-center space-x-2">
+    <input type="checkbox" class="w-4 h-4 text-pink-mint">
+    <span class="text-sm">Concrete</span>
+</label>
+                            <label class="flex items-center space-x-2">
+    <input type="checkbox" class="w-4 h-4 text-pink-mint">
+    <span class="text-sm">Other</span>
+</label>
                             </div>
                         </div>
                         
                         <div>
                             <label class="block text-sm font-medium mb-2">Current condition of your home</label>
-                            <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
+                            <<select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
+    <!-- options -->
+</select>
                                 <option>Well-maintained, just needs regular cleaning</option>
                                 <option>Moderately messy, needs good cleaning</option>
                                 <option>Very messy, needs deep cleaning</option>
@@ -804,10 +831,13 @@ s0.parentNode.insertBefore(s1,s0);
                         <div>
                             <label class="block text-sm font-medium mb-2">Preferred Service Date</label>
                             <input type="date" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
+>
                         </div>
                         <div>
                             <label class="block text-sm font-medium mb-2">Preferred Time</label>
-                            <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
+                            <<select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
+    <!-- options -->
+</select>
                                 <option>Morning (8am-12pm)</option>
                                 <option>Afternoon (12pm-4pm)</option>
                                 <option>Evening (4pm-7pm)</option>
@@ -816,7 +846,9 @@ s0.parentNode.insertBefore(s1,s0);
                         </div>
                         <div class="md:col-span-2">
                             <label class="block text-sm font-medium mb-2">Will you be home during the service?</label>
-                            <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
+                            <<select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
+    <!-- options -->
+</select>
                                 <option>Yes, I'll be home</option>
                                 <option>No, but I'll provide access</option>
                                 <option>Partially - I may come and go</option>
@@ -1090,29 +1122,29 @@ s0.parentNode.insertBefore(s1,s0);
             // Collect all customer information
             const customerData = {
                 // Contact Information
-                fullName: document.querySelector('input[placeholder="Your full name"]').value,
-                phone: document.querySelector('input[placeholder="(555) 123-4567"]').value,
-                email: document.querySelector('input[placeholder="your.email@example.com"]').value,
-                preferredContact: document.querySelector('select').value,
+                fullName: document.getElementById('customerName').value,
+                phone: document.getElementById('customerPhone').value,
+                email: document.getElementById('customerEmail').value,
+                preferredContact: document.getElementById('preferredContactMethod').value,
                 
                 // Service Address
-                streetAddress: document.querySelector('input[placeholder="123 Main Street"]').value,
-                apartment: document.querySelector('input[placeholder="Apt 2B, Unit 5, etc."]').value,
-                city: document.querySelector('input[placeholder="Your city"]').value,
-                zipCode: document.querySelector('input[placeholder="12345"]').value,
-                accessInstructions: document.querySelector('textarea[placeholder="Gate codes, key location, parking instructions, etc."]').value,
+                streetAddress: document.getElementById('streetAddress').value,
+                apartment: document.getElementById('apartmentUnit').value,
+                city: document.getElementById('city').value,
+                zipCode: document.getElementById('zipCode').value,
+                accessInstructions: document.getElementById('accessInstructions').value,
                 
                 // Home Details
-                homeType: document.querySelectorAll('select')[2].value,
-                squareFootage: document.querySelectorAll('select')[3].value,
-                bedrooms: document.querySelectorAll('select')[4].value,
-                bathrooms: document.querySelectorAll('select')[5].value,
-                homeCondition: document.querySelectorAll('select')[6].value,
+                homeType: document.getElementById('homeType').value,
+                squareFootage: document.getElementById('squareFootage').value,
+                bedrooms: document.getElementById('bedrooms').value,
+                bathrooms: document.getElementById('bathrooms').value,
+                homeCondition: document.getElementById('homeCondition').value,,
                 
                 // Scheduling
-                preferredDate: document.querySelector('input[type="date"]').value,
-                preferredTime: document.querySelectorAll('select')[7].value,
-                homePresence: document.querySelectorAll('select')[8].value,
+                preferredDate: document.getElementById('preferredDate').value,
+                preferredTime: document.getElementById('preferredTime').value,
+                homePresence: document.getElementById('homePresence').value,
                 
                 // Service Details
                 baseService: getSelectedBaseService(),
