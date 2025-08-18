@@ -882,9 +882,10 @@
                 </div>
                 
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <button onclick="bookService()" class="flex-1 bg-pink-mint text-white py-3 px-6 rounded-lg font-semibold hover:bg-pink-600 transition-colors">
-                        Book This Service
-                    </button>
+                    <button id="bookServiceButton" onclick="bookService()" class="flex-1 bg-pink-mint text-white py-3 px-6 rounded-lg font-semibold hover:bg-pink-600 transition-colors">
+    Book This Service
+</button>
+
                     <button onclick="printQuote()" class="flex-1 bg-gray-500 text-white py-3 px-6 rounded-lg font-semibold hover:bg-gray-600 transition-colors">
                         Print Checklist
                     </button>
@@ -1097,48 +1098,131 @@
             updateQuote();
         }
 
-        function bookService() {
-            // Collect all customer information
-            const customerData = {
-                // Contact Information
-                fullName: document.getElementById('customerName').value,
-                phone: document.getElementById('customerPhone').value,
-                email: document.getElementById('customerEmail').value,
-                preferredContact: document.getElementById('preferredContactMethod').value,
-                
-                // Service Address
-                streetAddress: document.getElementById('streetAddress').value,
-                apartment: document.getElementById('apartmentUnit').value,
-                city: document.getElementById('city').value,
-                zipCode: document.getElementById('zipCode').value,
-                accessInstructions: document.getElementById('accessInstructions').value,
-                
-                // Home Details
-                homeType: document.getElementById('homeType').value,
-                squareFootage: document.getElementById('squareFootage').value,
-                bedrooms: document.getElementById('bedrooms').value,
-                bathrooms: document.getElementById('bathrooms').value,
-                homeCondition: document.getElementById('homeCondition').value,
-                
-                // Scheduling
-                preferredDate: document.getElementById('preferredDate').value,
-                preferredTime: document.getElementById('preferredTime').value,
-                homePresence: document.getElementById('homePresence').value,
-                
-                // Service Details
-                baseService: getSelectedBaseService(),
-                selectedAddons: getSelectedAddons(),
-                specialRequests: getSpecialRequests(),
-                preferences: getCustomerPreferences(),
-                
-                // Quote Information
-                basePrice: basePrice,
-                addonPrice: parseInt(document.getElementById('addon-price').textContent.replace('$', '')),
-                discountAmount: document.getElementById('discount-line').classList.contains('hidden') ? 0 : parseInt(document.getElementById('discount-amount').textContent.replace('-$', '')),
-                total: parseInt(document.getElementById('total-price').textContent.replace('$', '')),
-                estimatedTime: document.getElementById('estimated-time').textContent,
-                depositRequired: !document.getElementById('deposit-line').classList.contains('hidden'),
-                depositAmount: document.getElementById('deposit-line').classList.contains('hidden') ? 0 : parseInt(document.getElementById('deposit-amount').textContent.replace('$', ''))
+        async function bookService() { // Made asynchronous to use await with Firestore
+    // Get references for UI feedback
+    const bookServiceButton = document.getElementById('bookServiceButton');
+    const originalButtonText = bookServiceButton.textContent;
+
+    // Collect all customer information from your form
+    const customerData = {
+        // Contact Information
+        fullName: document.getElementById('customerName').value,
+        phone: document.getElementById('customerPhone').value,
+        email: document.getElementById('customerEmail').value,
+        preferredContact: document.getElementById('preferredContactMethod').value,
+        
+        // Service Address
+        streetAddress: document.getElementById('streetAddress').value,
+        apartment: document.getElementById('apartmentUnit').value,
+        city: document.getElementById('city').value,
+        zipCode: document.getElementById('zipCode').value,
+        accessInstructions: document.getElementById('accessInstructions').value,
+        
+        // Home Details
+        homeType: document.getElementById('homeType').value,
+        squareFootage: document.getElementById('squareFootage').value,
+        bedrooms: document.getElementById('bedrooms').value,
+        bathrooms: document.getElementById('bathrooms').value,
+        homeCondition: document.getElementById('homeCondition').value,
+        
+        // Scheduling
+        preferredDate: document.getElementById('preferredDate').value,
+        preferredTime: document.getElementById('preferredTime').value,
+        homePresence: document.getElementById('homePresence').value,
+        
+        // Service Details
+        baseService: getSelectedBaseService(),
+        selectedAddons: getSelectedAddons(),
+        specialRequests: getSpecialRequests(),
+        preferences: getCustomerPreferences(),
+        
+        // Quote Information
+        basePrice: basePrice,
+        addonPrice: parseInt(document.getElementById('addon-price').textContent.replace('$', '')),
+        discountAmount: document.getElementById('discount-line').classList.contains('hidden') ? 0 : parseInt(document.getElementById('discount-amount').textContent.replace('-$', '')),
+        total: parseInt(document.getElementById('total-price').textContent.replace('$', '')),
+        estimatedTime: document.getElementById('estimated-time').textContent,
+        depositRequired: !document.getElementById('deposit-line').classList.contains('hidden'),
+        depositAmount: document.getElementById('deposit-line').classList.contains('hidden') ? 0 : parseInt(document.getElementById('deposit-amount').textContent.replace('$', ''))
+    };
+    
+    // --- Start: Basic Client-Side Validation (can be enhanced) ---
+    if (!customerData.fullName || !customerData.phone || !customerData.email || !customerData.streetAddress || !customerData.city || !customerData.zipCode) {
+        alert('Please fill in all required fields (marked with *) before booking your service.');
+        return; // Stop the function if validation fails
+    }
+    
+    if (customerData.total === 0) {
+        alert('Please select a service type before booking.');
+        return; // Stop the function if no service is selected
+    }
+
+    // Add more robust validation here, e.g., email format, phone format
+    function isValidEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(String(email).toLowerCase());
+    }
+    if (!isValidEmail(customerData.email)) {
+        alert('Please enter a valid email address.');
+        return;
+    }
+
+    function isValidPhone(phone) {
+        const re = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/; // Basic, adjust as needed
+        return re.test(String(phone));
+    }
+    if (!isValidPhone(customerData.phone)) {
+        alert('Please enter a valid phone number.');
+        return;
+    }
+
+    if (!/^\d{5}$/.test(customerData.zipCode)) { // Simple 5-digit check for US
+        alert('Please enter a valid 5-digit ZIP Code.');
+        return;
+    }
+    // --- End: Client-Side Validation ---
+
+    // --- Start: UI Feedback for Asynchronous Operation ---
+    // Disable the button and change text to indicate loading
+    bookServiceButton.disabled = true;
+    bookServiceButton.textContent = 'Booking...';
+    // You could also add a CSS class here to show a spinner icon
+    // bookServiceButton.classList.add('loading-spinner');
+    // --- End: UI Feedback ---
+
+    // 🔥 This is the core change: Sending data to Cloud Firestore! 🔥
+    try {
+        // db.collection('bookings') references your 'bookings' collection in Firestore.
+        // .add(customerData) adds a new document with the collected data.
+        // The 'await' keyword pauses execution until the data is successfully written to Firestore.
+        const docRef = await db.collection('bookings').add(customerData);
+        
+        console.log("Booking successfully submitted with ID: ", docRef.id);
+        alert('Your cleaning service has been booked! We will contact you shortly.');
+
+        // Optional: Store the booking ID locally if your booking-confirmation.html
+        // page needs to display it or fetch more details.
+        localStorage.setItem('lastBookingId', docRef.id);
+        
+        // Redirect the user to the booking confirmation page.
+        window.location.href = 'booking-confirmation.html';
+
+    } catch (error) {
+        // If an error occurs during the Firestore operation, catch it here.
+        console.error("Error adding booking document: ", error);
+        alert('There was an error submitting your booking. Please try again. Details: ' + error.message);
+
+    } finally {
+        // This 'finally' block ensures the button is re-enabled and its text reset,
+        // whether the booking succeeded or failed.
+        bookServiceButton.disabled = false;
+        bookServiceButton.textContent = originalButtonText;
+        // If you added a spinner class, remove it here
+        // bookServiceButton.classList.remove('loading-spinner');
+    }
+}
+
+        textContent.replace('$', ''))
             };
             
             // Validate required fields
