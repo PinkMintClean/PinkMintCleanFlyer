@@ -654,15 +654,16 @@ s0.parentNode.insertBefore(s1,s0);
         <input type="email" id="customerEmail" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" placeholder="your.email@example.com">
   </div>
 
-                                <div>
+                               <div>
     <label class="block text-sm font-medium mb-2">Preferred Contact Method</label>
-    <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
+    <select id="preferredContactMethod" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
         <option>Phone call</option>
         <option>Text message</option>
         <option>Email</option>
         <option>Any method is fine</option>
     </select>
 </div>
+
 
                         </div>
                     </div>
@@ -672,29 +673,32 @@ s0.parentNode.insertBefore(s1,s0);
                         <div class="space-y-4">
                           <div>
     <label class="block text-sm font-medium mb-2">Street Address *</label>
-    <input type="text" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" placeholder="123 Main Street">
+    <input type="text" id="streetAddress" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" placeholder="123 Main Street">
+
+>
 </div>
 
                             <div>
     <label class="block text-sm font-medium mb-2">Apartment/Unit (if applicable)</label>
-    <input type="text" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" placeholder="Apt 2B, Unit 5, etc.">
+    <input type="text" id="apartmentUnit" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" placeholder="Apt 2B, Unit 5, etc.">
 </div>
 
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
     <label class="block text-sm font-medium mb-2">City *</label>
-    <input type="text" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" placeholder="Your city">
+    <input type="text" id="city" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" placeholder="Your city">
+
 </div>
 
                                 <div>
     <label class="block text-sm font-medium mb-2">ZIP Code *</label>
-    <input type="text" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" placeholder="12345">
+    <<input type="text" id="zipCode" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" placeholder="12345">>
 </div>
 
                             </div>
                             <div>
     <label class="block text-sm font-medium mb-2">Access Instructions</label>
-    <textarea class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" rows="3" placeholder="Gate codes, key location, parking instructions, etc."></textarea>
+    <textarea id="accessInstructions" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" rows="3" placeholder="Gate codes, key location, parking instructions, etc."></textarea>
 </div>
 
                         </div>
@@ -716,7 +720,7 @@ s0.parentNode.insertBefore(s1,s0);
                 
                 <div>
                             <label class="block text-sm font-medium mb-2">Square Footage (approximate) </label>
-                            <select id="homeType" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
+                            <select id="squareFootage" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
                                <option>Under 800 sq ft</option>
                                 <option>800-1,200 sq ft</option>
                                 <option>1,200-1,800 sq ft</option>
@@ -729,7 +733,7 @@ s0.parentNode.insertBefore(s1,s0);
 
                         <div>
                             <label class="block text-sm font-medium mb-2">Number of Bedrooms</label>
-                            <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
+                            <select id="bedrooms" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
                                 <option>Studio</option>
                                 <option>1 bedroom</option>
                                 <option>2 bedrooms</option>
@@ -740,7 +744,7 @@ s0.parentNode.insertBefore(s1,s0);
                         </div>
                                         <div>
                             <label class="block text-sm font-medium mb-2">Number of Bathrooms</label>
-                            <select id="homeType" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
+                            <select id="bathrooms" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
                                 <option>1 bathroom</option>
                                 <option>1.5 bathrooms</option>
                                 <option>2 bathrooms</option>
@@ -791,7 +795,7 @@ s0.parentNode.insertBefore(s1,s0);
                         
                         <div>
                             <label class="block text-sm font-medium mb-2">Current condition of your home</label>
-                            <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
+                            <select id="homeCondition" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
                                 <option>Well-maintained, just needs regular cleaning</option>
                                 <option>Moderately messy, needs good cleaning</option>
                                 <option>Very messy, needs deep cleaning</option>
@@ -813,12 +817,12 @@ s0.parentNode.insertBefore(s1,s0);
                     <div class="grid md:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-sm font-medium mb-2">Preferred Service Date</label>
-                            <input type="date" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
+                            <input type="date" id="preferredDate" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
 
                         </div>
                         <div>
                             <label class="block text-sm font-medium mb-2">Preferred Time</label>
-                            <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
+                            <select id="preferredTime" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
                                 <option>Morning (8am-12pm)</option>
                                 <option>Afternoon (12pm-4pm)</option>
                                 <option>Evening (4pm-7pm)</option>
@@ -827,7 +831,7 @@ s0.parentNode.insertBefore(s1,s0);
                         </div>
                         <div class="md:col-span-2">
                             <label class="block text-sm font-medium mb-2">Will you be home during the service?</label>
-                            <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
+                            <select id="homePresence" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent">
                                 <option>Yes, I'll be home</option>
                                 <option>No, but I'll provide access</option>
                                 <option>Partially - I may come and go</option>
