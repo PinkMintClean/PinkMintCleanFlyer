@@ -1221,34 +1221,6 @@
         // bookServiceButton.classList.remove('loading-spinner');
     }
 }
-
-        textContent.replace('$', ''))
-            };
-            
-            // Validate required fields
-            if (!customerData.fullName || !customerData.phone || !customerData.email || !customerData.streetAddress || !customerData.city || !customerData.zipCode) {
-                alert('Please fill in all required fields (marked with *) before booking your service.');
-                return;
-            }
-            
-            if (customerData.total === 0) {
-                alert('Please select a service type before booking.');
-                return;
-            }
-            
-            // Save customer data to localStorage
-            localStorage.setItem('pinkMintCustomerData', JSON.stringify(customerData));
-            
-            // Redirect to booking confirmation page
-            window.location.href = 'booking-confirmation.html';
-        }
-        
-        function getSelectedBaseService() {
-            if (basePrice === 90) return 'Standard Cleaning';
-            if (basePrice === 200) return 'Deep Cleaning';
-            if (basePrice === 300) return 'Move-in/Move-out Cleaning';
-            return 'No service selected';
-        }
         
         function getSelectedAddons() {
             const checkboxes = document.querySelectorAll('.addon-checkbox:checked');
