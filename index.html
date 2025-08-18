@@ -52,6 +52,40 @@
     <!-- Hero Section -->
     <header class="bg-gradient-to-br from-pink-mint to-mint-green py-16 px-4">
         <div class="max-w-6xl mx-auto text-center">
+            <!-- START Authentication Section - PASTE THIS HERE -->
+<section class="mb-12 bg-white rounded-lg shadow-md p-8">
+    <h2 class="font-serif text-3xl font-bold text-center mb-8">Client Area</h2>
+
+    <!-- User Status Display -->
+    <div id="userStatus" class="text-center mb-6 p-4 border rounded-lg bg-gray-50">
+        <p class="text-lg">Status: <span id="authStatus" class="font-semibold">Checking...</span></p>
+        <p id="loggedInUserEmail" class="text-md text-gray-600 mt-1"></p>
+        <button id="logoutBtn" class="mt-4 bg-red-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-red-600 transition-colors hidden">Logout</button>
+    </div>
+
+    <!-- Login/Signup Forms -->
+    <div id="authForms" class="grid md:grid-cols-2 gap-8">
+        <!-- Sign Up Section -->
+        <div class="form-section p-6 border rounded-lg bg-gray-50">
+            <h3 class="font-semibold text-xl mb-4">New Client Sign Up</h3>
+            <input type="email" id="signupEmail" placeholder="Email" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent mb-3" required>
+            <input type="password" id="signupPassword" placeholder="Password" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent mb-4" required>
+            <button id="signupBtn" class="w-full bg-mint-green text-charcoal py-3 rounded-lg font-semibold hover:bg-green-400 transition-colors">Sign Up</button>
+        </div>
+
+        <!-- Sign In Section -->
+        <div class="form-section p-6 border rounded-lg bg-gray-50">
+            <h3 class="font-semibold text-xl mb-4">Existing Client Sign In</h3>
+            <input type="email" id="signinEmail" placeholder="Email" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus="ring-pink-mint focus:border-transparent mb-3" required>
+            <input type="password" id="signinPassword" placeholder="Password" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent mb-4" required>
+            <button id="signinBtn" class="w-full bg-pink-mint text-white py-3 rounded-lg font-semibold hover:bg-pink-600 transition-colors">Sign In</button>
+        </div>
+    </div>
+
+    <p id="errorMessage" class="text-red-500 text-center mt-6 font-semibold"></p>
+</section>
+<!-- END Authentication Section -->
+
             <h1 class="font-serif text-5xl md:text-6xl font-bold text-white mb-4">Pink Mint Clean</h1>
             <p class="text-xl md:text-2xl text-white/90 mb-8">Build Your Perfect Cleaning Package</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
@@ -1336,5 +1370,124 @@
         // Initialize the quote display
         updateQuote();
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96cc2f2560654798',t:'MTc1NDc5NDIxMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96cc2f2560654798',t:'MTc1NDc5NDIxMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();
+// START Authentication JavaScript Logic - PASTE THIS HERE before the final </script> tag
+
+// Get the Firebase Auth service instance from the globally initialized 'firebase' object
+// (This works because you already have firebase-app.js and firebase-auth.js loaded earlier)
+const auth = firebase.auth(); // Correct way to get auth using your current setup
+
+// --- Get DOM Elements for Authentication ---
+const signupEmailInput = document.getElementById('signupEmail');
+const signupPasswordInput = document.getElementById('signupPassword');
+const signupBtn = document.getElementById('signupBtn');
+
+const signinEmailInput = document.getElementById('signinEmail');
+const signinPasswordInput = document.getElementById('signinPassword');
+const signinBtn = document.getElementById('signinBtn');
+
+const logoutBtn = document.getElementById('logoutBtn');
+const authStatusSpan = document.getElementById('authStatus');
+const loggedInUserEmailP = document.getElementById('loggedInUserEmail');
+const errorMessageP = document.getElementById('errorMessage');
+const authFormsDiv = document.getElementById('authForms'); // The container for signup/signin forms
+
+// --- Event Listeners for Authentication Buttons ---
+
+// Sign Up
+if (signupBtn) { // Check if the element exists to prevent errors
+    signupBtn.addEventListener('click', async () => {
+        const email = signupEmailInput.value;
+        const password = signupPasswordInput.value;
+        errorMessageP.textContent = ''; // Clear previous errors
+
+        if (!email || !password) {
+            errorMessageP.textContent = "Please enter both email and password for signup.";
+            return;
+        }
+
+        try {
+            const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+            console.log("Successfully signed up and logged in:", userCredential.user.email);
+            // UI will update via onAuthStateChanged listener below
+        } catch (error) {
+            console.error("Sign up error:", error.message);
+            errorMessageP.textContent = `Sign Up Failed: ${error.message}`;
+        }
+    });
+}
+
+// Sign In
+if (signinBtn) { // Check if the element exists
+    signinBtn.addEventListener('click', async () => {
+        const email = signinEmailInput.value;
+        const password = signinPasswordInput.value;
+        errorMessageP.textContent = ''; // Clear previous errors
+
+        if (!email || !password) {
+            errorMessageP.textContent = "Please enter both email and password for signin.";
+            return;
+        }
+
+        try {
+            const userCredential = await auth.signInWithEmailAndPassword(email, password);
+            console.log("Successfully signed in:", userCredential.user.email);
+            // UI will update via onAuthStateChanged listener below
+        } catch (error) {
+            console.error("Sign in error:", error.message);
+            errorMessageP.textContent = `Sign In Failed: ${error.message}`;
+        }
+    });
+}
+
+// Logout
+if (logoutBtn) { // Check if the element exists
+    logoutBtn.addEventListener('click', async () => {
+        errorMessageP.textContent = ''; // Clear previous errors
+        try {
+            await auth.signOut();
+            console.log("User logged out.");
+            // UI will update via onAuthStateChanged listener below
+        } catch (error) {
+            console.error("Logout error:", error.message);
+            errorMessageP.textContent = `Logout Failed: ${error.message}`;
+        }
+    });
+}
+
+// --- Handle User State (This automatically updates your UI when login status changes) ---
+// This function will run when the page loads AND whenever the user's login state changes
+auth.onAuthStateChanged((user) => {
+    if (user) {
+        // User is signed in
+        authStatusSpan.textContent = "Logged In";
+        loggedInUserEmailP.textContent = `Email: ${user.email}`;
+        if (logoutBtn) logoutBtn.classList.remove('hidden'); // Show logout button
+
+        // Hide login/signup forms when logged in
+        if (authFormsDiv) authFormsDiv.classList.add('hidden');
+
+        console.log("Auth State Changed: User is logged in.", user.uid, user.email);
+
+        // You can now associate bookings with the logged-in user's UID!
+        // For example, in your bookService() function, you could now get:
+        // const currentUserId = user.uid;
+        // and save it with the booking: docRef = await db.collection('bookings').add({ ...customerData, userId: currentUserId });
+
+    } else {
+        // User is signed out
+        authStatusSpan.textContent = "Logged Out";
+        loggedInUserEmailP.textContent = "";
+        if (logoutBtn) logoutBtn.classList.add('hidden'); // Hide logout button
+
+        // Show login/signup forms when logged out
+        if (authFormsDiv) authFormsDiv.classList.remove('hidden');
+
+        console.log("Auth State Changed: User is logged out.");
+    }
+});
+
+// END Authentication JavaScript Logic
+
+</script></body>
 </html>
