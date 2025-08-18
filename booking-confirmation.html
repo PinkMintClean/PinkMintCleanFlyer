@@ -23,7 +23,30 @@
             }
         }
     </script>
+    <!-- Firebase SDKs and Initialization for Confirmation Page -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration (MUST match your index.html)
+      const firebaseConfig = {
+        apiKey: "AIzaSyAm-vPcE7dU9V487JBvkdgk4X0vvx-6QFI", // <--- Make sure this is your EXACT API KEY
+        authDomain: "pinkmint-1c83f.firebaseapp.com",
+        projectId: "pinkmint-1c83f",
+        storageBucket: "pinkmint-1c83f.firebasestorage.app",
+        messagingSenderId: "42703485247",
+        appId: "1:42703485247:web:f7d346673d6f9c572d3b8a",
+        measurementId: "G-16TYE6L7N3"
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      // Get a reference to the Firestore database service
+      const db = firebase.firestore();
+    </script>
 </head>
+
 <body class="bg-gray-50 font-sans text-charcoal">
     <!-- Header -->
     <header class="bg-gradient-to-br from-pink-mint to-mint-green py-8 px-4">
@@ -292,7 +315,7 @@
         </div>
     </footer>
 
-    <script>
+     <script>
         // Generate a random confirmation number
         function generateConfirmationNumber() {
             const date = new Date();
@@ -304,91 +327,115 @@
         }
 
         // Load customer data and populate the confirmation page
-        function loadCustomerData() {
-            const customerData = localStorage.getItem('pinkMintCustomerData');
+        async function loadCustomerData() { 
+            const lastBookingId = localStorage.getItem('lastBookingId');
             
-            if (!customerData) {
-                // If no data found, show error and redirect
-                alert('No booking data found. Redirecting to booking page...');
+            if (!lastBookingId) {
+                alert('No recent booking found. Redirecting to the booking page to start fresh.');
                 window.location.href = 'index.html';
                 return;
             }
-            
-            const data = JSON.parse(customerData);
-            
-            // Generate and display confirmation number
-            document.getElementById('confirmation-number').textContent = generateConfirmationNumber();
-            
-            // Populate customer information
-            document.getElementById('customer-name').textContent = data.fullName || '-';
-            document.getElementById('customer-phone').textContent = data.phone || '-';
-            document.getElementById('customer-email').textContent = data.email || '-';
-            document.getElementById('preferred-contact').textContent = data.preferredContact || '-';
-            
-            // Populate service address
-            let address = data.streetAddress || '';
-            if (data.apartment) address += ', ' + data.apartment;
-            document.getElementById('service-address').textContent = address || '-';
-            document.getElementById('service-city').textContent = data.city || '-';
-            document.getElementById('service-zip').textContent = data.zipCode || '-';
-            
-            if (data.accessInstructions) {
-                document.getElementById('access-instructions-section').classList.remove('hidden');
-                document.getElementById('access-instructions').textContent = data.accessInstructions;
-            }
-            
-            // Populate service details
-            document.getElementById('base-service').textContent = data.baseService || '-';
-            document.getElementById('base-price-display').textContent = '$' + (data.basePrice || 0);
-            
-            // Populate home information
-            document.getElementById('home-type').textContent = data.homeType || '-';
-            document.getElementById('home-size').textContent = data.squareFootage || '-';
-            document.getElementById('bedrooms').textContent = data.bedrooms || '-';
-            document.getElementById('bathrooms').textContent = data.bathrooms || '-';
-            document.getElementById('home-condition').textContent = data.homeCondition || '-';
-            
-            // Populate scheduling information
-            document.getElementById('preferred-date').textContent = data.preferredDate ? formatDate(data.preferredDate) : 'To be scheduled';
-            document.getElementById('preferred-time').textContent = data.preferredTime || '-';
-            document.getElementById('estimated-time').textContent = data.estimatedTime || '-';
-            document.getElementById('home-presence').textContent = data.homePresence || '-';
-            
-            // Populate selected add-ons
-            if (data.selectedAddons && data.selectedAddons.length > 0) {
-                document.getElementById('addons-section').classList.remove('hidden');
-                const addonsContainer = document.getElementById('selected-addons');
-                addonsContainer.innerHTML = '';
+
+            try {
+                const doc = await db.collection('bookings').doc(lastBookingId).get();
+
+                if (!doc.exists) {
+                    alert('Booking details not found in our records. Redirecting to the booking page.');
+                    window.location.href = 'index.html';
+                    return;
+                }
+
+                const data = doc.data(); 
                 
-                data.selectedAddons.forEach(addon => {
-                    const addonDiv = document.createElement('div');
-                    addonDiv.className = 'flex justify-between items-center bg-gray-50 p-2 rounded';
-                    addonDiv.innerHTML = `
-                        <span>${addon.name}</span>
-                        <span class="font-semibold text-pink-mint">+$${addon.price}</span>
-                    `;
-                    addonsContainer.appendChild(addonDiv);
-                });
-            }
-            
-            // Populate customer preferences
-            populatePreferences(data);
-            
-            // Populate pricing summary
-            document.getElementById('summary-base-price').textContent = '$' + (data.basePrice || 0);
-            document.getElementById('summary-addon-price').textContent = '$' + (data.addonPrice || 0);
-            document.getElementById('summary-total-price').textContent = '$' + (data.total || 0);
-            
-            if (data.discountAmount > 0) {
-                document.getElementById('summary-discount-line').classList.remove('hidden');
-                document.getElementById('summary-discount-amount').textContent = '-$' + data.discountAmount;
-            }
-            
-            if (data.depositRequired) {
-                document.getElementById('summary-deposit-line').classList.remove('hidden');
-                document.getElementById('summary-deposit-amount').textContent = '$' + (data.depositAmount || 0);
-                document.getElementById('deposit-notice').classList.remove('hidden');
-                document.getElementById('deposit-reminder').classList.remove('hidden');
+                // You can use the Firestore document ID for the confirmation number, as it's unique
+                document.getElementById('confirmation-number').textContent = `#PMC-${doc.id.substring(0, 8).toUpperCase()}`;
+                
+                // Populate customer information
+                document.getElementById('customer-name').textContent = data.fullName || '-';
+                document.getElementById('customer-phone').textContent = data.phone || '-';
+                document.getElementById('customer-email').textContent = data.email || '-';
+                document.getElementById('preferred-contact').textContent = data.preferredContact || '-';
+                
+                // Populate service address
+                let address = data.streetAddress || '';
+                if (data.apartment) address += ', ' + data.apartment;
+                document.getElementById('service-address').textContent = address || '-';
+                document.getElementById('service-city').textContent = data.city || '-';
+                document.getElementById('service-zip').textContent = data.zipCode || '-';
+                
+                if (data.accessInstructions) {
+                    document.getElementById('access-instructions-section').classList.remove('hidden');
+                    document.getElementById('access-instructions').textContent = data.accessInstructions;
+                } else {
+                    document.getElementById('access-instructions-section').classList.add('hidden'); // Hide if no instructions
+                }
+                
+                // Populate service details
+                document.getElementById('base-service').textContent = data.baseService || '-';
+                document.getElementById('base-price-display').textContent = '$' + (data.basePrice || 0);
+                
+                // Populate selected add-ons
+                if (data.selectedAddons && data.selectedAddons.length > 0) {
+                    document.getElementById('addons-section').classList.remove('hidden');
+                    const addonsContainer = document.getElementById('selected-addons');
+                    addonsContainer.innerHTML = ''; // Clear previous content
+                    
+                    data.selectedAddons.forEach(addon => {
+                        const addonDiv = document.createElement('div');
+                        addonDiv.className = 'flex justify-between items-center bg-gray-50 p-2 rounded';
+                        addonDiv.innerHTML = `
+                            <span>${addon.name}</span>
+                            <span class="font-semibold text-pink-mint">+$${addon.price}</span>
+                        `;
+                        addonsContainer.appendChild(addonDiv);
+                    });
+                } else {
+                    document.getElementById('addons-section').classList.add('hidden'); // Hide if no add-ons
+                }
+                
+                // Populate home information
+                document.getElementById('home-type').textContent = data.homeType || '-';
+                document.getElementById('home-size').textContent = data.squareFootage || '-';
+                document.getElementById('bedrooms').textContent = data.bedrooms || '-';
+                document.getElementById('bathrooms').textContent = data.bathrooms || '-';
+                document.getElementById('home-condition').textContent = data.homeCondition || '-';
+                
+                // Populate scheduling information
+                document.getElementById('preferred-date').textContent = data.preferredDate ? formatDate(data.preferredDate) : 'To be scheduled';
+                document.getElementById('preferred-time').textContent = data.preferredTime || '-';
+                document.getElementById('estimated-time').textContent = data.estimatedTime || '-';
+                document.getElementById('home-presence').textContent = data.homePresence || '-';
+                
+                // Populate customer preferences (call your existing helper function)
+                populatePreferences(data);
+                
+                // Populate pricing summary
+                document.getElementById('summary-base-price').textContent = '$' + (data.basePrice || 0);
+                document.getElementById('summary-addon-price').textContent = '$' + (data.addonPrice || 0);
+                document.getElementById('summary-total-price').textContent = '$' + (data.total || 0);
+                
+                if (data.discountAmount > 0) {
+                    document.getElementById('summary-discount-line').classList.remove('hidden');
+                    document.getElementById('summary-discount-amount').textContent = '-$' + data.discountAmount;
+                } else {
+                    document.getElementById('summary-discount-line').classList.add('hidden'); // Ensure hidden if no discount
+                }
+                
+                if (data.depositRequired) {
+                    document.getElementById('summary-deposit-line').classList.remove('hidden');
+                    document.getElementById('summary-deposit-amount').textContent = '$' + (data.depositAmount || 0);
+                    document.getElementById('deposit-notice').classList.remove('hidden');
+                    document.getElementById('deposit-reminder').classList.remove('hidden');
+                } else {
+                    document.getElementById('summary-deposit-line').classList.add('hidden'); // Ensure hidden
+                    document.getElementById('deposit-notice').classList.add('hidden'); // Ensure hidden
+                    document.getElementById('deposit-reminder').classList.add('hidden'); // Ensure hidden
+                }
+
+            } catch (error) {
+                console.error("Error fetching booking details:", error);
+                alert('An error occurred while loading booking details. Please try booking again.');
+                window.location.href = 'index.html'; // Redirect back on error
             }
         }
         
@@ -396,6 +443,9 @@
             const preferences = data.preferences || {};
             const specialRequests = data.specialRequests || {};
             
+            // Hide parent preferences section if no data to display
+            let anyPreferencesExist = false;
+
             // Health preferences
             const healthList = [];
             if (preferences.hasAllergies) healthList.push('Has allergies');
@@ -405,54 +455,120 @@
                 document.getElementById('health-preferences').classList.remove('hidden');
                 const healthContainer = document.getElementById('health-list');
                 healthContainer.innerHTML = healthList.map(item => `<p>• ${item}</p>`).join('');
+                anyPreferencesExist = true;
+            } else {
+                document.getElementById('health-preferences').classList.add('hidden');
             }
             
             // Product preferences
             const productList = [];
             if (preferences.prefersEcoFriendly) productList.push('Prefers eco-friendly products');
             if (preferences.prefersUnscented) productList.push('Prefers unscented products');
+            if (specialRequests.customScents && specialRequests.customScents.trim() !== '') productList.push(`Custom scent/product: ${specialRequests.customScents}`); // Added this line to show custom scent/product
             
             if (productList.length > 0) {
                 document.getElementById('product-preferences').classList.remove('hidden');
                 const productContainer = document.getElementById('product-list');
                 productContainer.innerHTML = productList.map(item => `<p>• ${item}</p>`).join('');
+                anyPreferencesExist = true;
+            } else {
+                document.getElementById('product-preferences').classList.add('hidden');
             }
             
             // Pet information
+            // Note: Your main index.html does not collect specific pet details, only a checkbox.
+            // You might want to update index.html to collect details if you want them displayed here.
             if (preferences.hasPets) {
                 document.getElementById('pet-info').classList.remove('hidden');
-                // You would need to add pet details collection in the main form
+                document.getElementById('pet-details').textContent = specialRequests.petDetails || 'Client has pets.'; // Assuming you add petDetails to specialRequests
+                anyPreferencesExist = true;
+            } else {
+                document.getElementById('pet-info').classList.add('hidden');
             }
-            
+
             // Special requests
-            let hasSpecialRequests = false;
+            let hasSpecialRequestsContent = false;
             
-            if (specialRequests.areasNeedingAttention) {
+            if (specialRequests.areasNeedingAttention && specialRequests.areasNeedingAttention.trim() !== '') { // Use corrected ID from index.html if you implement it
                 document.getElementById('areas-attention').classList.remove('hidden');
                 document.querySelector('#areas-attention p:last-child').textContent = specialRequests.areasNeedingAttention;
-                hasSpecialRequests = true;
+                hasSpecialRequestsContent = true;
+            } else {
+                document.getElementById('areas-attention').classList.add('hidden');
             }
             
-            if (specialRequests.mainGoal) {
+            if (specialRequests.mainGoal && specialRequests.mainGoal.trim() !== '') {
                 document.getElementById('main-goal').classList.remove('hidden');
                 document.querySelector('#main-goal p:last-child').textContent = specialRequests.mainGoal;
-                hasSpecialRequests = true;
+                hasSpecialRequestsContent = true;
+            } else {
+                document.getElementById('main-goal').classList.add('hidden');
             }
             
-            if (specialRequests.challenges) {
+            if (specialRequests.challenges && specialRequests.challenges.trim() !== '') {
                 document.getElementById('challenges').classList.remove('hidden');
                 document.querySelector('#challenges p:last-child').textContent = specialRequests.challenges;
-                hasSpecialRequests = true;
+                hasSpecialRequestsContent = true;
+            } else {
+                document.getElementById('challenges').classList.add('hidden');
+            }
+
+            // Added productsToAvoid and avoidAreas based on your specialRequests function in index.html
+            if (specialRequests.productsToAvoid && specialRequests.productsToAvoid.trim() !== '') {
+                // You'll need an element for this in your HTML if you want to display it specifically
+                // For now, let's just add it to 'additional-comments' if not already there, or create a new div
+                 let productsAvoidDiv = document.getElementById('products-avoid-display');
+                 if (!productsAvoidDiv) {
+                    productsAvoidDiv = document.createElement('div');
+                    productsAvoidDiv.id = 'products-avoid-display';
+                    productsAvoidDiv.innerHTML = '<p class="font-medium">Products to avoid:</p><p class="bg-gray-50 p-2 rounded"></p>';
+                    document.getElementById('special-requests').querySelector('.space-y-3').appendChild(productsAvoidDiv);
+                 }
+                 productsAvoidDiv.classList.remove('hidden');
+                 productsAvoidDiv.querySelector('p:last-child').textContent = specialRequests.productsToAvoid;
+                 hasSpecialRequestsContent = true;
+            } else {
+                let productsAvoidDiv = document.getElementById('products-avoid-display');
+                if (productsAvoidDiv) productsAvoidDiv.classList.add('hidden');
+            }
+
+            if (specialRequests.avoidAreas && specialRequests.avoidAreas.trim() !== '') {
+                 let avoidAreasDiv = document.getElementById('avoid-areas-display');
+                 if (!avoidAreasDiv) {
+                    avoidAreasDiv = document.createElement('div');
+                    avoidAreasDiv.id = 'avoid-areas-display';
+                    avoidAreasDiv.innerHTML = '<p class="font-medium">Areas to avoid/extra care:</p><p class="bg-gray-50 p-2 rounded"></p>';
+                    document.getElementById('special-requests').querySelector('.space-y-3').appendChild(avoidAreasDiv);
+                 }
+                 avoidAreasDiv.classList.remove('hidden');
+                 avoidAreasDiv.querySelector('p:last-child').textContent = specialRequests.avoidAreas;
+                 hasSpecialRequestsContent = true;
+            } else {
+                let avoidAreasDiv = document.getElementById('avoid-areas-display');
+                if (avoidAreasDiv) avoidAreasDiv.classList.add('hidden');
             }
             
-            if (specialRequests.additionalComments) {
+            if (specialRequests.additionalComments && specialRequests.additionalComments.trim() !== '') {
                 document.getElementById('additional-comments').classList.remove('hidden');
                 document.querySelector('#additional-comments p:last-child').textContent = specialRequests.additionalComments;
-                hasSpecialRequests = true;
+                hasSpecialRequestsContent = true;
+            } else {
+                document.getElementById('additional-comments').classList.add('hidden');
             }
-            
-            if (hasSpecialRequests) {
+
+            // Ensure the parent special requests section is visible if any content
+            if (hasSpecialRequestsContent) {
                 document.getElementById('special-requests').classList.remove('hidden');
+                anyPreferencesExist = true;
+            } else {
+                document.getElementById('special-requests').classList.add('hidden');
+            }
+
+            // Finally, if no preferences or special requests are present, hide the entire section
+            if (!anyPreferencesExist) {
+                document.getElementById('preferences-section').classList.add('hidden');
+            } else {
+                document.getElementById('preferences-section').classList.remove('hidden');
             }
         }
         
@@ -471,25 +587,30 @@
         }
         
         function emailConfirmation() {
-            const customerData = JSON.parse(localStorage.getItem('pinkMintCustomerData') || '{}');
-            const email = customerData.email || '';
+            // This function needs to fetch data from Firestore again or rely on the populated DOM
+            // For simplicity, it currently uses localStorage which is no longer the source.
+            // A more robust solution would compose the email body from the displayed data.
+            const customerEmail = document.getElementById('customer-email').textContent; // Get email from displayed info
             const subject = 'Pink Mint Clean - Booking Confirmation';
             const body = `Thank you for booking with Pink Mint Clean!\n\nYour confirmation details are available at: ${window.location.href}\n\nWe'll contact you within 24 hours to confirm your appointment.\n\nBest regards,\nPink Mint Clean Team`;
             
-            window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.location.href = `mailto:${customerEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         }
         
         function goBack() {
+            // This will take them to the previous page in history, which should be index.html
             window.history.back();
         }
         
         function bookAnother() {
-            localStorage.removeItem('pinkMintCustomerData');
+            // Clear the last booking ID so a new one can be started fresh
+            localStorage.removeItem('lastBookingId'); 
             window.location.href = 'index.html';
         }
         
         // Load data when page loads
         document.addEventListener('DOMContentLoaded', loadCustomerData);
     </script>
+
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96cc4677c370461e',t:'MTc1NDc5NTE2NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
