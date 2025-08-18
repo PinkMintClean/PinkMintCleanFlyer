@@ -1097,6 +1097,15 @@
         function updateDiscounts() {
             updateQuote();
         }
+    function isValidEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(String(email).toLowerCase());
+    }
+
+    function isValidPhone(phone) {
+        const re = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/; // Basic, adjust as needed
+        return re.test(String(phone));
+    }
 
         async function bookService() { // Made asynchronous to use await with Firestore
     // Get references for UI feedback
@@ -1157,20 +1166,13 @@
         return; // Stop the function if no service is selected
     }
 
-    // Add more robust validation here, e.g., email format, phone format
-    function isValidEmail(email) {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(String(email).toLowerCase());
-    }
+    // Add more robust validation here, e.g., email format, phone 
     if (!isValidEmail(customerData.email)) {
         alert('Please enter a valid email address.');
         return;
     }
 
-    function isValidPhone(phone) {
-        const re = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/; // Basic, adjust as needed
-        return re.test(String(phone));
-    }
+    
     if (!isValidPhone(customerData.phone)) {
         alert('Please enter a valid phone number.');
         return;
