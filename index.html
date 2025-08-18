@@ -589,7 +589,7 @@
                 <div class="space-y-6">
                     <div>
                         <label class="block text-sm font-medium mb-2">What areas of your home need the most attention?</label>
-                        <textarea class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" rows="3" placeholder="e.g., kitchen gets heavy use, bathrooms need deep cleaning, living room has high traffic"></textarea>
+                        <textarea id="areasNeedingAttentionInput" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" rows="3" placeholder="e.g., kitchen gets heavy use, bathrooms need deep cleaning, living room has high traffic"></textarea>
                     </div>
                     <div>
                         <label class="block text-sm font-medium mb-2">How often do you currently clean your home?</label>
@@ -604,16 +604,23 @@
                     </div>
                     <div>
                         <label class="block text-sm font-medium mb-2">What's your main goal for this cleaning service?</label>
-                        <textarea class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" rows="3" placeholder="e.g., preparing for guests, deep spring cleaning, regular maintenance, moving preparation"></textarea>
+                        <textarea id="mainGoalInput" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" rows="3" placeholder="e.g., preparing for guests, deep spring cleaning, regular maintenance, moving preparation"></textarea>
                     </div>
+
+                    
+
+
                     <div>
                         <label class="block text-sm font-medium mb-2">Any specific challenges or problem areas we should know about?</label>
-                        <textarea class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" rows="3" placeholder="e.g., hard water stains, pet odors, high-traffic areas, stubborn stains"></textarea>
+                        <textarea id="challengesInput" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" rows="3" placeholder="e.g., hard water stains, pet odors, high-traffic areas, stubborn stains"></textarea>
                     </div>
+
+                    
                     <div>
                         <label class="block text-sm font-medium mb-2">Additional comments or special requests:</label>
-                        <textarea class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" rows="4" placeholder="Anything else you'd like us to know about your home or cleaning preferences"></textarea>
+                        <textarea id="additionalCommentsInput" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-mint focus:border-transparent" rows="3" placeholder="Anything else you'd like us to know about your home or cleaning preferences"></textarea>
                     </div>
+                    
                 </div>
             </div>
         </section>
