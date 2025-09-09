@@ -102,14 +102,14 @@
                             <label for="tier1" class="ml-2 text-gray-800">Stage 1: Standard Clean</label>
                         </div>
                         <div class="flex items-center">
-                            <input type="radio" id="tier-deep" name="tier" value="Deep Clean" data-cost="350"
+                            <input type="radio" id="tier-deep" name="tier" value="Deep Clean" data-cost="300"
                                 class="w-4 h-4 text-[#F992BC] border-gray-300 rounded focus:ring-pink-500">
-                            <label for="tier-deep" class="ml-2 text-gray-800">Stage 2: Deep Clean ($350+)</label>
+                            <label for="tier-deep" class="ml-2 text-gray-800">Stage 2: Deep Clean ($300+)</label>
                         </div>
                         <div class="flex items-center">
-                            <input type="radio" id="tier3" name="tier" value="Move-In/Out" data-cost="300"
+                            <input type="radio" id="tier3" name="tier" value="Move-In/Out" data-cost="350"
                                 class="w-4 h-4 text-[#F992BC] border-gray-300 rounded focus:ring-pink-500">
-                            <label for="tier3" class="ml-2 text-gray-800">Stage 3: Move-In/Move-Out ($300+)</label>
+                            <label for="tier3" class="ml-2 text-gray-800">Stage 3: Move-In/Move-Out ($350+)</label>
                         </div>
                         <div class="flex items-center">
                             <input type="radio" id="tier-estate" name="tier" value="Estate Refresh Package" data-cost="500"
@@ -182,20 +182,20 @@
                 <label class="block text-sm font-medium text-gray-700 mb-2">Discounts</label>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     <div class="flex items-center">
-                        <input type="radio" id="discount-senior" name="discount" value="Senior" data-percent="15" class="w-4 h-4 text-[#F992BC] border-gray-300 rounded focus:ring-pink-500">
-                        <label for="discount-senior" class="ml-2 text-sm text-gray-700">Senior Discount (15%)</label>
+                        <input type="radio" id="discount-senior" name="discount" value="Senior" data-percent="10" class="w-4 h-4 text-[#F992BC] border-gray-300 rounded focus:ring-pink-500">
+                        <label for="discount-senior" class="ml-2 text-sm text-gray-700">Senior Discount (10%)</label>
                     </div>
                     <div class="flex items-center">
-                        <input type="radio" id="discount-veteran" name="discount" value="Veteran" data-percent="15" class="w-4 h-4 text-[#F992BC] border-gray-300 rounded focus:ring-pink-500">
-                        <label for="discount-veteran" class="ml-2 text-sm text-gray-700">Veteran Discount (15%)</label>
+                        <input type="radio" id="discount-veteran" name="discount" value="Veteran" data-percent="10" class="w-4 h-4 text-[#F992BC] border-gray-300 rounded focus:ring-pink-500">
+                        <label for="discount-veteran" class="ml-2 text-sm text-gray-700">Veteran Discount (10%)</label>
                     </div>
                     <div class="flex items-center">
-                        <input type="radio" id="discount-disability" name="discount" value="Disability" data-percent="15" class="w-4 h-4 text-[#F992BC] border-gray-300 rounded focus:ring-pink-500">
-                        <label for="discount-disability" class="ml-2 text-sm text-gray-700">Disability Discount (15%)</label>
+                        <input type="radio" id="discount-disability" name="discount" value="Disability" data-percent="10" class="w-4 h-4 text-[#F992BC] border-gray-300 rounded focus:ring-pink-500">
+                        <label for="discount-disability" class="ml-2 text-sm text-gray-700">Disability Discount (10%)</label>
                     </div>
                     <div class="flex items-center">
-                        <input type="radio" id="discount-property-manager" name="discount" value="PropertyManager" data-percent="25" class="w-4 h-4 text-[#F992BC] border-gray-300 rounded focus:ring-pink-500">
-                        <label for="discount-property-manager" class="ml-2 text-sm text-gray-700">Property Manager Loyalty Discount (25%)</label>
+                        <input type="radio" id="discount-property-manager" name="discount" value="PropertyManager" data-percent="10" class="w-4 h-4 text-[#F992BC] border-gray-300 rounded focus:ring-pink-500">
+                        <label for="discount-property-manager" class="ml-2 text-sm text-gray-700">Property Manager Loyalty Discount (10%)</label>
                     </div>
                 </div>
             </div>
@@ -244,8 +244,6 @@
                 <p id="print-tier-description" class="text-sm font-medium mb-2"></p>
                 <ul id="print-tier-list" class="list-disc list-inside space-y-1 text-sm text-gray-600"></ul>
             </div>
-            <h3 class="text-lg font-bold mb-2 mt-4 text-gray-800">Additional Services:</h3>
-            <ul id="print-add-on-list" class="list-disc list-inside space-y-1 text-sm text-gray-600"></ul>
         </div>
 
         <!-- Payment Methods -->
@@ -266,7 +264,7 @@
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.5 9h-3.5v3.5a1.5 1.5 0 0 1-3 0V11H7.5c-.83 0-1.5-.67-1.5-1.5S6.67 8 7.5 8h3V4.5a1.5 1.5 0 0 1 3 0V8h3c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5z"/>
                     </svg>
                     <span class="text-sm font-semibold text-gray-700 text-center">Cash App</span>
-                    <span class="text-xs text-green-800 mt-1 font-bold">@PinkMintClean</span>
+                    <span class="text-xs text-green-800 mt-1 font-bold">$PINKYYPYE</span>
                 </div>
 
                 <!-- Zelle -->
@@ -339,7 +337,6 @@
 
             const printTierDescription = document.getElementById('print-tier-description');
             const printTierList = document.getElementById('print-tier-list');
-            const printAddOnList = document.getElementById('print-add-on-list');
 
             const detailedServiceLists = {
                 "Express": [
@@ -514,16 +511,8 @@
                     printTierList.innerHTML = '';
                 }
 
-                // Update the add-on list for printing
-                printAddOnList.innerHTML = '';
-                addOnCheckboxes.forEach(checkbox => {
-                    if (checkbox.checked) {
-                        const label = document.querySelector(`label[for="${checkbox.id}"]`).textContent;
-                        const li = document.createElement('li');
-                        li.textContent = label;
-                        printAddOnList.appendChild(li);
-                    }
-                });
+                // The request was to not show add-ons or discounts on the final printout.
+                // The add-on list element and code to populate it have been removed.
 
                 window.print();
             });
