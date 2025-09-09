@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PMC Residential Cleaning Invoice</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f3f1;
+            color: #4b5563;
+        }
+
+        .container {
+            max-width: 900px;
+        }
+
+        .brand-logo {
+            color: #d898ba;
+            font-weight: 700;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="checkbox"] {
+            accent-color: #d898ba;
+        }
+
+        .checklist-item-container {
+            transition: all 0.3s ease;
+        }
+
+        .checklist-item:checked+span {
+            text-decoration: line-through;
+            color: #9ca3af;
+        }
+
+        .shadow-pink-400-md {
+            box-shadow: 0 4px 6px -1px rgba(216, 152, 186, 0.1), 0 2px 4px -1px rgba(216, 152, 186, 0.06);
+        }
+
+        /* Signature Pad Styles */
+        .signature-pad {
+            border: 1px dashed #d1d5db;
+            border-radius: 0.75rem;
+            cursor: crosshair;
+            background-color: #f9fafb;
+        }
+
+        @media print {
+            body {
+                background-color: #fff;
+            }
+
+            .no-print {
+                display: none;
+            }
+
+            .container {
+                max-width: none;
+                width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
+            .invoice-section {
+                box-shadow: none;
+                border: 1px solid #e5e7eb;
+            }
+
+            h1,
+            h2 {
+                color: #000 !important;
+            }
+
+            .brand-logo {
+                color: #d898ba !important;
+                text-shadow: none !important;
+            }
+
+            .invoice-item-list p {
+                padding-left: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="p-4 sm:p-8">
+    <div class="container mx-auto bg-white rounded-3xl shadow-lg p-6 sm:p-10 mb-8">
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <h1 class="brand-logo mb-2">Pink Mint Clean</h1>
+            <p class="text-gray-600 text-lg">Residential Cleaning Invoice & Checklist</p>
+            <p class="text-sm text-gray-400">Where every detail matters. Every space transforms.</p>
+        </header>
+
+        <div class="space-y-8">
+            <!-- Client & Service Info -->
+            <div class="bg-gray-50 p-6 rounded-2xl shadow-inner no-print">
+                <h2 class="text-2xl font-semibold mb-4 text-pink-600">Client & Service Details</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="clientName" class="block text-sm font-medium text-gray-700 mb-1">Client Name</label>
+                        <input type="text" id="clientName"
+                            class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-500">
+                    </div>
+                    <div>
+                        <label for="date" class="block text-sm font-medium text-gray-700 mb-1">Service Date</label>
+                        <input type="date" id="date"
+                            class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-500">
+                    </div>
+                    <div>
+                        <label for="rooms" class="block text-sm font-medium text-gray-700 mb-1">Number of Rooms</label>
+                        <input type="number" id="rooms" value="0" min="0"
+                            class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-500">
+                    </div>
+                    <div>
+                        <label for="bathrooms" class="block text-sm font-medium text-gray-700 mb-1">Number of
+                            Bathrooms</label>
+                        <input type="number" id="bathrooms" value="0" min="0"
+                            class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-500">
+                    </div>
+                    <div class="col-span-full md:col-span-1">
+                        <label for="floorType" class="block text-sm font-medium text-gray-700 mb-1">Floor Type</label>
+                        <select id="floorType"
+                            class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-500">
+                            <option value="Standard">Standard (Carpet/Tile)</option>
+                            <option value="Wooden">Wooden Floors</option>
+                        </select>
+                    </div>
+                    <div class="col-span-full">
+                        <label for="preServiceNotes" class="block text-sm font-medium text-gray-700 mb-1">Pre-Service Notes (Client Requests)</label>
+                        <textarea id="preServiceNotes" rows="3" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-500"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Community Care Section -->
+            <div class="bg-pink-100 p-6 rounded-2xl shadow-inner no-print border border-pink-200">
+                <h2 class="text-2xl font-semibold mb-4 text-pink-600">Community Care Discount</h2>
+                <div class="flex items-center">
+                    <input type="checkbox" id="communityCare"
+                        class="w-4 h-4 text-pink-600 border-gray-300 rounded focus:ring-pink-500">
+                    <label for="communityCare" class="ml-3 text-sm font-medium text-pink-800">
+                        Client is in a stressful situation (widow, fixed income, retired, deaf/blind, disabled).
+                        <span class="font-bold">Apply 10% discount.</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Cleaning Tier Selection -->
+            <div class="bg-gray-50 p-6 rounded-2xl shadow-inner no-print">
+                <h2 class="text-2xl font-semibold mb-4 text-pink-600">Select Cleaning Tier</h2>
+                <div class="space-y-4">
+                    <div class="flex items-center">
+                        <input type="radio" id="tier0" name="tier" value="Express" data-cost="75"
+                            class="w-4 h-4 text-pink-600 border-gray-300 focus:ring-pink-500">
+                        <label for="tier0" class="ml-3 text-gray-800 font-medium">Stage 0: Express Clean ("The Flash")
+                            -
+                            $75</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="radio" id="tier1" name="tier" value="Standard" data-cost="0"
+                            class="w-4 h-4 text-pink-600 border-gray-300 focus:ring-pink-500">
+                        <label for="tier1" class="ml-3 text-gray-800 font-medium">Stage 1: Standard Clean ("The
+                            Interior
+                            Touch")</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="radio" id="tier2" name="tier" value="Deep" data-cost="0"
+                            class="w-4 h-4 text-pink-600 border-gray-300 focus:ring-pink-500">
+                        <label for="tier2" class="ml-3 text-gray-800 font-medium">Stage 2: Deep Clean ("The
+                            Sanitization
+                            & Steam Ritual")</label>
+                    </div>
+                    <!-- New deposit note for deep cleaning -->
+                    <div id="deep-clean-deposit-note" class="hidden mt-2 ml-7 p-2 bg-pink-50 rounded-lg border border-pink-100 text-sm text-pink-700">
+                        A **50% non-refundable deposit** is required for this service.
+                    </div>
+                    <div class="flex items-center">
+                        <input type="radio" id="tier3" name="tier" value="Move-In/Out" data-cost="300"
+                            class="w-4 h-4 text-pink-600 border-gray-300 focus:ring-pink-500">
+                        <label for="tier3" class="ml-3 text-gray-800 font-medium">Stage 3: Move-In/Move-Out ("The Full
+                            Reset") - $300+</label>
+                    </div>
+                </div>
+                <div id="sqft-options" class="hidden mt-4 pl-8">
+                    <label for="sqft" class="block text-sm font-medium text-gray-700 mb-1">Select Square
+                        Footage</label>
+                    <select id="sqft"
+                        class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-500">
+                        <option value="0" selected disabled>Choose a rate</option>
+                        <option value="800">Up to 800 sq ft</option>
+                        <option value="1400">801-1400 sq ft</option>
+                        <option value="1401">Over 1400 sq ft (Consultation)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Interactive Checklist -->
+            <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-200">
+                <h2 class="text-2xl font-semibold mb-4 text-pink-600">Cleaning Checklist</h2>
+                <div id="checklist-container" class="space-y-6">
+                    <!-- Checklist items will be dynamically inserted here -->
+                </div>
+            </div>
+
+            <!-- Add-On Services -->
+            <div id="add-on-services" class="bg-gray-50 p-6 rounded-2xl shadow-inner no-print">
+                <h2 class="text-2xl font-semibold mb-4 text-pink-600">Add-On Services</h2>
+                <h3 class="text-lg font-medium text-gray-800 mb-2">Standard Add-Ons</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+                    <div class="flex items-center">
+                        <input type="checkbox" id="add-window" data-cost="10"
+                            class="w-4 h-4 text-pink-600 border-gray-300 rounded focus:ring-pink-500">
+                        <label for="add-window" class="ml-3 text-sm font-medium text-gray-700">Window Cleaning ($10 per
+                            window)</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="add-wall" data-cost="10"
+                            class="w-4 h-4 text-pink-600 border-gray-300 rounded focus:ring-pink-500">
+                        <label for="add-wall" class="ml-3 text-sm font-medium text-gray-700">Wall Washing ($10 per
+                            wall)</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="add-oven" data-cost="45"
+                            class="w-4 h-4 text-pink-600 border-gray-300 rounded focus:ring-pink-500">
+                        <label for="add-oven" class="ml-3 text-sm font-medium text-gray-700">Oven Cleaning ($45)</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="add-fridge" data-cost="35"
+                            class="w-4 h-4 text-pink-600 border-gray-300 rounded focus:ring-pink-500">
+                        <label for="add-fridge" class="ml-3 text-sm font-medium text-gray-700">Refrigerator Cleaning
+                            ($35)</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="add-laundry" data-cost="15"
+                            class="w-4 h-4 text-pink-600 border-gray-300 rounded focus:ring-pink-500">
+                        <label for="add-laundry" class="ml-3 text-sm font-medium text-gray-700">Laundry Service ($15 per
+                            load)</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="add-laundry-full" data-cost="25"
+                            class="w-4 h-4 text-pink-600 border-gray-300 rounded focus:ring-pink-500">
+                        <label for="add-laundry-full" class="ml-3 text-sm font-medium text-gray-700">Wash, Dry, Fold
+                            ($25 per load)</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="add-linens" data-cost="20"
+                            class="w-4 h-4 text-pink-600 border-gray-300 rounded focus:ring-pink-500">
+                        <label for="add-linens" class="ml-3 text-sm font-medium text-gray-700">Branded Linen & Towel
+                            Folding ($15-$25)</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="add-trash" data-cost="20"
+                            class="w-4 h-4 text-pink-600 border-gray-300 rounded focus:ring-pink-500">
+                        <label for="add-trash" class="ml-3 text-sm font-medium text-gray-700">Trash Bin Spa ($20)</label>
+                    </div>
+                </div>
+
+                <h3 class="text-lg font-medium text-gray-800 mb-2">Deep Cleaning Add-Ons (for Standard Cleans)</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+                    <div class="flex items-center">
+                        <input type="checkbox" id="deep-walls" data-cost="30"
+                            class="w-4 h-4 text-pink-600 border-gray-300 rounded focus:ring-pink-500">
+                        <label for="deep-walls" class="ml-3 text-sm font-medium text-gray-700">Deep clean walls &
+                            baseboards ($30)</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="deep-lights" data-cost="15"
+                            class="w-4 h-4 text-pink-600 border-gray-300 rounded focus:ring-pink-500">
+                        <label for="deep-lights" class="ml-3 text-sm font-medium text-gray-700">Clean light switches &
+                            fixtures ($15)</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="deep-steam" data-cost="40"
+                            class="w-4 h-4 text-pink-600 border-gray-300 rounded focus:ring-pink-500">
+                        <label for="deep-steam" class="ml-3 text-sm font-medium text-gray-700">Steam utilities &
+                            appliances ($40)</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="deep-grout" data-cost="25"
+                            class="w-4 h-4 text-pink-600 border-gray-300 rounded focus:ring-pink-500">
+                        <label for="deep-grout" class="ml-3 text-sm font-medium text-gray-700">Grout & tile scrubbing
+                            ($25)</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="deep-behind-furniture" data-cost="25"
+                            class="w-4 h-4 text-pink-600 border-gray-300 rounded focus:ring-pink-500">
+                        <label for="deep-behind-furniture" class="ml-3 text-sm font-medium text-gray-700">Clean behind
+                            furniture ($25)</label>
+                    </div>
+                </div>
+
+                <h3 class="text-lg font-medium text-gray-800 mb-2">Specialty Add-On Services</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                    <div class="flex items-center">
+                        <input type="checkbox" id="add-clutter" data-cost="50"
+                            class="w-4 h-4 text-pink-600 border-gray-300 rounded focus:ring-pink-500">
+                        <label for="add-clutter" class="ml-3 text-sm font-medium text-gray-700">Heavy Clutter/Pet Zones
+                            ($50)</label>
+                    </div>
+                    <div class="flex items-center col-span-2">
+                        <label for="staging-rooms" class="block text-sm font-medium text-gray-700">Staging (per room):
+                        </label>
+                        <input type="number" id="staging-rooms" value="0" min="0" data-cost="25"
+                            class="ml-2 w-20 px-2 py-1 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-500 text-right">
+                        <span class="ml-1 text-gray-600">room(s)</span>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="add-post-construction" data-cost="0"
+                            class="w-4 h-4 text-pink-600 border-gray-300 rounded focus:ring-pink-500">
+                        <label for="add-post-construction" class="ml-3 text-sm font-medium text-gray-700">Post-Construction Cleanup (Custom Quote)</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="add-event-setup" data-cost="0"
+                            class="w-4 h-4 text-pink-600 border-gray-300 rounded focus:ring-pink-500">
+                        <label for="add-event-setup" class="ml-3 text-sm font-medium text-gray-700">Event Set-Up/Tear-Down (Custom Quote)</label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Post-Service Notes -->
+            <div class="bg-gray-50 p-6 rounded-2xl shadow-inner no-print">
+                <h2 class="text-2xl font-semibold mb-4 text-pink-600">Post-Service Summary</h2>
+                <textarea id="postServiceNotes" rows="4" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-500"></textarea>
+            </div>
+
+            <!-- Invoice Summary & Print -->
+            <div class="bg-gray-100 p-6 rounded-2xl shadow-lg border border-gray-200 invoice-section">
+                <h2 class="text-2xl font-semibold mb-4 text-pink-600">Invoice Summary</h2>
+                <div class="space-y-2">
+                    <p class="flex justify-between items-center text-lg font-medium">
+                        <span class="text-gray-700">Cleaning Tier:</span>
+                        <span id="invoice-tier" class="text-right"></span>
+                    </p>
+                    <p class="flex justify-between items-center text-lg font-medium">
+                        <span class="text-gray-700">Base Cost:</span>
+                        <span id="invoice-base-cost" class="text-right">$0.00</span>
+                    </p>
+                    <div id="invoice-line-items" class="pl-4 space-y-1 text-gray-600 text-sm invoice-item-list">
+                        <!-- Add-on and extra costs will be dynamically inserted here -->
+                    </div>
+                    <p class="flex justify-between items-center text-lg font-medium text-green-700" id="discount-display" style="display: none;">
+                        <span class="font-bold">Community Care Discount:</span>
+                        <span id="discount-amount" class="text-right"></span>
+                    </p>
+                    <div class="border-t border-gray-300 pt-2"></div>
+                    <!-- New deposit and balance lines -->
+                    <p id="deposit-line" class="flex justify-between items-center text-lg font-medium text-gray-700" style="display: none;">
+                        <span>Deposit Required (50%):</span>
+                        <span id="invoice-deposit" class="text-right font-bold text-pink-600"></span>
+                    </p>
+                    <p id="balance-line" class="flex justify-between items-center text-lg font-medium text-gray-700" style="display: none;">
+                        <span>Balance Due:</span>
+                        <span id="invoice-balance" class="text-right font-bold text-pink-600"></span>
+                    </p>
+                    <div class="border-t border-gray-300 pt-2"></div>
+                    <p class="flex justify-between items-center text-2xl font-bold text-pink-700">
+                        <span>Total Estimate:</span>
+                        <span id="invoice-total-cost"></span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Digital Signature Section -->
+            <div class="bg-gray-50 p-6 rounded-2xl shadow-inner no-print">
+                <h2 class="text-2xl font-semibold mb-4 text-pink-600">Digital Signature</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Client Signature</label>
+                        <canvas id="clientSignature" width="400" height="150" class="signature-pad"></canvas>
+                        <button onclick="clearSignature('clientSignature')" class="mt-2 px-4 py-2 text-sm bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors">Clear</button>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Pink Mint Clean Signature</label>
+                        <canvas id="pmcSignature" width="400" height="150" class="signature-pad"></canvas>
+                        <button onclick="clearSignature('pmcSignature')" class="mt-2 px-4 py-2 text-sm bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors">Clear</button>
+                    </div>
+                </div>
+            </div>
+            
+            <hr class="my-8 border-gray-300">
+
+            <!-- Terms and Conditions -->
+            <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-200">
+                <h2 class="text-2xl font-semibold mb-4 text-pink-600">Terms & Conditions</h2>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    <li>
+                        **Payment:** Payment is due in full at least **24 hours prior** to the scheduled service. If the invoice remains unpaid, the service will be automatically canceled.
+                    </li>
+                    <li>
+                        **Cancellations:** A **50% cancellation fee** will be charged to cover labor and travel costs for a no-show or a cancellation made less than 48 hours prior to the scheduled appointment.
+                    </li>
+                    <li>
+                        **Consultation:** A consultation is required at least **48 hours** before the appointment. An invoice will be sent within **24-48 hours** following the consultation.
+                    </li>
+                    <li>
+                        **Deposits:** Any deposits made are non-refundable for cancellations due to unpaid invoices or any instance where the service cannot be performed due to circumstances beyond Pink Mint Clean's control.
+                    </li>
+                    <li>
+                        **Notes:** Before and after pictures are included with every service. Please notify us of any pets, allergies, asthma, or sensitivities during the consultation.
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Payment Methods -->
+            <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-200">
+                <h2 class="text-2xl font-semibold mb-4 text-pink-600">Accepted Payment Methods</h2>
+                <ul class="list-disc list-inside space-y-1 text-gray-700 text-lg">
+                    <li><span class="font-medium">Cash</span></li>
+                    <li><span class="font-medium">Cash App</span></li>
+                    <li><span class="font-medium">Zelle</span></li>
+                </ul>
+            </div>
+
+            <div class="text-center no-print mt-8">
+                <button onclick="window.print()"
+                    class="px-8 py-4 bg-pink-600 text-white rounded-full font-bold text-lg hover:bg-pink-700 transition duration-300 transform hover:scale-105 shadow-pink-400-md">Print
+                    Invoice</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const checklistContainer = document.getElementById('checklist-container');
+            const tierRadios = document.querySelectorAll('input[name="tier"]');
+            const sqftSelect = document.getElementById('sqft');
+            const sqftOptions = document.getElementById('sqft-options');
+            const roomsInput = document.getElementById('rooms');
+            const bathroomsInput = document.getElementById('bathrooms');
+            const floorTypeSelect = document.getElementById('floorType');
+            const communityCareCheckbox = document.getElementById('communityCare');
+            const stagingRoomsInput = document.getElementById('staging-rooms');
+            const invoiceBaseCost = document.getElementById('invoice-base-cost');
+            const invoiceLineItems = document.getElementById('invoice-line-items');
+            const invoiceTotalCost = document.getElementById('invoice-total-cost');
+            const invoiceTier = document.getElementById('invoice-tier');
+            const discountDisplay = document.getElementById('discount-display');
+            const discountAmount = document.getElementById('discount-amount');
+            const deepCleanDepositNote = document.getElementById('deep-clean-deposit-note');
+            const invoiceDeposit = document.getElementById('invoice-deposit');
+            const invoiceBalance = document.getElementById('invoice-balance');
+            const depositLine = document.getElementById('deposit-line');
+            const balanceLine = document.getElementById('balance-line');
+
+
+            // Digital Signature functionality
+            const clientSignaturePad = document.getElementById('clientSignature');
+            const pmcSignaturePad = document.getElementById('pmcSignature');
+            
+            const setupSignaturePad = (canvas) => {
+                const ctx = canvas.getContext('2d');
+                let isDrawing = false;
+
+                const startDrawing = (e) => {
+                    isDrawing = true;
+                    ctx.beginPath();
+                    const rect = canvas.getBoundingClientRect();
+                    const x = (e.clientX || e.touches[0].clientX) - rect.left;
+                    const y = (e.clientY || e.touches[0].clientY) - rect.top;
+                    ctx.moveTo(x, y);
+                };
+
+                const draw = (e) => {
+                    if (!isDrawing) return;
+                    const rect = canvas.getBoundingClientRect();
+                    const x = (e.clientX || e.touches[0].clientX) - rect.left;
+                    const y = (e.clientY || e.touches[0].clientY) - rect.top;
+                    ctx.lineTo(x, y);
+                    ctx.stroke();
+                };
+
+                const stopDrawing = () => {
+                    isDrawing = false;
+                    ctx.closePath();
+                };
+
+                ctx.strokeStyle = '#333';
+                ctx.lineWidth = 2;
+                ctx.lineCap = 'round';
+
+                canvas.addEventListener('mousedown', startDrawing);
+                canvas.addEventListener('mousemove', draw);
+                canvas.addEventListener('mouseup', stopDrawing);
+                canvas.addEventListener('mouseleave', stopDrawing);
+
+                canvas.addEventListener('touchstart', (e) => {
+                    e.preventDefault();
+                    startDrawing(e);
+                });
+                canvas.addEventListener('touchmove', (e) => {
+                    e.preventDefault();
+                    draw(e);
+                });
+                canvas.addEventListener('touchend', stopDrawing);
+            };
+
+            window.clearSignature = (canvasId) => {
+                const canvas = document.getElementById(canvasId);
+                const ctx = canvas.getContext('2d');
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            };
+
+            setupSignaturePad(clientSignaturePad);
+            setupSignaturePad(pmcSignaturePad);
+
+            const serviceData = {
+                "Express": {
+                    "sections": {
+                        "All Rooms": [{
+                            name: "Light wipe-down of surfaces",
+                            cost: 5
+                        }, {
+                            name: "Spot sweeping and vacuuming",
+                            cost: 5
+                        }, {
+                            name: "Quick dusting of visible furniture",
+                            cost: 5
+                        }],
+                        "Bathrooms": [{
+                            name: "Basic bathroom wipe-down (sink, toilet, mirror)",
+                            cost: 5
+                        }]
+                    }
+                },
+                "Standard": {
+                    "sections": {
+                        "All Rooms": [{
+                            name: "Thorough dusting and sanitization of all surfaces",
+                            cost: 10
+                        }, {
+                            name: "Vacuuming of all carpets and rugs",
+                            cost: 10
+                        }, {
+                            name: "Mopping of all hard floors",
+                            cost: 10
+                        }, {
+                            name: "Emptying of all trash cans",
+                            cost: 5
+                        }],
+                        "Kitchen": [{
+                            name: "Wipe down of countertops, stovetops, and exterior of appliances",
+                            cost: 10
+                        }],
+                        "Bathrooms": [{
+                            name: "Full cleaning and sanitization of toilets, showers, tubs, and vanities",
+                            cost: 15
+                        }]
+                    }
+                },
+                "Deep": {
+                    "sections": {
+                        "All Rooms": [{
+                            name: "Thorough dusting and sanitization of all surfaces",
+                            cost: 10
+                        }, {
+                            name: "Vacuuming of all carpets and rugs",
+                            cost: 10
+                        }, {
+                            name: "Mopping of all hard floors",
+                            cost: 10
+                        }, {
+                            name: "Emptying of all trash cans",
+                            cost: 5
+                        }],
+                        "Kitchen": [{
+                            name: "Wipe down of countertops, stovetops, and exterior of appliances",
+                            cost: 10
+                        }, {
+                            name: "Interior oven, fridge, and microwave cleaning",
+                            cost: 45
+                        }],
+                        "Bathrooms": [{
+                            name: "Full cleaning and sanitization of toilets, showers, tubs, and vanities",
+                            cost: 15
+                        }]
+                    }
+                },
+                "Move-In/Out": {
+                    "sections": {
+                        "All Rooms": [{
+                            name: "Thorough dusting and sanitization of all surfaces",
+                            cost: 10
+                        }, {
+                            name: "Vacuuming of all carpets and rugs",
+                            cost: 10
+                        }, {
+                            name: "Mopping of all hard floors",
+                            cost: 10
+                        }, {
+                            name: "Emptying of all trash cans",
+                            cost: 5
+                        }, {
+                            name: "Deep cleaning of walls, baseboards, doors, and doorknobs",
+                            cost: 30
+                        }, {
+                            name: "Detailed cleaning of light switches, fixtures, and air vents",
+                            cost: 15
+                        }, {
+                            name: "Moving and cleaning behind/underneath furniture (if feasible)",
+                            cost: 25
+                        }, {
+                            name: "Full cleaning of the inside of all cabinets, drawers, and closets",
+                            cost: 40
+                        }, {
+                            name: "Thorough wall wipe-down and spot treatment",
+                            cost: 20
+                        }, {
+                            name: "Odor neutralizing spray",
+                            cost: 20
+                        }],
+                        "Kitchen": [{
+                            name: "Wipe down of countertops, stovetops, and exterior of appliances",
+                            cost: 10
+                        }, {
+                            name: "Interior oven, fridge, and microwave cleaning",
+                            cost: 45
+                        }, {
+                            name: "Steaming of all utilities and appliances",
+                            cost: 40
+                        }],
+                        "Bathrooms": [{
+                            name: "Full cleaning and sanitization of toilets, showers, tubs, and vanities",
+                            cost: 15
+                        }, {
+                            name: "Intensive scrubbing of grout and bathroom tiles",
+                            cost: 25
+                        }]
+                    }
+                }
+            };
+
+            const tierPrices = {
+                "Standard": {
+                    "800": 100,
+                    "1400": 140
+                },
+                "Deep": {
+                    "Standard": {
+                        "800": 240,
+                        "1400": 275
+                    },
+                    "Wooden": {
+                        "800": 260,
+                        "1400": 295
+                    }
+                }
+            };
+
+            const addOnServicesData = {
+                "add-window": { name: "Window Cleaning", cost: 10 },
+                "add-wall": { name: "Wall Washing", cost: 10 },
+                "add-oven": { name: "Oven Cleaning", cost: 45 },
+                "add-fridge": { name: "Refrigerator Cleaning", cost: 35 },
+                "add-laundry": { name: "Laundry Service", cost: 15 },
+                "add-laundry-full": { name: "Wash, Dry, Fold", cost: 25 },
+                "add-linens": { name: "Branded Linen & Towel Folding", cost: 20 },
+                "add-trash": { name: "Trash Bin Spa", cost: 20 },
+                "deep-walls": { name: "Deep clean walls & baseboards", cost: 30 },
+                "deep-lights": { name: "Clean light switches & fixtures", cost: 15 },
+                "deep-steam": { name: "Steam utilities & appliances", cost: 40 },
+                "deep-grout": { name: "Grout & tile scrubbing", cost: 25 },
+                "deep-behind-furniture": { name: "Clean behind furniture", cost: 25 },
+                "add-clutter": { name: "Heavy Clutter/Pet Zones", cost: 50 },
+                "add-post-construction": { name: "Post-Construction Cleanup", cost: 0, custom: true },
+                "add-event-setup": { name: "Event Set-Up/Tear-Down", cost: 0, custom: true }
+            };
+
+
+            const generateChecklist = () => {
+                const selectedTier = document.querySelector('input[name="tier"]:checked');
+                const tier = selectedTier ? selectedTier.value : null;
+                checklistContainer.innerHTML = '';
+
+                if (tier) {
+                    const roomCount = parseInt(roomsInput.value) || 0;
+                    const bathroomCount = parseInt(bathroomsInput.value) || 0;
+
+                    const addSection = (title, items) => {
+                        const section = document.createElement('div');
+                        section.className = 'mb-4';
+                        const sectionTitle = document.createElement('h3');
+                        sectionTitle.className = 'text-xl font-semibold text-gray-800 mb-2 border-b-2 border-pink-200 pb-1';
+                        sectionTitle.textContent = title;
+                        section.appendChild(sectionTitle);
+
+                        items.forEach(item => {
+                            const label = document.createElement('label');
+                            label.className = 'flex items-center space-x-2 py-2 cursor-pointer';
+                            const checkbox = document.createElement('input');
+                            checkbox.type = 'checkbox';
+                            checkbox.className = 'checklist-item w-5 h-5 text-pink-600 border-gray-300 rounded focus:ring-pink-500';
+                            checkbox.dataset.cost = item.cost;
+                            const text = document.createElement('span');
+                            text.className = 'text-gray-700';
+                            text.textContent = item.name;
+                            label.appendChild(checkbox);
+                            label.appendChild(text);
+                            section.appendChild(label);
+                        });
+                        checklistContainer.appendChild(section);
+                    };
+
+                    if (tier === 'Express') {
+                        if (serviceData.Express.sections) {
+                            for (const section in serviceData.Express.sections) {
+                                addSection(section, serviceData.Express.sections[section]);
+                            }
+                        }
+                    } else if (tier === 'Standard' || tier === 'Deep' || tier === 'Move-In/Out') {
+                        // Dynamically add sections for each room
+                        for (let i = 1; i <= roomCount; i++) {
+                            addSection(`Room ${i}`, serviceData[tier].sections["All Rooms"]);
+                        }
+                        for (let i = 1; i <= bathroomCount; i++) {
+                            addSection(`Bathroom ${i}`, serviceData[tier].sections["Bathrooms"]);
+                        }
+                        if (serviceData[tier].sections.Kitchen) {
+                            addSection("Kitchen", serviceData[tier].sections["Kitchen"]);
+                        }
+                    }
+                }
+            };
+
+            const calculateTotal = () => {
+                let baseCost = 0;
+                let subtotal = 0;
+                let discountAmountValue = 0;
+                let totalCost = 0;
+                const EXTRA_ROOM_CHARGE = 40;
+                const ROOMS_THRESHOLD = 3;
+                const EXTRA_BATHROOM_CHARGE = 25;
+                const BATHROOMS_THRESHOLD = 2;
+                const DISCOUNT_PERCENTAGE = 0.10;
+                const STAGING_ROOM_COST = 25;
+
+                const selectedTier = document.querySelector('input[name="tier"]:checked');
+                let tierName = selectedTier ? selectedTier.value : "None";
+
+                invoiceLineItems.innerHTML = ''; // Clear previous line items
+
+                // Calculate base cost and add to line items
+                if (tierName === 'Express') {
+                    baseCost = parseFloat(selectedTier.dataset.cost);
+                } else if (tierName === 'Move-In/Out') {
+                    baseCost = parseFloat(selectedTier.dataset.cost);
+                } else if (tierName === 'Standard') {
+                    const sqftValue = sqftSelect.value;
+                    if (sqftValue === "800" || sqftValue === "1400") {
+                        baseCost = tierPrices[tierName][sqftValue];
+                    } else {
+                        baseCost = 0; // Consultation needed
+                    }
+                } else if (tierName === 'Deep') {
+                    const floorType = floorTypeSelect.value;
+                    const sqftValue = sqftSelect.value;
+                    if (sqftValue === "800" || sqftValue === "1400") {
+                        baseCost = tierPrices[tierName][floorType][sqftValue];
+                    } else {
+                        baseCost = 0; // Consultation needed
+                    }
+                }
+                
+                // Add extra rooms fee as a line item
+                const roomCount = parseInt(roomsInput.value) || 0;
+                if (tierName !== 'Express' && roomCount > ROOMS_THRESHOLD) {
+                    const extra = roomCount - ROOMS_THRESHOLD;
+                    const fee = extra * EXTRA_ROOM_CHARGE;
+                    subtotal += fee;
+                    const p = document.createElement('p');
+                    p.innerHTML = `<span>Extra Rooms (${extra}):</span> <span class="float-right">$${fee.toFixed(2)}</span>`;
+                    invoiceLineItems.appendChild(p);
+                }
+
+                // Add extra bathrooms fee as a line item
+                const bathroomCount = parseInt(bathroomsInput.value) || 0;
+                if (tierName !== 'Express' && bathroomCount > BATHROOMS_THRESHOLD) {
+                    const extra = bathroomCount - BATHROOMS_THRESHOLD;
+                    const fee = extra * EXTRA_BATHROOM_CHARGE;
+                    subtotal += fee;
+                    const p = document.createElement('p');
+                    p.innerHTML = `<span>Extra Bathrooms (${extra}):</span> <span class="float-right">$${fee.toFixed(2)}</span>`;
+                    invoiceLineItems.appendChild(p);
+                }
+
+                // Add staging cost as a line item
+                const stagingRooms = parseInt(stagingRoomsInput.value) || 0;
+                if (stagingRooms > 0) {
+                    const cost = stagingRooms * STAGING_ROOM_COST;
+                    subtotal += cost;
+                    const p = document.createElement('p');
+                    p.innerHTML = `<span>Staging (${stagingRooms} rooms):</span> <span class="float-right">$${cost.toFixed(2)}</span>`;
+                    invoiceLineItems.appendChild(p);
+                }
+
+                // Calculate cost of checked items in the main checklist and add as line items
+                document.querySelectorAll('.checklist-item:checked').forEach(checkbox => {
+                    const cost = parseFloat(checkbox.dataset.cost);
+                    const name = checkbox.nextElementSibling.textContent;
+                    if (!isNaN(cost)) {
+                        subtotal += cost;
+                        const p = document.createElement('p');
+                        p.innerHTML = `<span>&#x2713; ${name}:</span> <span class="float-right">$${cost.toFixed(2)}</span>`;
+                        invoiceLineItems.appendChild(p);
+                    }
+                });
+
+                // Calculate cost of checked add-on services and add as line items
+                document.querySelectorAll('#add-on-services input[type="checkbox"]:checked').forEach(checkbox => {
+                    const cost = parseFloat(checkbox.dataset.cost);
+                    const addOn = addOnServicesData[checkbox.id];
+                    if (addOn) {
+                        if (!isNaN(cost) && !addOn.custom) {
+                            subtotal += cost;
+                            const p = document.createElement('p');
+                            p.innerHTML = `<span>&#x2713; ${addOn.name}:</span> <span class="float-right">$${cost.toFixed(2)}</span>`;
+                            invoiceLineItems.appendChild(p);
+                        } else if (addOn.custom) {
+                            const p = document.createElement('p');
+                            p.innerHTML = `<span>&#x2713; ${addOn.name}:</span> <span class="float-right">Custom Quote</span>`;
+                            invoiceLineItems.appendChild(p);
+                        }
+                    }
+                });
+
+                subtotal += baseCost;
+
+                // Calculate community care discount
+                if (communityCareCheckbox.checked) {
+                    discountAmountValue = subtotal * DISCOUNT_PERCENTAGE;
+                    discountDisplay.style.display = 'flex';
+                } else {
+                    discountDisplay.style.display = 'none';
+                }
+
+                totalCost = subtotal - discountAmountValue;
+                
+                // Show/hide deposit info based on cleaning tier
+                if (tierName === 'Deep') {
+                    const deposit = totalCost * 0.5;
+                    const balance = totalCost - deposit;
+                    invoiceDeposit.textContent = `$${deposit.toFixed(2)}`;
+                    invoiceBalance.textContent = `$${balance.toFixed(2)}`;
+                    depositLine.style.display = 'flex';
+                    balanceLine.style.display = 'flex';
+                    deepCleanDepositNote.style.display = 'block';
+                } else {
+                    depositLine.style.display = 'none';
+                    balanceLine.style.display = 'none';
+                    deepCleanDepositNote.style.display = 'none';
+                }
+
+                invoiceTier.textContent = tierName;
+                invoiceBaseCost.textContent = `$${baseCost.toFixed(2)}`;
+                discountAmount.textContent = `-$${discountAmountValue.toFixed(2)}`;
+                invoiceTotalCost.textContent = `$${totalCost.toFixed(2)}`;
+            };
+
+            // Event Listeners
+            tierRadios.forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    const tier = e.target.value;
+                    if (tier === 'Standard' || tier === 'Deep') {
+                        sqftOptions.classList.remove('hidden');
+                    } else {
+                        sqftOptions.classList.add('hidden');
+                    }
+                    generateChecklist();
+                    calculateTotal();
+                });
+            });
+
+            sqftSelect.addEventListener('change', calculateTotal);
+            roomsInput.addEventListener('input', () => {
+                generateChecklist();
+                calculateTotal();
+            });
+            bathroomsInput.addEventListener('input', () => {
+                generateChecklist();
+                calculateTotal();
+            });
+            floorTypeSelect.addEventListener('change', calculateTotal);
+            communityCareCheckbox.addEventListener('change', calculateTotal);
+            stagingRoomsInput.addEventListener('input', calculateTotal);
+
+            // Listen for changes on all checkboxes to update the total
+            document.addEventListener('change', (event) => {
+                if (event.target.matches('.checklist-item') || event.target.closest('#add-on-services')) {
+                    calculateTotal();
+                }
+            });
+
+            // Initial generation and calculation
+            generateChecklist();
+            calculateTotal();
+        });
+    </script>
+</body>
+
+</html>
