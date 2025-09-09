@@ -22,6 +22,10 @@
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
 
+        .print-only {
+            display: none;
+        }
+
         @media print {
             body {
                 background-color: #fff;
@@ -36,6 +40,10 @@
 
             .no-print {
                 display: none;
+            }
+
+            .print-only {
+                display: block;
             }
         }
     </style>
@@ -66,10 +74,16 @@
                 <p class="font-semibold text-base">Bill to:</p>
                 <input type="text" id="clientName" placeholder="Client Name" class="border border-gray-300 rounded-md px-2 py-1 text-sm text-right">
                 <p class="text-sm print-only" id="clientNamePrint"></p>
+                <input type="text" id="clientAddress" placeholder="Street Address" class="border border-gray-300 rounded-md px-2 py-1 text-sm text-right mt-1">
+                <p class="text-sm print-only" id="clientAddressPrint"></p>
+                <input type="text" id="clientCityStateZip" placeholder="City, State, Zip" class="border border-gray-300 rounded-md px-2 py-1 text-sm text-right mt-1">
+                <p class="text-sm print-only" id="clientCityStateZipPrint"></p>
+                <input type="tel" id="clientPhone" placeholder="Phone Number" class="border border-gray-300 rounded-md px-2 py-1 text-sm text-right mt-1">
+                <p class="text-sm print-only" id="clientPhonePrint"></p>
             </div>
         </div>
-        
-        <!-- Service Details & Calculator -->
+
+        <!-- Service Details & Calculator (On-screen, No-Print) -->
         <div class="mb-6 p-6 bg-gray-50 rounded-lg no-print">
             <h3 class="text-lg font-bold mb-4 text-gray-800">Select Service & Add-Ons</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -192,7 +206,7 @@
             </div>
         </div>
 
-        <!-- Invoice Summary Section -->
+        <!-- Invoice Summary Section (Visible on-screen) -->
         <div class="mb-6 p-6 bg-gray-100 rounded-lg border border-gray-200">
             <h3 class="text-lg font-bold mb-4 text-gray-800">Invoice Summary</h3>
             <div class="space-y-2 text-gray-700">
@@ -204,7 +218,6 @@
                     <span>Base Cost:</span>
                     <span id="invoice-base-cost" class="font-semibold text-right">$0.00</span>
                 </div>
-                <div id="service-description" class="p-2 my-2 rounded-md italic text-sm text-gray-600 border-l-4 border-[#F992BC] bg-pink-50 hidden"></div>
                 <div id="invoice-line-items" class="pl-4 space-y-1 text-xs">
                     <!-- Line items will be added here -->
                 </div>
@@ -222,6 +235,17 @@
                     <span id="invoice-deposit" class="font-bold text-lg text-[#F992BC]">$0.00</span>
                 </div>
             </div>
+        </div>
+
+        <!-- Service Details for Printout (Print-only) -->
+        <div id="print-service-details" class="print-only">
+            <h3 class="text-lg font-bold mb-2 mt-4 text-gray-800">Services Included:</h3>
+            <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                <p id="print-tier-description" class="text-sm font-medium mb-2"></p>
+                <ul id="print-tier-list" class="list-disc list-inside space-y-1 text-sm text-gray-600"></ul>
+            </div>
+            <h3 class="text-lg font-bold mb-2 mt-4 text-gray-800">Additional Services:</h3>
+            <ul id="print-add-on-list" class="list-disc list-inside space-y-1 text-sm text-gray-600"></ul>
         </div>
 
         <!-- Payment Methods -->
@@ -292,6 +316,9 @@
         document.addEventListener('DOMContentLoaded', () => {
             const dateInput = document.getElementById('date');
             const clientNameInput = document.getElementById('clientName');
+            const clientAddressInput = document.getElementById('clientAddress');
+            const clientCityStateZipInput = document.getElementById('clientCityStateZip');
+            const clientPhoneInput = document.getElementById('clientPhone');
             const printButton = document.getElementById('printButton');
             const tierRadios = document.querySelectorAll('input[name="tier"]');
             const sqftSelect = document.getElementById('sqft');
@@ -306,18 +333,53 @@
             const invoiceLineItems = document.getElementById('invoice-line-items');
             const invoiceTotalCost = document.getElementById('invoice-total-cost');
             const invoiceDeposit = document.getElementById('invoice-deposit');
-            const serviceDescription = document.getElementById('service-description');
             const discountLine = document.getElementById('discount-line');
             const discountName = document.getElementById('discount-name');
             const discountAmount = document.getElementById('discount-amount');
 
-            const serviceDescriptions = {
-                "Express": "A quick 1-1.5 hour clean for basic tidying and surface refreshing. Includes a light wipe-down of all common surfaces (counters, tables), spot sweeping and light vacuuming, basic bathroom wipe-down (sink, toilet, mirror), and quick dusting of visible furniture.",
-                "Standard": "Thorough dusting and sanitization of all surfaces, including furniture, fixtures, and decor. Includes a wipe-down of kitchen countertops, stovetops, and exterior of appliances. Full cleaning and sanitization of bathrooms (toilets, showers, tubs, vanities), vacuuming of all carpets and rugs, and mopping of hard floors. Emptying of all trash cans.",
-                "Deep Clean": "This intensive service includes everything in a Standard Clean, plus deep cleaning of walls, baseboards, doors, and door frames.",
-                "Move-In/Out": "A comprehensive clean to prepare a home for a new resident. This includes a deep clean of all rooms and bathrooms, ensuring every space is sanitized and refreshed from top to bottom.",
-                "Estate Refresh Package": "This package offers a complete home refresh. It includes a thorough deep clean and sanitization of the entire property to make it feel brand new.",
-                "Compassion Care Package": "A special service designed for times of immense difficulty. It includes everything in a Deep Clean, plus sensitive decluttering and organization, full laundry service, and a focus on creating a tranquil, peaceful environment to support emotional healing."
+            const printTierDescription = document.getElementById('print-tier-description');
+            const printTierList = document.getElementById('print-tier-list');
+            const printAddOnList = document.getElementById('print-add-on-list');
+
+            const detailedServiceLists = {
+                "Express": [
+                    "Light wipe-down of all common surfaces (counters, tables).",
+                    "Spot sweeping and light vacuuming of high-traffic areas.",
+                    "Basic bathroom wipe-down (sink, toilet, mirror).",
+                    "Quick dusting of visible furniture."
+                ],
+                "Standard": [
+                    "Thorough dusting of all surfaces, including furniture, fixtures, and decor.",
+                    "Wipe-down and sanitization of kitchen countertops and stovetops.",
+                    "Exterior wipe-down of all kitchen appliances.",
+                    "Full cleaning and sanitization of bathrooms (toilets, showers, tubs, vanities, sinks).",
+                    "Vacuuming of all carpets and rugs.",
+                    "Mopping of all hard floors.",
+                    "Emptying of all trash cans."
+                ],
+                "Deep Clean": [
+                    "All services from the Standard Clean.",
+                    "Deep cleaning of walls, baseboards, doors, and door frames.",
+                    "Steaming and sanitization of all surfaces for a deeper clean."
+                ],
+                "Move-In/Out": [
+                    "A comprehensive deep clean of all rooms and bathrooms.",
+                    "Wiping and sanitization of all surfaces, from top to bottom.",
+                    "Full vacuuming, mopping, and steaming of all floors.",
+                    "Detailed cleaning of cabinets, drawers, closets, and appliances (exterior)."
+                ],
+                "Estate Refresh Package": [
+                    "A complete deep clean of the entire property.",
+                    "Thorough sanitization of all surfaces, fixtures, and appliances.",
+                    "In-depth floor cleaning, including steaming where applicable.",
+                    "Includes all features of the Deep Clean plus a focus on all rooms and a more detailed sanitization process."
+                ],
+                "Compassion Care Package": [
+                    "Includes all services from the Deep Clean.",
+                    "Sensitive decluttering and organization.",
+                    "Full laundry service (washing, drying, and folding).",
+                    "Focus on creating a tranquil, peaceful environment to support emotional healing."
+                ]
             };
 
             // Set current date
@@ -333,20 +395,12 @@
                 let tierName = "None selected";
                 
                 invoiceLineItems.innerHTML = '';
-                serviceDescription.classList.add('hidden');
-                serviceDescription.textContent = '';
                 discountLine.classList.add('hidden');
 
-
-                // Calculate tier cost and update description
+                // Calculate tier cost
                 const selectedTier = document.querySelector('input[name="tier"]:checked');
                 if (selectedTier) {
                     tierName = selectedTier.value;
-                    if (serviceDescriptions[tierName]) {
-                        serviceDescription.textContent = serviceDescriptions[tierName];
-                        serviceDescription.classList.remove('hidden');
-                    }
-
                     if (tierName === 'Standard') {
                         const sqftValue = sqftSelect.value;
                         if (sqftValue === 'consultation') {
@@ -446,6 +500,31 @@
                 // Transfer data to print-only elements before printing
                 document.getElementById('invoice-date').textContent = dateInput.value;
                 document.getElementById('clientNamePrint').textContent = clientNameInput.value;
+                document.getElementById('clientAddressPrint').textContent = clientAddressInput.value;
+                document.getElementById('clientCityStateZipPrint').textContent = clientCityStateZipInput.value;
+                document.getElementById('clientPhonePrint').textContent = clientPhoneInput.value;
+
+                // Update the detailed service list for printing
+                const selectedTier = document.querySelector('input[name="tier"]:checked');
+                if (selectedTier && detailedServiceLists[selectedTier.value]) {
+                    printTierDescription.textContent = selectedTier.value + " includes:";
+                    printTierList.innerHTML = detailedServiceLists[selectedTier.value].map(item => `<li>${item}</li>`).join('');
+                } else {
+                    printTierDescription.textContent = "No service tier selected.";
+                    printTierList.innerHTML = '';
+                }
+
+                // Update the add-on list for printing
+                printAddOnList.innerHTML = '';
+                addOnCheckboxes.forEach(checkbox => {
+                    if (checkbox.checked) {
+                        const label = document.querySelector(`label[for="${checkbox.id}"]`).textContent;
+                        const li = document.createElement('li');
+                        li.textContent = label;
+                        printAddOnList.appendChild(li);
+                    }
+                });
+
                 window.print();
             });
 
