@@ -35,6 +35,13 @@
             font-size: 1rem;
             line-height: 1.5rem;
         }
+        .service-box {
+            padding: 1.5rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            background-color: #fff;
+        }
         .list-inside li::before {
             content: '•';
             color: #F992BC;
@@ -42,6 +49,10 @@
             display: inline-block;
             width: 1.5rem;
             margin-left: -1.5rem;
+        }
+        .added-service {
+            color: #F992BC;
+            font-weight: 500;
         }
         @media print {
             body {
@@ -68,7 +79,7 @@
         </div>
 
         <!-- Service Tier 1 -->
-        <div class="mb-10">
+        <div class="service-box mb-10">
             <h3 class="text-3xl font-bold text-gray-800 mb-4">1. The Daily Shine</h3>
             <p class="text-xl text-gray-600 mb-4">A daily clean for fundamental maintenance and a great first impression.</p>
             <ul class="list-inside space-y-3 text-lg text-gray-700 ml-6">
@@ -80,37 +91,47 @@
             </ul>
             <p class="mt-6 font-bold text-xl text-gray-800">Flat Rate: <span class="text-pink-500">$85</span> (1-1.5 hr)</p>
         </div>
-        <hr class="my-8 border-gray-200">
 
         <!-- Service Tier 2 -->
-        <div class="mb-10">
+        <div class="service-box mb-10">
             <h3 class="text-3xl font-bold text-gray-800 mb-4">2. The Weekly Refresh</h3>
             <p class="text-xl text-gray-600 mb-4">A comprehensive weekly service to maintain a consistently clean environment.</p>
             <ul class="list-inside space-y-3 text-lg text-gray-700 ml-6">
-                <li>All services from The Daily Shine.</li>
-                <li>Full dusting & sanitization.</li>
-                <li>Complete vacuuming & mopping.</li>
-                <li>Mats pulled out & cleaned underneath.</li>
-                <li>Meticulous showcase & glass wiping.</li>
-                <li>Full bathroom sanitization.</li>
+                <li>Quick wipe-down of all counters and surfaces.</li>
+                <li>Spot cleaning of floors.</li>
+                <li>Basic glass & door wipe-down.</li>
+                <li>Dusting of product displays.</li>
+                <li>All trash is emptied.</li>
+                <li class="added-service">Full dusting & sanitization.</li>
+                <li class="added-service">Complete vacuuming & mopping.</li>
+                <li class="added-service">Meticulous showcase & glass wiping.</li>
+                <li class="added-service">Full bathroom sanitization.</li>
             </ul>
-            <p class="mt-6 font-bold text-xl text-gray-800">Flat Rate: <span class="text-pink-500">$220</span></p>
+            <p class="mt-6 font-bold text-xl text-gray-800">Flat Rate: <span class="text-pink-500">$185</span></p>
         </div>
-        <hr class="my-8 border-gray-200">
 
         <!-- Service Tier 3 -->
-        <div class="mb-10">
+        <div class="service-box mb-10">
             <h3 class="text-3xl font-bold text-gray-800 mb-4">3. The Full Reset</h3>
             <p class="text-xl text-gray-600 mb-4">An intensive deep clean to restore your space to a pristine state.</p>
             <ul class="list-inside space-y-3 text-lg text-gray-700 ml-6">
-                <li>All services from The Weekly Refresh.</li>
-                <li>Intensive grout & tile scrubbing.</li>
-                <li>Detailed cleaning of vents & fixtures.</li>
-                <li>Cleaning behind all furniture.</li>
-                <li>Sanitization of mannequin heads.</li>
-                <li>Thorough backroom cleaning.</li>
+                <li>Quick wipe-down of all counters and surfaces.</li>
+                <li>Spot cleaning of floors.</li>
+                <li>Basic glass & door wipe-down.</li>
+                <li>Dusting of product displays.</li>
+                <li>All trash is emptied.</li>
+                <li>Full dusting & sanitization.</li>
+                <li>Complete vacuuming & mopping.</li>
+                <li>Meticulous showcase & glass wiping.</li>
+                <li>Full bathroom sanitization.</li>
+                <li class="added-service">Pulling up & cleaning underneath floor mats.</li>
+                <li class="added-service">Intensive grout & tile scrubbing.</li>
+                <li class="added-service">Detailed cleaning of vents & fixtures.</li>
+                <li class="added-service">Cleaning behind all furniture.</li>
+                <li class="added-service">Sanitization of mannequin heads.</li>
+                <li class="added-service">Thorough backroom cleaning.</li>
             </ul>
-            <p class="mt-6 font-bold text-xl text-gray-800">Flat Rate: <span class="text-pink-500">$330</span></p>
+            <p class="mt-6 font-bold text-xl text-gray-800">Flat Rate: <span class="text-pink-500">$275</span></p>
         </div>
 
         <!-- Footer -->
