@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pink Mint Clean Commercial Pamphlet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7fafc;
+        }
+        .pamphlet-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2.5rem;
+            background-color: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        h1 {
+            font-size: 3rem;
+            line-height: 1;
+        }
+        h2 {
+            font-size: 2.25rem;
+            line-height: 2.5rem;
+        }
+        .text-xl {
+            font-size: 1.25rem;
+            line-height: 1.75rem;
+        }
+        .text-base {
+            font-size: 1rem;
+            line-height: 1.5rem;
+        }
+        .list-inside li::before {
+            content: '•';
+            color: #F992BC;
+            font-weight: bold;
+            display: inline-block;
+            width: 1.5rem;
+            margin-left: -1.5rem;
+        }
+        @media print {
+            body {
+                background-color: #fff;
+            }
+            .pamphlet-container {
+                max-width: none;
+                margin: 0;
+                padding: 0;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="pamphlet-container">
+        <!-- Header -->
+        <div class="text-center pb-8 border-b border-gray-200 mb-8">
+            <h1 class="font-extrabold text-[#F992BC] mb-2">Pink Mint Clean</h1>
+            <h2 class="font-extrabold text-[#F992BC]">A Partner You Can Trust</h2>
+            <p class="text-xl text-gray-600 mt-2">Commercial & Retail Cleaning | Columbus, MS</p>
+            <p class="text-xl text-gray-600">Let Us Handle the Hard Work.</p>
+        </div>
+
+        <!-- Service Tier 1 -->
+        <div class="mb-10">
+            <h3 class="text-3xl font-bold text-gray-800 mb-4">1. The Daily Shine</h3>
+            <p class="text-xl text-gray-600 mb-4">A daily clean for fundamental maintenance and a great first impression.</p>
+            <ul class="list-inside space-y-3 text-lg text-gray-700 ml-6">
+                <li>Quick wipe-down of all counters and surfaces.</li>
+                <li>Spot cleaning of floors.</li>
+                <li>Basic glass & door wipe-down.</li>
+                <li>Dusting of product displays.</li>
+                <li>All trash is emptied.</li>
+            </ul>
+            <p class="mt-6 font-bold text-xl text-gray-800">Flat Rate: <span class="text-pink-500">$85</span> (1-1.5 hr)</p>
+        </div>
+        <hr class="my-8 border-gray-200">
+
+        <!-- Service Tier 2 -->
+        <div class="mb-10">
+            <h3 class="text-3xl font-bold text-gray-800 mb-4">2. The Weekly Refresh</h3>
+            <p class="text-xl text-gray-600 mb-4">A comprehensive weekly service to maintain a consistently clean environment.</p>
+            <ul class="list-inside space-y-3 text-lg text-gray-700 ml-6">
+                <li>All services from The Daily Shine.</li>
+                <li>Full dusting & sanitization.</li>
+                <li>Complete vacuuming & mopping.</li>
+                <li>Mats pulled out & cleaned underneath.</li>
+                <li>Meticulous showcase & glass wiping.</li>
+                <li>Full bathroom sanitization.</li>
+            </ul>
+            <p class="mt-6 font-bold text-xl text-gray-800">Flat Rate: <span class="text-pink-500">$220</span></p>
+        </div>
+        <hr class="my-8 border-gray-200">
+
+        <!-- Service Tier 3 -->
+        <div class="mb-10">
+            <h3 class="text-3xl font-bold text-gray-800 mb-4">3. The Full Reset</h3>
+            <p class="text-xl text-gray-600 mb-4">An intensive deep clean to restore your space to a pristine state.</p>
+            <ul class="list-inside space-y-3 text-lg text-gray-700 ml-6">
+                <li>All services from The Weekly Refresh.</li>
+                <li>Intensive grout & tile scrubbing.</li>
+                <li>Detailed cleaning of vents & fixtures.</li>
+                <li>Cleaning behind all furniture.</li>
+                <li>Sanitization of mannequin heads.</li>
+                <li>Thorough backroom cleaning.</li>
+            </ul>
+            <p class="mt-6 font-bold text-xl text-gray-800">Flat Rate: <span class="text-pink-500">$330</span></p>
+        </div>
+
+        <!-- Footer -->
+        <div class="pt-8 border-t border-gray-200 text-center text-lg text-gray-500 mt-8">
+            <p class="mb-2">For a free consultation, please call:</p>
+            <p class="font-bold text-2xl text-pink-500">662-497-6601</p>
+        </div>
+    </div>
+</body>
+</html>
